@@ -24,6 +24,6 @@ int Combination2(int n, int r) {
 }
 
 int main() {
-    cout << "Using Combination Formula Is : " << Combination2(5, 3) << endl;
+    cout << "Using Combination Formula Is : " << Combination2(4,2) << endl;
     return 0;
 }
