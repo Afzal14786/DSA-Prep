@@ -24,6 +24,8 @@ int power(int m, int n) {
     }
 }
 
+
+// using bit manipulation the pow(n, x)
 int bitPower(int n, int x) {
     int ans = 1;
 
@@ -40,8 +42,36 @@ int bitPower(int n, int x) {
     return ans;
 }
 
+// best optimize solution for this problem using bit manipulatio with all the edge cases 
+
+double myPower2(double x, int n) {
+    if (x == 0) {
+        return (n == 0) ? 1.0 : 0.0;
+    }
+
+    long long N = n;
+
+    if (N < 0) {
+        x = 1/x;
+        N = -N;
+    }
+
+    double ans = 1.0;
+
+    while (N > 0) {
+        if (N & 1) {
+            ans *= x;
+        }
+        x *= x;
+        N >>= 1;
+    }
+
+    return ans;
+}
+
 int main() {
-    cout << power1(2,5) << endl;
-    cout << bitPower(2,5) << endl;      // not correct trying to fix it . 
+    // cout << power1(2,5) << endl;
+    // cout << bitPower(2,5) << endl;      // not correct trying to fix it . 
+    cout << "Answer : " << myPower2(2, 5) << endl;
     return 0;
 }
