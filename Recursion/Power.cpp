@@ -30,7 +30,8 @@ int bitPower(int n, int x) {
     while (x > 0) {
         int lastDigit = x & 1;
         if (lastDigit) {
-            ans += n;
+            // fixing + to * => previousl it was ans += n now it is : ans *= n
+            ans *= n;
         }
         n *= n;
         x = x >> 1;
