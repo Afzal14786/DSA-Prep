@@ -74,6 +74,30 @@ int fibonacci(int num) {
     return fibonacci(n-2) + fibonacci(num-1);
 }
 ```
+**In above code, if we see the no of calls are `O(n^2)` but using memoization we'll reduce it with `O(n)` calls.**  
+
+**Example Code:**  
+```cpp
+int memoizationFibonacci(int n) {
+    int array[n+1];
+    for (int i = 0; i < n+1; ++i) {
+        array[i] = -1;
+    }
+
+    if (n <= 1) {
+        array[n] = n;
+        return n;
+    } else {
+        if (array[n-2] == -1) {
+            array[n-2] = memoizationFibonacci(n-2);
+        } else if (array[n-1] == -1) {
+            array[n-1] = memoizationFibonacci(n-1);
+        }
+    }
+
+    return array[n-2] + array[n-1];
+}
+```
 ### Time complexity for this code is exponential time complexity of O(2^n) .  
 
 
@@ -286,4 +310,57 @@ int main() {
 
     // tilingProblem(n-1) => means align vertically.
     // tilingProblem(n-2) => means set the tiles horizantally.
+```
+
+### 8. Tylor Series Using Recursion And For Loop  
+```cpp
+// solution approach 1:
+// In this solution , no of multiplication is n^2.
+double tylorSeries1(int x, int n) {
+    static double power = 1.0, factorial = 1.0;
+    double ans;
+
+    if (n == 0) {
+        return 1;
+    } else {
+        ans = tylorSeries1(x, n-1);
+        power *= x;
+        factorial *= n;
+        return ans + power/factorial;
+    }
+}
+```
+
+```cpp
+// Solution Approach 2:
+// In this solution approach no of multiplication is `n` time only.
+
+// Solution using for loop
+
+double tylorSeries2(int x, int n) {
+    double ans = 1.0;
+    if (n == 0) {
+        return ans;
+    }
+
+    for (; n > 0; n--) {
+        ans = 1 + x * ans / n;
+    }
+
+    return ans;
+}
+
+// Solution Approach 3 :
+// Using Recursion : 
+// taking common the first term & then multiply .
+
+double tylorSeries3(int x, int n) {
+    static double ans;
+    if (n == 0) {
+        return 1;
+    }
+
+    ans = 1 + x * ans / n;
+    return tylorSeries3(x, n-1);
+}
 ```
