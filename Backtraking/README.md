@@ -87,4 +87,141 @@ Algorithm NQueen(int n) {
 2. **Print all possible solutions**
 3. **Count of all possible solutions**  
 
+### Solution For NQueen Question In Cpp
 
+**_time complexity : O(n!)_**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <math.h>
+
+using namespace std;
+
+// global arrays
+int boardSize = 8; // or any N you want to solve for
+vector<int> answer(boardSize);
+int totalSolution = 0;
+
+vector<vector<char>> board(boardSize, vector<char>(boardSize, '.'));
+
+
+void printAns(vector<int> &ans) {
+    for (int i = 0; i < ans.size(); ++i) {
+        cout << ans[i] << " ";
+    }
+
+    cout << endl;
+}
+
+bool isSafe(int k, int l) {     // k as row, and l as columns
+    for (int i = 0; i < k; ++i) {
+        if (answer[i] == l || abs(i-k) == abs(answer[i] - l)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void nQueen(int k) {
+    if (k == boardSize) {
+        totalSolution++;
+        printAns(answer);
+        return;
+    }
+
+    for (int i = 0; i < boardSize; ++i) {
+        if (isSafe(k, i)) {
+            answer[k] = i;
+            nQueen(k+1);
+        }
+    }
+}
+
+// print 2D Matrix (Board)
+
+void printBoard(const vector<vector<char>>& board) {
+    for (const auto& row : board) {
+        for (char cell : row) {
+            cout << cell << " ";
+        }
+        cout << endl;
+    }
+    cout << "\n----------------------------\n";
+}
+
+void nQueen2(int k) {
+    if (k == boardSize) {
+        totalSolution++;
+        printBoard(board);
+        return;
+    }
+
+    for (int i = 0; i < boardSize; ++i) {
+        if (isSafe(k, i)) {
+            board[k][i] = 'Q';
+            answer[k] = i;
+            nQueen2(k+1);
+            board[k][i] = '.';
+        }
+    }
+}
+
+int main() {
+
+    // nQueen(0);
+   // cout << "Total No of possible solutions for N = 8 is " << totalSolution << endl;
+    nQueen2(0);
+    cout << "Total No of possible solutions for N = 8 is " << totalSolution << endl;
+    return 0;
+}
+```
+
+## 2. Permutation  
+
+**Arrangment of laters in specific orders.**   
+
+Example :  
+Suppose you have 3 letters: A, B, and C.  
+All possible permutations of these 3 letters (arrangements without repetition) are:  
+ * ABC
+ * ACB
+ * BAC
+ * BCA
+ * CAB
+ * CBA  
+
+So, there are 6 **permutations** of the 3 items. This is calculated by.  
+
+**Number of permutations = 3! = _3 x 2 x 1_ = 6**  
+
+**General Formula :**  
+For n different items, the number of permutations (arrangements of all items) is : **_P(n) = n!_**  
+
+If we are choosing and arranging **r** items out of **n**, then it is :  $P(n, r) = \frac{n!}{(n - r)!}$  
+
+**Here is the C++ Code For Permutation:**  
+```cpp
+void Permutation(string str, string ans) {
+    int n = str.size();
+    if (n == 0) {
+        cout << ans << endl;
+        return;
+    } else {
+        for (int i = 0; i < n; ++i) {
+            char ch = str[i];
+            string nextStr = str.substr(0,i) + str.substr(i+1, n-i-1);
+            Permutation(nextStr, ans + ch);
+        }
+    }
+}
+
+int main() {
+    string str = "abc";
+    string ans = "";
+
+    Permutation(str, ans);
+    return 0;
+}
+```
