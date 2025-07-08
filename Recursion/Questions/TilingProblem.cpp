@@ -32,12 +32,12 @@ int tilingProblem(int n) {
 }
 
 int main() {
-    cout << tilingProblem(1) << endl;       // possible ways 1
-    cout << tilingProblem(2) << endl;       // possible ways 2
-    cout << tilingProblem(3) << endl;       // possible ways 3
-    cout << tilingProblem(4) << endl;       // possible ways 5
-    cout << tilingProblem(5) << endl;       // possible ways 8
-    cout << tilingProblem(6) << endl;       // possible ways 13
-    cout << tilingProblem(7) << endl;       // possible ways 21
+    cout << "possible ways : " << tilingProblem(1) << endl;       // possible ways 1
+    cout << "possible ways : " << tilingProblem(2) << endl;       // possible ways 2
+    cout << "possible ways : " << tilingProblem(3) << endl;       // possible ways 3
+    cout << "possible ways : " << tilingProblem(4) << endl;       // possible ways 5
+    cout << "possible ways : " << tilingProblem(5) << endl;       // possible ways 8
+    cout << "possible ways : " << tilingProblem(6) << endl;       // possible ways 13
+    cout << "possible ways : " << tilingProblem(7) << endl;       // possible ways 21
     return 0;
 }
