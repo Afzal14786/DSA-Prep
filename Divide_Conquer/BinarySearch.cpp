@@ -19,8 +19,10 @@ int BinSearch(vector<int> &nums, int start, int end, int target) {
     int mid = start + (end - start)/2;
 
     if (nums[mid] == target) {
-        return mid;
-    } else if (nums[mid] > target) {
+        return mid;     // means target found in index mid
+    }
+
+    if (nums[mid] > target) {
         return BinSearch(nums, start, mid-1, target);
     } else {
         return BinSearch(nums, mid+1, end, target);
@@ -29,6 +31,9 @@ int BinSearch(vector<int> &nums, int start, int end, int target) {
 
 int main() {
     vector<int> nums = {-12,-8,-6,-1,3,6,8,11,14,17,20,22,25,29,31};
-    cout << "Target Found At Index : " << BinSearch(nums, 0, nums.size()-1, 6) << endl;
+    int taregt;
+    cout << "Enter the target value : ";
+    cin >> taregt;
+    cout << "Target Found At Index : " << BinSearch(nums, 0, nums.size()-1, taregt) << endl;
     return 0; 
 }
