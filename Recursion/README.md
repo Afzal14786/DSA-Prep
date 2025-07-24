@@ -3,6 +3,11 @@
 `
 when a function call itself again and again.
 `  
+
+**What is recurrence?**  
+
+`Recurrence is an equation or inequality that describe a function in terms of it's value and smaller inputs.`  
+
 ***Example:***  
 ```cpp
 1 int factorial(int num) {
