@@ -1,5 +1,4 @@
-# DSA-Revision
-Using C++ Revision &amp; Practice DSA Concepts &amp; Questions  
+# Welcome to My DSA Journey!  
 
 **This repository is a comprehensive collection of my efforts in `Data Structures and Algorithms (DSA)`. It's designed to be a personal learning log, a reference for common DSA concepts, and a place to showcase solutions to various algorithmic problems.**  
 
@@ -39,6 +38,8 @@ Follow Me On :
 * [Github](https://github.com/afzal14786)  
 * [Facebook](https://facebook.com/mdafzal14786)  
 * [Linked In](https://www.linkedin.com/in/mdafzal14786/)  
+
+**This Repository is Maintain By Me & [Kajal Yadhuvanshi](https://github.com/kajal824)**
 
 ### How To Clone  
 
