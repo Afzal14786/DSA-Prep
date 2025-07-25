@@ -43,6 +43,7 @@ Follow Me On :
 
 ### How To Clone  
 
+`Open your terminal and paste the following links`
 ****
 ```
 git clone https://github.com/Afzal14786/DSA-Revision.git
