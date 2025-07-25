@@ -17,10 +17,10 @@
  10. Bucket Or Bin Sort
  11. Radix Sort  
 
-### * Some of these algorithms are `Comparision Based Algorithm` or some of them are `Index Based Algorithm`  
+###  Some of these algorithms are `Comparision Based Algorithm` or some of them are `Index Based Algorithm`  
 
 
-### There si some critera for analysis the sorting algorithms  
+### There is some critera for analysis the sorting algorithms  
 a. Number of comparision.  
 b. Number of swaps.  
 c. Adaptive.  
@@ -58,7 +58,7 @@ void BubbleSort(vector<int> &nums) {
 
 
 ### Merge Sort  
-**Merge sort algorithm is one of the most famous algorithm that is used for sorting . It uses divide and conquer rule . First it divides the array into 2 half using calculating the mid. Merge Sort Divide the array by half continuesly unitl it find a single element because by default single element is sorted, then it apply merging the sorted element with another sorted element into a single array .**  
+Merge sort algorithm is one of the most famous algorithm that is used for sorting . It uses divide and conquer rule . First it divides the array into 2 half using calculating the mid. Merge Sort Divide the array by half continuesly unitl it find a single element because by default single element is sorted, then it apply merging the sorted element with another sorted element into a single array .  
 
 `Merge Sort Algorithm`  
 ```cpp
