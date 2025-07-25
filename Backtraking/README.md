@@ -7,7 +7,10 @@
 1. SUDOKU
 2. N-Queens
 3. Rat In A Maze
-4. Permutation  
+4. Permutation
+5. Grid Ways
+6. FindSubsets
+7. KNights  
 and many more...   
 
 **In above all the example, they have more then one solutions. And also we can apply _bounding conditions_ to get some specific solution or desired solutions**  
@@ -82,7 +85,7 @@ Algorithm NQueen(int n) {
     }
 }
 ```
-### There are three variations of _N-Queen_ question.  *
+### There are three variations of _N-Queen_ question.  
 1. **Find answer exist or not return _true / false_**
 2. **Print all possible solutions**
 3. **Count of all possible solutions**  
@@ -225,3 +228,4 @@ int main() {
     return 0;
 }
 ```
+

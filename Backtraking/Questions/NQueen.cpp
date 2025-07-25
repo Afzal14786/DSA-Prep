@@ -6,10 +6,11 @@ using namespace std;
 
 bool foundSolution = false;
 // global arrays
-int boardSize = 8; // or any N you want to solve for
-vector<int> answer(boardSize);
+int boardSize = 8; // or any N we want to solve for
+vector<int> answer(boardSize);      // thsi answer vector array holdes the answer where the queens are placed
 int totalSolution = 0;
 
+// it is for printing all the boards
 vector<vector<char>> board(boardSize, vector<char>(boardSize, '.'));
 
 
@@ -24,7 +25,7 @@ void printAns(vector<int> &ans) {
 bool isSafe(int k, int l) {     // k as row, and l as columns
     for (int i = 0; i < k; ++i) {
         if (answer[i] == l || abs(i-k) == abs(answer[i] - l)) {
-            return false;int totalCombination = 0;
+            return false;
         }
     }
 
@@ -34,8 +35,8 @@ bool isSafe(int k, int l) {     // k as row, and l as columns
 
 void nQueen(int k) {
     if (k == boardSize) {
-        totalSolution++;
-        printAns(answer);
+        totalSolution++;        // it is used to calculate all the possible answer's
+        printAns(answer);       // print the answer
         return;
     }
 
@@ -64,16 +65,16 @@ void printBoard(const vector<vector<char>>& board) {
 void nQueen2(int k) {
     if (k == boardSize) {
         totalSolution++;
-        printBoard(board);
+        printBoard(board);  // print all the boards
         return;
     }
 
     for (int i = 0; i < boardSize; ++i) {
         if (isSafe(k, i)) {
             board[k][i] = 'Q';
-            answer[k] = i;
+            answer[k] = i;      // it holdes the index of queens in answer array
             nQueen2(k+1);
-            board[k][i] = '.';
+            board[k][i] = '.';  // backtrack
         }
     }
 }
@@ -106,7 +107,8 @@ int main() {
 
     // nQueen(0);
    // cout << "Total No of possible solutions for N = 8 is " << totalSolution << endl;
-    nQueen3(0);     // print one solution only
-    cout << "Total No of possible solutions for N = 8 is " << totalSolution << endl;
+    // nQueen3(0);     // print one solution only
+    nQueen2(0);
+    
     return 0;
 }
