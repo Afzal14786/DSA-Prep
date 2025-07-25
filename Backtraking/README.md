@@ -181,6 +181,7 @@ For n different items, the number of permutations (arrangements of all items) is
 If we are choosing and arranging **r** items out of **n**, then it is :  $P(n, r) = \frac{n!}{(n - r)!}$  
 
 **Here is the C++ Code For Permutation:**  
+**Solution Approach One**  
 ```cpp
 void Permutation(string str, string ans) {
     int n = str.size();
@@ -205,3 +206,37 @@ int main() {
 }
 ```
 
+**Solution approach 2**  
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+string str = "ABC";
+string ans = "";
+int N = str.size();
+vector<bool> selected(N, false);
+
+void Permutation2(int k) {
+    if (k == N) {
+        cout << ans << endl;
+        return;
+    }
+
+    for (int i = 0; i < N; ++i) {
+        if (selected[i] == false) {
+            ans += str[i];
+            selected[i] = true;
+            Permutation2(k+1);
+            selected[i] = false;    // backtrack
+            ans.pop_back();     // backtrack
+        }
+    }
+}
+
+int main() {
+    Permutation2(0);
+    return 0;
+}
+```
