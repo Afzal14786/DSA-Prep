@@ -47,11 +47,38 @@ void Permutation2(int k) {
     }
 }
 
+
+/**
+ * Approach 3
+ * Using bounding condition we can solve this
+ */
+
+void Perm_Bound(int k) {
+    if (k == N) {
+        cout << ans << endl;
+        return;
+    }
+
+    for (int i = 0; i < N; ++i) {
+        if (selected[i] == false) {
+            // bounding condition
+            if (k > 0 && (str[i]-ans.at(k-1) == 1))
+                continue;
+            ans += str[i];
+            selected[i] = true;
+            Perm_Bound(k+1);
+            selected[i] = false;
+            ans.pop_back();
+        }
+        
+    }
+}
 int main() {
     string str = "abc";
     string ans = "";
 
     // Permutation(str, ans);
-    Permutation2(0);
+    // Permutation2(0);
+    Perm_Bound(0); 
     return 0;
 }

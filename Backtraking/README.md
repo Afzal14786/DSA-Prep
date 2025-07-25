@@ -240,3 +240,36 @@ int main() {
     return 0;
 }
 ```
+**Solution Approach 3**  
+We can also solve `Permutation` if there is any **Bounding Coundition**  
+`Bounding Condition :` means that if two consecutive letter are not allowed like `AB` & `BC` but `BA` & `AC` is allowed.  
+**example:**  
+_In our example we have to write a **permutation function** such a way that two consecutive characters should not be there in the result_  
+**Solution Code :**  
+```cpp
+string str = "ABC";
+int N = str.size();
+string res = "";
+vector<bool> select(N, false);
+
+void Permutation_Bounding(int k) {
+    if (k == N) {
+        cout << res << endl;
+        return;
+    }
+
+    for (int i = 0; i < N; ++i) {
+        if (select[i] == false) {
+            // bounding condition here
+            if (k > 0 && str[i] - res.at(k-1) == 1)
+                continue;
+            
+            res += str[i];
+            select[i] = true;
+            Permutation_Bounding(k+1);
+            select[i] = false;
+            res.pop_back();
+        }
+    }
+}
+```
