@@ -1,6 +1,6 @@
 # Welcome to My DSA Journey!  
 
-**This repository is a comprehensive collection of my efforts in `Data Structures and Algorithms (DSA)`. It's designed to be a personal learning log, a reference for common DSA concepts, and a place to showcase solutions to various algorithmic problems.**  
+_This repository is a comprehensive collection of my efforts in `Data Structures and Algorithms (DSA)`. It's designed to be a personal learning log, a reference for common DSA concepts, and a place to showcase solutions to various algorithmic problems._  
 
 ### What you will find here  
 _This repository is organized by DSA topics, with each topic having its own dedicated folder. Inside each topic folder, you'll find:_  
