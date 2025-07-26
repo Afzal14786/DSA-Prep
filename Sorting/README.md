@@ -1,9 +1,9 @@
 # Sorting Techniques  
 
-### There are many types of sorting techniques. Here is some of the famous`Sorting Algorithms`  
+**There are many types of sorting techniques. Here is some of the famous**`Sorting Algorithms`  
 
-### From `Bubble Sort` till `Shell Sort` all are comparision based algorithm.
-### From `Count Sort` till `Radix Sort` are index based algorithm .  
+_From_ `Bubble Sort` _till_ `Shell Sort` _all are comparision based algorithm._  
+_From_ `Count Sort` _till_ `Radix Sort` _are index based algorithm ._    
 
  1. Bubble Sort
  2. Insertion Sort
@@ -17,20 +17,20 @@
  10. Bucket Or Bin Sort
  11. Radix Sort  
 
-###  Some of these algorithms are `Comparision Based Algorithm` or some of them are `Index Based Algorithm`  
+_Some of these algorithms are_ `Comparision Based Algorithm` _or some of them are_ `Index Based Algorithm`  
 
 
-### There is some critera for analysis the sorting algorithms  
+**There is some critera for analysis the sorting algorithms**  
 a. Number of comparision.  
 b. Number of swaps.  
 c. Adaptive.  
 d. Stable.  
 e. Extra Memory.
 
-### When an algorithm is Stable ?  
+**When an algorithm is Stable ?**  
 When an algorithm preserve the `order` of an element or elements while sorting, such `algorithm` known as `Stable Algorithm`.  
 
-### When an algorithm is adaptive ?  
+**When a*n algorithm is adaptive ?**  
 When the given `array` or `list of objects` are **already sorted**, then the comparision must be stop after one iteration . So it takes only `O(n) time complexity`. Such algorithm known as `Adaptive Algorithm.`
 
 ### 1. Bubble Sort  

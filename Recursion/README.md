@@ -5,7 +5,6 @@ when a function call itself again and again.
 `  
 
 **What is recurrence?**  
-
 `Recurrence is an equation or inequality that describe a function in terms of it's value and smaller inputs.`  
 
 ***Example:***  
@@ -18,9 +17,8 @@ when a function call itself again and again.
 6     return factorial(num - 1) * num;
 7 }
 ```
-`
-In the above example if we see, the _factoral_ function call itself in line no 6.
-`
+**In the above example if we see, the _factoral_ function call itself in line no 6.**
+
 
 * **There are five types of recursion functions**  
     1. **Tail Recursion**  
@@ -38,10 +36,10 @@ In the above example if we see, the _factoral_ function call itself in line no 6
         ```  
     
     2. **Head Recursion**  
-    When the function call before the execuation of next step .
-    **example:**  
-    ```cpp
-                        // num = 5
+    When the function call before the execuation of next step .  
+    **example:**
+        ```cpp
+            // num = 5
         1 void printNum(int num) {
         2    if (num == 0) {
         3       return;    
@@ -49,14 +47,64 @@ In the above example if we see, the _factoral_ function call itself in line no 6
         5    printNum(num-1);
         6    cout << num << " ";  // 1,2,3,4,5
         7 }
-    ```  
+        ```  
 
     3. **Indirect Recursion**  
-    4. **Tree Recursion**  
+    When a function called from another function.  
+    **Example:**  
+        ```cpp
+        void funA() {
+            funB();
+            // something ... something ...
+        }
+
+        void funB() {
+            funC();
+            // something ... something ...
+        }
+        ```
+    4.  **Tree Recursion**
+
+        **Tree recursion**: when a function makes more than one recursive call to itself within the same function execution.
+
+        ```text
+                      fib(4)
+                     /      \
+                fib(3)      fib(2)
+                /    \      /    \
+            fib(2) fib(1) fib(1) fib(0)
+            /   \
+        fib(1) fib(0)
+        ```   
+        ```cpp
+        int fibo(int n) {
+            if (n <= 0) {
+                retutn 0;
+            }
+
+            if (n == 1) {
+                return 1;
+            }
+
+            return fibo(n-1) + fibo(n-2);   // tree resursion
+        }
+        ```
     5. **Nested Recursion**  
+    **Nested Recursion:** This occurs when a recursive function takes itself as an argument. In other words, a recursive call is nested inside another recursive call. The inner recursive call must be fully evaluated before the outer call can proceed.  
+        ```cpp
+        int ackermann(int m, int n) {
+            if (m == 0) {
+                return n+1;
+            } else if (m > 0 && n == 0) {
+                return ackermann(m - 1, 1);
+            } else { // m > 0 and n > 0
+                return ackermann(m - 1, ackermann(m, n - 1));
+            }
+        }
+        ```
+<br>
+<br>
 
-
-<hr/>
 
 ## Questions & Solution Code  
 
@@ -64,9 +112,9 @@ In the above example if we see, the _factoral_ function call itself in line no 6
 **Solution:**  
 ***Fibonacci number*** is a sequence of number where each number is the sum of two preceding ones. It starting with **0** & **1**.  
 
-The sequence typically begins: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on  
+The sequence typically begins: `0`, `1`, `1`, `2`, `3`, `5`, `8`, `13`, `21`, `34`, and so on...  
 
-Finoacci number has a deep connection to the ***Golden Ration*** (ϕ ≈ 1.618). 
+Finoacci number has a deep connection to the ***Golden Ration*** `(ϕ ≈ 1.618)`. 
 
 In terms of ***Computer Science*** the **fibonacci numbers** are used in algorithms, data structures (like Fibonacci heaps).  
 
