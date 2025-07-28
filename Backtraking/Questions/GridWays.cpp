@@ -44,6 +44,6 @@ int Grid2(int n, int m) {
     // int ways = Grid(0, 0, n, m, ans);
     // cout << "Total No Of Ways = " << ways << endl;
 
-    cout << Grid2(3, 3) << endl;
+    cout << "Total No Of Possible Ways : " << Grid2(4, 4) << endl;
     return 0;
  }

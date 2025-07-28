@@ -273,3 +273,53 @@ void Permutation_Bounding(int k) {
     }
 }
 ```
+## Grid Ways  
+
+_We have a matrix of size **N*M** and we have to find the total no of ways from sourse **(0,0)** to **(N-1, M-1)**_  
+**Solution Approach :**  
+**Allowed Moved :** _Right & Down_  
+
+If we move right means that we are moving in the column means **col+1** and if we move towards down means that we are moving in the row, means **row+1**  
+
+**Solution Code :**  
+---  
+```cpp
+int PossibleWays(int row, int col, int N, int M) {
+    // base case 
+    if (row == N-1 || col == M-1) {  // means we are at destination
+        return 1;
+    }
+
+    if (row >= N || col >= M) { // it will stop for moving infinite right or down moves
+        return 0;
+    }
+
+    // right move
+    int way1 = PossibleWays(row, col+1, N,M);
+
+    // down move
+    int way1 = PossibleWays(row, col+1, N,M);
+
+    return way1 + way2;
+}
+```
+
+Using **Permutation formula** we can also solve this problem .  
+
+$$Grid(N,M) = \frac{(N+M)!}{N! \cdot M!}$$  
+
+```cpp
+int fact(int n) {
+    if (n <= 1) {
+        return 1;
+    }
+
+    return n * fact(n-1);
+}
+
+int PossibleWays(int N, int M) {
+    int ans = fact (N-1 + M-1) / (fact(N-1) * fact (M-1));
+    return ans;
+}
+```
+
