@@ -435,7 +435,7 @@ int main() {
     return 0;
 }
 ```  
-**_Code Solution :_**  
+**_Code Output :_**  
 
 ```
 Solution Path In 2D Matrix: 
@@ -444,7 +444,7 @@ Solution Path In 2D Matrix:
 Solution In Directions : DRDDRR
 ---------------------------------
 ```
-**Time Complexity :** _The algorithm calling it-self in 4 directions for each cell, so it is **$4 * N^N$** means it is **$O(N^N)$**_  
+**Time Complexity :** _The algorithm calling it-self in 4 directions for each cell, so it is **$4 * N^N$** means it is_  $O(N^N)$
 
-_And if suppose the maze is completly blank means that there is no blocks in the maze, all the cells are open then in this condition all the possible conditions are true so **time complexity will be : $O(4^{N * N})$**_  
+_And if suppose the maze is completly blank means that there is no blocks in the maze, all the cells are open then in this condition all the possible conditions are true so **time complexity will be :**_  $4^{N * N}$
 
