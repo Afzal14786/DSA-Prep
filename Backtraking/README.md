@@ -444,7 +444,7 @@ Solution Path In 2D Matrix:
 Solution In Directions : DRDDRR
 ---------------------------------
 ```
-**Time Complexity :** _The algorithm calling it-self in 4 directions for each cell, so it is $4 * N^2$ means it is_  $O(N^2)$
+**Time Complexity :** _The algorithm calling it-self in 4 directions for each cell, so it is_ $4 * N^2$ _means it is_  $O(N^2)$
 
 _And if suppose the maze is completly blank means that there is no blocks in the maze, all the cells are open then in this condition all the possible conditions are true so **time complexity will be :**_  $4^{N * N}$
 
