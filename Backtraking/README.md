@@ -1,7 +1,7 @@
 ## Backtracking  
 
-### Backtracking is a strategies for finding a solution to a problem.  
-**Backtracking is used to solve those type of problems or specific problems which have more than one possible solutions and we want all the solutions, then we'll use backtracking.**   
+**Backtracking is a strategies for finding a solution to a problem.**  
+Backtracking is used to solve those type of problems or specific problems which have more than one possible solutions and we want all the solutions, then we'll use backtracking.   
 
 **Example Problems :**  
 1. SUDOKU
@@ -273,7 +273,7 @@ void Permutation_Bounding(int k) {
     }
 }
 ```
-## Grid Ways  
+## 3. Grid Ways  
 
 _We have a matrix of size **N*M** and we have to find the total no of ways from sourse **(0,0)** to **(N-1, M-1)**_  
 **Solution Approach :**  
@@ -323,7 +323,7 @@ int PossibleWays(int N, int M) {
 }
 ```
 
-## Rat In A Maze  
+## 4. Rat In A Maze  
 
 You are given a square `N x N` **matrix**, **maze**, where each cell represents a part of a maze. A value of `1` in a cell `maze[i][j]` indicates that the block is open and the rat can move to it. A value of 0 indicates that the block is a wall, and the rat cannot move there.  
 A rat starts at the source cell at `(0, 0)` and must reach the destination cell at `(N-1, N-1)`.  
@@ -447,4 +447,51 @@ Solution In Directions : DRDDRR
 **Time Complexity :** _The algorithm calling it-self in 4 directions for each cell, so it is_ $4 * N^2$ _means it is_  $O(N^2)$
 
 _And if suppose the maze is completly blank means that there is no blocks in the maze, all the cells are open then in this condition all the possible conditions are true so **time complexity will be :**_  $4^{N * N}$
+
+## 5. Sudoku Solver  
+
+In this section we're discussion an important and classic `backtracking` problem that is **Sudoku Solver**. This problem takes partially filled `9x9` Sudoku grid and return the completly solved grid, adhering to all the rules of the game.  
+
+**Problem Description**  
+Sudoku is a logic-based number-placement puzzle. The objective is to fill a `9x9` grid with digits so that **each column**, **each row**, and **each of the nine 3x3 subgrids** that compose the grid contain all of the digits from __1 to 9__.  
+
+_The puzzle starts with a partially filled grid, which for a well-posed puzzle has a single unique solution._  
+
+**Rules**  
+A Sudoku puzzle is solved when the following conditions are met:
+1. **Row Constraint:** Each of the nine rows must contain the digits from _1 to 9_ exactly once.  
+2. **Column Constraint:** Each of the nine columns must contain the digits from _1 to 9_ exactly once.  
+3. **Subgrid Constraint:** Each of the nine 3x3 subgrids must contain the digits from 1 to 9 exactly once.  
+
+**Input and Output**  
+
+**Input:** A 9x9 integer matrix (or a 2D array) representing the Sudoku board. Empty cells are typically represented by the number `0`.  
+
+**Output:** A 9x9 integer matrix representing the solved Sudoku board.  
+
+**Algorithm Approach**  
+This problem is a classic example that can be solved efficiently using a backtracking algorithm. The basic idea is to recursively try placing digits from 1 to 9 in an empty cell. If a digit placement violates the Sudoku rules, we backtrack and try the next digit. If all digits have been tried and none work, we return to the previous cell and change its value. This process continues until the entire grid is filled correctly.  
+
+_The most common algorithm for solving Sudoku is backtracking. It's a recursive, depth-first search approach that systematically tries to fill in the empty cells._  
+1. **Find an Empty Cell:** Scan the board (e.g., from left-to-right, top-to-bottom) to find the next empty cell. If no empty cells are found, the puzzle is solved, and you can return true.  
+2. **Try Numbers (1-9):** For the found empty cell, iterate through numbers 1 to 9.  
+3. **Check for Validity:** For each number, check if placing it in the current empty cell is valid. A placement is valid if the number does not already exist in:
+    * **The Current Row** 
+    * **The Current Column**
+    * **The Current 3x3 Subgrid**  
+4. **Recursion:**  
+    * If the number is `valid`, place it on the board and recursively call the solver function on the updated board.  
+    * If the recursive call returns `true` (meaning it led to a complete solution), then you've found the solution. Return `true` up the call stack.  
+
+5. **Backtrack**  
+    * If the recursive call returns `false` (meaning the number placed did not lead to a solution), you must backtrack. Reset the current cell back to empty (e.g., `0`) and try the next number in the loop (from step 2).  
+
+6. **End of Loop:** If you have tried all numbers from 1 to 9 for the current cell and none of them resulted in a solution, return false to the previous recursive call. This signals that a wrong move was made earlier in the process.  
+
+**Example Code Solution:**  
+_Here is an solution code for sudoku solver_  
+
+```cpp
+
+```
 
