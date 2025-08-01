@@ -5,13 +5,13 @@
 _Backtracking is used to solve those type of problems or specific problems which have more than one possible solutions and we want all the solutions, then we'll use backtracking._   
 
 **Example Problems :**  
-1. SUDOKU
-2. N-Queens
-3. Rat In A Maze
-4. Permutation
-5. Grid Ways
-6. FindSubsets
-7. KNights  
+1. [N-Queen](#1-n-queen)
+2. [Permutation](#2-permutation)
+3. [Grid Ways](#3-grid-ways)
+4. [Rat In A Maze](#4-rat-in-a-maze)
+5. [Sudoku Solver](#5-sudoku-solver)
+6. [Find Subsets](#6-find-subsets)
+7. [K-Nights Problem](#7-knight-problem)  
 and many more...   
 
 **In above all the example, they have more then one solutions. And also we can apply _bounding conditions_ to get some specific solution or desired solutions**  
@@ -532,3 +532,7 @@ _Wrost Case Time Complexity Is_ $9 ^{n^2}$ or $n^{n^2}$
 
 **Space Complexity: O(m)**  
 * The space complexity is determined by the depth of the recursion stack. In the worst case, the recursion can go as deep as the number of empty cells, m. Therefore, the space required is proportional to `m`.  
+
+## 6. Find Subsets  
+
+## 7. KNight Problem  
