@@ -1,7 +1,8 @@
 ## Backtracking  
 
 **Backtracking is a strategies for finding a solution to a problem.**  
-Backtracking is used to solve those type of problems or specific problems which have more than one possible solutions and we want all the solutions, then we'll use backtracking.   
+
+_Backtracking is used to solve those type of problems or specific problems which have more than one possible solutions and we want all the solutions, then we'll use backtracking._   
 
 **Example Problems :**  
 1. SUDOKU
@@ -490,8 +491,34 @@ _The most common algorithm for solving Sudoku is backtracking. It's a recursive,
 
 **Example Code Solution:**  
 _Here is an solution code for sudoku solver_  
-
 ```cpp
+// printing the grid
+void printGrid(vector<vector<int>> &grid) {
+    for (auto &row : grid) {
+        for (int cellValue : row) {
+            cout << cellValue << " ";
+        }
+        cout << endl;
+    }
+}
+```
 
+__Here is the code snap for solution__  
+**Checking validation :**  
+![Sudoku Valid Function](/assets/sudoku_valid_function.png)
+
+__SudokuSolver Function__  
+![Sudoku Solver](/assets/Sudoku_Solver_Function.png)  
+
+__From main Function__  
+```cpp
+int main() {
+    cout << "Before : \n";
+    printGrid(grid);
+
+    cout << "After : \n";
+    SudokuSolver(0,0);
+    return 0;
+}
 ```
 

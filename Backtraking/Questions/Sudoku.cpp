@@ -2,78 +2,9 @@
 #include <vector>
 using namespace std;
 
-void printSudoku(int sudoku[9][9]) {
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j) {
-            cout << sudoku[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
-bool isSafe(int sudoku[9][9], int row, int col, int digit) {
-    // check veritcally 
-    for (int i = 0; i <= 8; ++i) {
-        if (sudoku[i][col] == digit) {
-            return false;
-        }
-    }
-
-    // horizontal condition
-    for (int j = 0; j <=8; ++j) {
-        if (sudoku[row][j] == digit) {
-            return false;
-        }
-    }
-
-    // 3x3 grid condition
-    int startRow =  (row / 3) * 3;
-    int startCol = (col / 3) * 3;
-
-    for (int i = startRow; i <= startRow+2; i++) {
-        for (int j = startCol; j <= startCol+2; ++j) {
-            if (sudoku[i][j] == digit) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool sudokuSolver(int sudoku[9][9], int row, int col) {
-    // base case
-    if (row == 9) {
-        printSudoku(sudoku);
-        return true;
-    }
-    int nextRow = row;
-    int nextCol = col + 1;
-
-    if (col + 1 == 9) {
-        nextRow = row + 1;
-        nextCol = 0;
-    }
-
-    if (sudoku[row][col] != 0) {
-        return sudokuSolver(sudoku, nextRow, nextCol);
-    }
-
-    for (int digit = 1; digit <= 9; ++digit) {
-        if (isSafe(sudoku, row, col, digit)) {
-            sudoku[row][col] = digit;
-            if (sudokuSolver(sudoku, nextRow, nextCol)) {
-                return true;
-            }
-            sudoku[row][col] = 0;   // backtrack
-        }
-    }
-
-    return false;
-}
-
-int main() {
-
-    int suduko[9][9] = {{0,0,8,0,0,0,0,0,0},
+// global vector for 9x9 sudoku grid
+vector<vector<int>> grid = {
+                        {0,0,8,0,0,0,0,0,0},
                         {4,9,0,1,5,7,0,0,2},
                         {0,0,3,0,0,4,1,9,0},
                         {1,8,5,0,6,0,0,2,0},
@@ -83,11 +14,85 @@ int main() {
                         {0,4,9,0,3,0,0,5,7},
                         {8,2,7,0,0,9,0,1,3}
                         };
-    
-    cout << "Orignal Sudoku = " << endl;
-    printSudoku(suduko);
 
-    cout << "\nAfter Solving : \n\n";
-    sudokuSolver(suduko, 0, 0);
+void printGrid(vector<vector<int>> &grid) {
+    for (auto &row : grid) {
+        for (int cellValue : row) {
+            cout << cellValue << " ";
+        }
+        cout << endl;
+    }
+}
+
+bool isValid(int row, int col, int value) {
+    // check horizontaly
+    for (int i = 0; i < 9; ++i) {
+        if (grid[row][i] == value) {
+            return false;
+        }
+    }
+
+    // check for verticlly
+    for (int j = 0; j < 9; ++j) {
+        if (grid[j][col] == value) {
+            return false;
+        }
+    }
+
+    // check for 3x3 subgrid
+    int startRow = row-row%3;
+    int startCol = col-col%3;
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; j++) {
+            if (grid[startRow + i][startCol + j] == value) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+bool SudokuSolver(int row, int col) {
+    // base case 
+    if (row == 9) {
+        // print row
+        printGrid(grid);
+        return true;
+    }
+
+    // check for the nextRow and nextCol ? what if col is reached till end : then
+    int nextRow = row;
+    int nextCol = col + 1;
+
+    if (col + 1 == 9) {
+        nextRow = row + 1;
+        nextCol = 0;
+    }
+
+    if (grid[row][col] != 0) {
+        return SudokuSolver(nextRow, nextCol);
+    }
+
+    for (int digit = 1; digit <= 9; ++digit) {
+        if (isValid(row, col, digit)) {
+            grid[row][col] = digit;
+            if (SudokuSolver(nextRow, nextCol)) {
+                return true;
+            }
+            grid[row][col] = 0;     // backtracking
+        }
+    }
+    return false;
+}
+
+int main() {
+    cout << "Before : \n";
+    printGrid(grid);
+
+    cout << "After : \n";
+    SudokuSolver(0,0);
     return 0;
 }
