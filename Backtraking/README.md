@@ -522,4 +522,10 @@ int main() {
     return 0;
 }
 ```
+**Time Complexity**  
+For each location (cell) it check from 1 to 9 and there are 81 cells means total $9^2$ cells are there.  
+**We have n = 9, then**
+_Wrost Case Time Complexity Is_ $9 ^{n^2}$ or $n^{n^2}$ 
 
+**Space Complexity: O(m)**  
+* The space complexity is determined by the depth of the recursion stack. In the worst case, the recursion can go as deep as the number of empty cells, m. Therefore, the space required is proportional to `m`.  
