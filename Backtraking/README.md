@@ -505,7 +505,8 @@ void printGrid(vector<vector<int>> &grid) {
 
 __Here is the code snap for solution__  
 **Checking validation :**  
-![Sudoku Valid Function](/assets/sudoku_valid_function.png)
+
+![Sudoku Valid Function](/assets/sudoku_valid_function.png)  
 
 __SudokuSolver Function__  
 ![Sudoku Solver](/assets/Sudoku_Solver_Function.png)  
