@@ -507,11 +507,11 @@ ___Here is the code snap for solution___
 **Checking validation :**  
 
 <!-- ![Sudoku Valid Function](/assets/sudoku_valid_function.png)   -->
-<img src="../assets/Sudoku_Solver_Function.png" alt="sudoku isValid function" width="400" height = "400"/>
+<img src="../assets/Sudoku_Solver_Function.png" alt="sudoku isValid function" width="500" height = "550"/>
 
 ___SudokuSolver Function___  
 
-<img src="../assets/Sudoku_Solver_Function.png" alt="SudokuSolver function" height="400" width="400"/> 
+<img src="../assets/Sudoku_Solver_Function.png" alt="SudokuSolver function" height="500" width="500"/> 
 
 __From main Function__  
 
