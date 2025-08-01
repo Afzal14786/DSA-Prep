@@ -503,15 +503,18 @@ void printGrid(vector<vector<int>> &grid) {
 }
 ```
 
-__Here is the code snap for solution__  
+___Here is the code snap for solution___  
 **Checking validation :**  
 
-![Sudoku Valid Function](/assets/sudoku_valid_function.png)  
+<!-- ![Sudoku Valid Function](/assets/sudoku_valid_function.png)   -->
+<img src="../assets/Sudoku_Solver_Function.png" alt="sudoku isValid function" width="400" height = "400"/>
 
-__SudokuSolver Function__  
-![Sudoku Solver](/assets/Sudoku_Solver_Function.png)  
+___SudokuSolver Function___  
+
+<img src="../assets/Sudoku_Solver_Function.png" alt="SudokuSolver function" height="400" width="400"/> 
 
 __From main Function__  
+
 ```cpp
 int main() {
     cout << "Before : \n";
