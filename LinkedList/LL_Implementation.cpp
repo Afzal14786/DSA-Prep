@@ -152,6 +152,30 @@ class List {
         }
         return -1;
     }
+
+    int helper(Node *temp, int key) {
+        // base case
+        if (temp == nullptr) {
+            cout << "Key Doesn't exist.\n";
+            return -1;
+        }
+
+        if (temp->data == key) {
+            // key found
+            return 0;
+        }
+
+        // what if not found
+        int idx = helper(temp->nextPtr, key);
+        if (idx ==-1) {
+            return -1;
+        }
+
+        return idx+1;
+    }
+    int recursive_search(int key) {
+        return helper(head, key);
+    }
 };
 
 int main() {
@@ -167,6 +191,7 @@ int main() {
     ll.push_middle(100, 3);
     ll.displayList();   // 5->3->100->10
 
-    cout << ll.search(30) << endl;
+    // cout << ll.search(30) << endl;   // 5
+    // cout << ll.recursive_search(30) << endl;    // 5
     return 0;
 }

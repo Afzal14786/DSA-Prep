@@ -102,6 +102,7 @@ We can implement linked list using `classes` and `STL`**(Standerd Template Libra
 -   **pop_front()** : _Deleting a node from front_  
 -   **pop_back()** : _Deleting a node fron back_  
 -   **search(int value)**  _Searchin a particular value_  
+-   **recursive_search(int value)** _Using recursive we can search a value_
 -   **isSorted()**  _check if the list is sorted or not_
 -   **duplicate()** _Check is there any duplicate in the list_
 -   **reverse()**   _Reverse the list_  
