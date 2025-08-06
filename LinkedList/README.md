@@ -42,6 +42,7 @@ _Disadvantages:_
 -   **Inefficient Insertion and Deletion 🐢**  
     *   _Insertion and deletion in an arrays is very difficult in a given position compare to linked list or any other data structure_  
 
+
 **Linked List**  
 _**Linked List also comes with it's own advantages and disadvantages:**_  
 
@@ -55,6 +56,14 @@ There are list of issues with linked list. The main disadvantage of linked lists
 
 - The _**access time**_ to individual element . Linked list takes `O(n)` time for access to an element in the list in the wrost case.
 - Linked list also waste memory in terms of extra referance pointers.
+
+## Important Concepts  
+-   _Every `node` represent two things **Data** & **A referance pointer to next node**_  
+-   _Every node has a **head** and a **tail** pointer in singly linked list_  
+-   * **Head Node** : _The very first node is known as head node_  
+    * **Tail Node** : _The node which has no referance pointer for next node is known as tail node_  
+
+In short, `HEAD` pointer represent the first node in the list and `TAIL` node represent the last node.  
 
 
 ## Type Of Linked List  
@@ -77,3 +86,122 @@ _A **circular linked list** is a variation in which the **last node** of the lis
 
 -   **Singly Circular Linked List:** The last node's **next** pointer points to the head of the list.  
 -   **Doubly Circular Linked List:** The last node's **next** pointer points to the head, and the head's "previous" pointer points to the last node, creating a complete circle in both directions.
+
+
+## Implementation Of Linked List  
+We can implement linked list using `classes` and `STL`**(Standerd Template Library)**
+
+-   **In this section we'll first use own defined classes for implementing the Linked List then latter on we'll be using `STL` for solving any problems in LL.**  
+
+
+**Some Important Function That Is Used In Linked List Frequently**  
+
+-   **push_front(int data)** : _Inserting data into the LL_  
+-   **push_back(int data)** : _Inserting data in the end of the LL_  
+-   **push_middle(int data, int position)** : _Inserting data in a given position_  
+-   **delete()** : _Deleting entire LL_  
+-   **pop_front()** : _Deleting a node from front_  
+-   **pop_back()** : _Deleting a node fron back_  
+
+**_Here is the implementation of above functions using own class_**  
+
+_First we need to implement the linked list_  
+```cpp
+#include <iostream>
+using namespace std;
+
+// this Node class contain data and referance to next pointer
+class Node {
+    int data;
+    Node *nextPtr;
+    friend class List;  // means List class can access my private information
+
+    public:
+        Node(int data) {
+            this->data = data;
+            nextPtr = nullptr;
+        }
+};
+
+// this List class is actually creating the function
+
+class List {
+    Node *head;
+    Node *tail;
+
+    public:
+        List() {
+            head = nullptr;
+            tail = nullptr;
+        }
+
+        void push_front(int data);
+        void push_back(int data);
+        void push_middle(int data, int position);
+        int delete();
+        int pop_front();
+        int pop_back();
+        void print_LL();
+};
+```
+
+**Here we'll implementing each function clearly**  
+1. **push_front(int data)**  
+```cpp
+void List::push_front(int data) {
+    // first create a new Node
+    Node *newNode = new Node(data);
+
+    // if LL is empty
+    if (head == nullptr) {
+        // means this is the first node
+        head = tail = newNode;
+    } else {
+        // if this is not the first node then
+        newNode->nextPtr = head;
+        head = newNode;
+    }
+}
+```
+
+2. **push_back(int data)**  
+```cpp
+void List::push_back(int data) {
+    // create a new Node
+    Node *newNode = new Node(data);
+    // if LL is empty
+    if (head == nullptr) {
+        // means this is the first node
+        head = tail = newNode;
+    } else {
+        // create a temp node and point to head 
+        tail->nextPtr = newNode;
+        tail = newNode;
+    }
+}
+```
+
+3. **push_middle(int data, int position)**  
+```cpp
+void List::push_middle(int data, int position) {
+    // check if it null or not
+    Node *newNode = new Node(data);
+    if (head == nullptr) {
+        head = tail = newNode;
+    } else {
+        // create a temp node & assign to it head and move till position-1
+        Node *temp = head;
+        for (int i = 0; i < position-1; ++i) {
+            if (temp == nullptr) {
+                // invalid position
+                cout << "Invalid Position\n";
+                return;     // -> Go Back
+            }
+            // move to the next pointer till position-1
+            temp = temp->nextPtr;
+        }
+        newNode->nextPtr = temp->nextPtr;
+        temp->nextPtr = newNode;
+    }
+}
+```
