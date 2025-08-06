@@ -88,6 +88,49 @@ class List {
             temp->nextPtr = newNode;
         }
     }
+
+    void pop_front() {
+        // check base base
+        if (head == nullptr) {
+            // empty list
+            cout << "List is empty\n";
+            return;
+        }
+
+        if (head == tail) {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+        }
+
+        Node *temp = head;
+        head = head->nextPtr;
+        temp->nextPtr = nullptr;
+        delete temp;
+    }
+
+    void pop_back() {
+        if (head == nullptr) {
+            // empty list
+            cout << "List is empty\n";
+            return;
+        }
+
+        if (head == tail) {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+        }
+
+        Node *temp = head;
+        while (temp->nextPtr != tail) {
+            temp = temp->nextPtr;
+        }
+
+        temp->nextPtr = nullptr;
+        delete tail;
+        tail = temp;
+    }
 };
 
 int main() {
@@ -101,7 +144,9 @@ int main() {
     
     
     ll.push_middle(100, 3);
-    
-    ll.displayList();   // 6->5->3->100->10->30
+
+    ll.pop_back();
+    ll.pop_front();
+    ll.displayList();   // 5->3->100->10
     return 0;
 }
