@@ -99,7 +99,6 @@ We can implement linked list using `classes` and `STL`**(Standerd Template Libra
 -   **push_front(int data)** : _Inserting data into the LL_  
 -   **push_back(int data)** : _Inserting data in the end of the LL_  
 -   **push_middle(int data, int position)** : _Inserting data in a given position_  
--   **delete()** : _Deleting entire LL_  
 -   **pop_front()** : _Deleting a node from front_  
 -   **pop_back()** : _Deleting a node fron back_  
 
@@ -121,6 +120,14 @@ class Node {
             this->data = data;
             nextPtr = nullptr;
         }
+
+        // it will delete the allocated node memory
+        ~Node() {
+            if (nextPtr != nullptr) {
+                delete nextPtr;
+                nextPtr = nullptr;
+            }
+        }
 };
 
 // this List class is actually creating the function
@@ -135,10 +142,17 @@ class List {
             tail = nullptr;
         }
 
+        // it will delete the list
+        ~List() {
+            if (head != nullptr) {
+                delete head;
+                head = nullptr;
+            }
+        }
+
         void push_front(int data);
         void push_back(int data);
         void push_middle(int data, int position);
-        int delete();
         int pop_front();
         int pop_back();
         void print_LL();

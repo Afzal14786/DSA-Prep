@@ -11,6 +11,13 @@ class Node {
             this->data = data;
             nextPtr = nullptr;
         }
+
+        ~Node() {
+            if (nextPtr != nullptr) {
+                delete nextPtr;
+                nextPtr = nullptr;
+            }
+        }
 };
 
 class List {
@@ -20,6 +27,13 @@ class List {
         List() {
             head = nullptr;
             tail = nullptr;
+        }
+
+        ~List() {
+            if(head != nullptr) {
+                delete head;
+                head = nullptr;
+            }
         }
 
         void push_front(int value) {
