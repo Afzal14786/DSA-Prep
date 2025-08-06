@@ -101,6 +101,12 @@ We can implement linked list using `classes` and `STL`**(Standerd Template Libra
 -   **push_middle(int data, int position)** : _Inserting data in a given position_  
 -   **pop_front()** : _Deleting a node from front_  
 -   **pop_back()** : _Deleting a node fron back_  
+-   **search(int value)**  _Searchin a particular value_  
+-   **isSorted()**  _check if the list is sorted or not_
+-   **duplicate()** _Check is there any duplicate in the list_
+-   **reverse()**   _Reverse the list_  
+-   **merge()**     _Merge or Concat two lists_  
+
 
 **_Here is the implementation of above functions using own class_**  
 
