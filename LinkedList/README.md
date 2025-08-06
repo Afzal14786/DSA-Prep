@@ -162,6 +162,9 @@ class List {
         void push_middle(int data, int position);
         int pop_front();
         int pop_back();
+        int search(int key);
+        int helper(head, int key);
+        int recursive_Search(int key);
         void print_LL();
 };
 ```
@@ -229,7 +232,7 @@ void List::push_middle(int data, int position) {
 
 4. **pop_front()**  _return poped data_
 ```cpp
-int pop_front() {
+int List::pop_front() {
     // base cases
     if (head == nullptr) {
         cout << "List is empty\n";
@@ -255,7 +258,7 @@ int pop_front() {
 
 5. **pop_back()** _return the poped value_
 ```cpp
-int pop_back() {
+int List::pop_back() {
     // base case
     if (head == nullptr) {
         cout << "List is empty\n";
@@ -285,7 +288,7 @@ int pop_back() {
 ```
 6. **search(int key)** _Searching a value in the list, found ? position : -1_
 ```cpp
-int search(int key) {
+int List::search(int key) {
     // base case
     if (head == nullptr) {
         cout << "List is empty\n";
@@ -303,5 +306,31 @@ int search(int key) {
     }
 
     return -1;
+}
+```
+7. **recursive_search(int key)** _We can use recursive approach as well for searching, because in this seaction we cannot directly **head**, inside the `main` so we'll use a helper function._ 
+```cpp
+int List::helper(Node *temp, int key) {
+    // base case 
+    if (temp == nullptr) {
+        cout << "Key not found.\n";
+        return -1;
+    }
+
+    if (temp->data == key) {
+        return 0;
+    }
+
+    int idx = helper(temp->nextPtr, key);
+
+    if (idx == -1) {
+        return -1;
+    }
+
+    return idx + 1;
+}
+
+int List::recursive_search(int key) {
+    return helper(head, key);
 }
 ```
