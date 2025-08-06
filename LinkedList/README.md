@@ -225,3 +225,82 @@ void List::push_middle(int data, int position) {
     }
 }
 ```
+
+4. **pop_front()**  _return poped data_
+```cpp
+int pop_front() {
+    // base cases
+    if (head == nullptr) {
+        cout << "List is empty\n";
+        return -1;
+    }
+    int pop_data = -1;
+    if (head == tail) {
+        pop_data = head->data;
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    Node *temp = head;
+    pop_data = head->data;
+    head = head->next;  // move head to next
+    temp->nextPtr = nullptr;
+    delete temp;
+
+    return pop_data;
+}
+```
+
+5. **pop_back()** _return the poped value_
+```cpp
+int pop_back() {
+    // base case
+    if (head == nullptr) {
+        cout << "List is empty\n";
+        return -1;
+    }
+
+    int pop_data = -1;
+    if (head == tail) {
+        pop_data = head->data;
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    Node *temp = head;
+    while (temp->nextPtr != tail) {
+        temp = temp->nextPtr;
+    }
+
+    pop_data = tail->data;
+    temp->nextPtr = nullptr;
+    delete tail;
+    tail = temp;
+
+    return pop_data;
+}
+```
+6. **search(int key)** _Searching a value in the list, found ? position : -1_
+```cpp
+int search(int key) {
+    // base case
+    if (head == nullptr) {
+        cout << "List is empty\n";
+        return -1;
+    }
+
+    Node *temp = head;
+    int pos = 0;
+    while (temp != nullptr) {
+        if (temp->data == key) {
+            return pos;
+        }
+        temp = temp->nextPtr;
+        pos++;
+    }
+
+    return -1;
+}
+```

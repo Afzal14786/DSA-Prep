@@ -131,6 +131,27 @@ class List {
         delete tail;
         tail = temp;
     }
+
+    int search(int key) {
+        // base case
+        if (head == nullptr) {
+            cout << "List is empty\n";
+            return -1;
+        }
+
+
+        Node *temp = head;
+        int pos = 0;
+
+        while (temp != nullptr) {
+            if (temp->data == key) {
+                return pos;
+            }
+            temp = temp->nextPtr;
+            pos++;
+        }
+        return -1;
+    }
 };
 
 int main() {
@@ -144,9 +165,8 @@ int main() {
     
     
     ll.push_middle(100, 3);
-
-    ll.pop_back();
-    ll.pop_front();
     ll.displayList();   // 5->3->100->10
+
+    cout << ll.search(30) << endl;
     return 0;
 }
