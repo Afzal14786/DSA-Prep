@@ -44,10 +44,11 @@ A **two-dimensional (2D) array** is an array of arrays. It represents a grid or 
 
 **Example:**  
 If we have a 2D array `matrix`  
-```matrix = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
+```
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
 ]
 ```
 * `matrix[0][0] is 1 (first row & first column)`
@@ -70,3 +71,4 @@ An **N-dimensional (ND) array** is a generalization of 1D and 2D arrays. It can 
 * **Questions:** A dedicated folder for various array-based problems and their solutions to help you practice and solidify your understanding. You can find these in the [/Questions](./Questions/README.md) as well as for 2D arrays you can find in the [/2DArrays](./2DArray/README.md) folder.  
 
 
+### [Go Through This Repository For Practicing Various Question Based On Array](./Practice_Arrays/README.md)

@@ -8,7 +8,8 @@ A **two-dimensional (2D) array** is an array of arrays. It represents a grid or 
 
 **Example:**  
 If we have a 2D array `matrix`  
-```matrix = [
+```
+matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9]
