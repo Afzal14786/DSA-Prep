@@ -23,6 +23,7 @@
 **_Here is the implementation of above functions using own class_**  
 
 _First we need to implement the linked list_  
+
 ```cpp
 #ifndef NODE_H
 #define NODE_H
@@ -46,7 +47,9 @@ class Node {
 };
 
 #endif
+```
 
+```cpp
 // this List class is actually creating the function
 
 #ifndef LINKEDLIST_H
