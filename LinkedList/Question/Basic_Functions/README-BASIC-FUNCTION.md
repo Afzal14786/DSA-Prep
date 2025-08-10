@@ -5,19 +5,19 @@
 **Some Important Function That Is Used In Linked List Frequently**  
 
 -   **[push_front(int data)](#1-push_frontint-data)** : _Inserting data into the LL_  
--   **push_back(int data)** : _Inserting data in the end of the LL_  
--   **insert(int data, int position)** : _Inserting data in a given position_  
--   **pop_front()** : _Deleting a node from front_  
--   **pop_back()** : _Deleting a node fron back_  
--   **front()** : _return the head's value_
--   **back()** : _return the tail's value_
--   **search(int value)** : _Searchin a particular value_  
--   **recursiveSearch(int value)** : _Using recursive we can search a value_
+-   **[push_back(int data)](#2-push_backint-data)** : _Inserting data in the end of the LL_  
+-   **[insert(int data, int position)](#3-insertint-data-int-position)** : _Inserting data in a given position_  
+-   **[pop_front()](#4-pop_front--return-poped-data)** : _Deleting a node from front_  
+-   **[pop_back()](#5-pop_back-return-the-poped-value)** : _Deleting a node fron back_  
+-   **[front()](#6-front-this-function-return-the-value-of-head-node)** : _return the head's value_
+-   **[back()](#7-back-this-function-will-return-the-tails-value)** : _return the tail's value_
+-   **[search(int value)](#8-searchint-key-searching-a-value-in-the-list-found--position---1)** : _Searchin a particular value_  
+-   **[recursiveSearch(int value)](#9-recursivesearchint-key-we-can-use-recursive-approach-as-well-for-searching-because-in-this-seaction-we-cannot-directly-head-inside-the-main-so-well-use-a-helper-function)** : _Using recursive we can search a value_
 -   **isSorted()** : _check if the list is sorted or not_
 -   **duplicate()** : _Check is there any duplicate in the list_
 -   **reverse()**  : _Reverse the list_  
 -   **merge()**    : _Merge or Concat two lists_  
--   **isCycle()** : _Check if is cycle exist or not_
+-   **[isCycle()](#10-iscycle--check-if-the-list-has-cycle-exist-or-not)** : _Check if is cycle exist or not_
 
 
 **_Here is the implementation of above functions using own class_**  
@@ -224,7 +224,7 @@ void List<T>::push_back(T data) {
 }
 ```
 
-### 3. [push_middle(int data, int position)](./Question/Basic_Functions/insert.cpp)  
+### 3. [insert(int data, int position)](./Question/Basic_Functions/insert.cpp)  
 ```cpp
 #include "LinkedList.h"
 
@@ -418,8 +418,7 @@ int List<T>::search(T value) {
 
 template <typename T>
 int List<T>::recursiveSearch(T value) {
-    return helper
-8. (head, value);
+    return helper(head, value);
 }
 ```
 
