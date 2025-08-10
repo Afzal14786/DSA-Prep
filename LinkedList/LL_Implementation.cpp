@@ -1,103 +1,142 @@
 #include <iostream>
 using namespace std;
 
-class Node {
+class Node
+{
     int data;
     Node *nextPtr;
+
+public:
+    Node(int data)
+    {
+        this->data = data;
+        nextPtr = nullptr;
+    }
+
     friend class List;
 
-    public:
-        Node(int data) {
-            this->data = data;
-            nextPtr = nullptr;
-        }
-
-        ~Node() {
-            if (nextPtr != nullptr) {
-                delete nextPtr;
-                nextPtr = nullptr;
-            }
-        }
+    ~Node(){}
 };
 
-class List {
+class List
+{
     Node *head;
     Node *tail;
-    public:
-        List() {
-            head = nullptr;
-            tail = nullptr;
+
+public:
+    List()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    ~List() {
+        // 1. Handle the empty list case
+        if (head == nullptr) {
+            return;
         }
 
-        ~List() {
-            if(head != nullptr) {
-                delete head;
-                head = nullptr;
-            }
+        // 2. Break the cycle if the list is circular
+        if (tail != nullptr && tail->nextPtr == head) {
+            tail->nextPtr = nullptr;
         }
 
-        void displayList() {
-            Node *temp = head;
-            while (temp != nullptr) {
-                cout << temp->data;
-                if (temp->nextPtr != nullptr) {
-                    cout << " -> ";
-                }
-                temp = temp->nextPtr;
-            }
-            cout << endl;
+        // 3. Use a WHILE loop to delete every node in the now-linear list
+        Node *current = head;
+        while (current != nullptr) {
+            Node *nextNode = current->nextPtr; // Save the next node
+            delete current;                    // Delete the current one
+            current = nextNode;                // Move to the next one
         }
 
-        int helper(Node *temp, int key) {
-            // base case
-            if (temp == nullptr) {
-                cout << "Key Doesn't exist.\n";
-                return -1;
-            }
+        // 4. Reset pointers to be safe
+        head = nullptr;
+        tail = nullptr;
+    }
 
-            if (temp->data == key) {
-                // key found
-                return 0;
-            }
-
-            // what if not found
-            int idx = helper(temp->nextPtr, key);
-            if (idx ==-1) {
-                return -1;
-            }
-
-            return idx+1;
+    void makeCircular()
+    {
+        if (tail != nullptr)
+        {
+            // This is now allowed because List is a friend of Node
+            tail->nextPtr = head;
         }
-        
-        int size() {
-            Node *temp = head;
-            int size = 0;
-            while (temp != nullptr) {
-                temp = temp->nextPtr;
-                size++;
+    }
+
+    void displayList()
+    {
+        Node *temp = head;
+        while (temp != nullptr)
+        {
+            cout << temp->data;
+            if (temp->nextPtr != nullptr)
+            {
+                cout << " -> ";
             }
-            return size;
+            temp = temp->nextPtr;
+        }
+        cout << endl;
+    }
+
+    int helper(Node *temp, int key)
+    {
+        // base case
+        if (temp == nullptr)
+        {
+            cout << "Key Doesn't exist.\n";
+            return -1;
         }
 
-        bool isEmpty() {
-            if (head == nullptr) {
-                return true;    // yes the list is empty
-            }
-            return false;   // no the list is not empty
+        if (temp->data == key)
+        {
+            // key found
+            return 0;
         }
 
-        void push_front(int value);
-        void push_back(int value);
-        void push_middle(int data, int position);
-        void pop_front();
-        void pop_back();
-        int search(int key);
-        int recursive_search(int key);
-        void delNth(int n);
-        bool isSorted();
-        bool isDuplicate();
-        void reverse();
-        void merge();
+        // what if not found
+        int idx = helper(temp->nextPtr, key);
+        if (idx == -1)
+        {
+            return -1;
+        }
+
+        return idx + 1;
+    }
+
+    int size()
+    {
+        Node *temp = head;
+        int size = 0;
+        while (temp != nullptr)
+        {
+            temp = temp->nextPtr;
+            size++;
+        }
+        return size;
+    }
+
+    bool isEmpty()
+    {
+        if (head == nullptr)
+        {
+            return true; // yes the list is empty
+        }
+        return false; // no the list is not empty
+    }
+
+    void push_front(int value);
+    void push_back(int value);
+    void push_middle(int data, int position);
+    void pop_front();
+    void pop_back();
+    int search(int key);
+    int recursive_search(int key);
+    void delNth(int n);
+    bool isCycle();
+    bool isSorted();
+    bool isDuplicate();
+    void reverse();
+    void merge();
 };
 
 /**
@@ -105,11 +144,15 @@ class List {
  * @param data The integer value to be stored in the new node.
  */
 
-void List::push_front(int data) {
+void List::push_front(int data)
+{
     Node *newNode = new Node(data);
-    if (head == nullptr){
+    if (head == nullptr)
+    {
         head = tail = newNode;
-    } else {
+    }
+    else
+    {
         newNode->nextPtr = head;
         head = newNode;
     }
@@ -120,11 +163,15 @@ void List::push_front(int data) {
  * @param data The integer value to be stored in the new node.
  */
 
-void List::push_back(int value) {
+void List::push_back(int value)
+{
     Node *newNode = new Node(value);
-    if (head == nullptr) {
+    if (head == nullptr)
+    {
         head = tail = newNode;
-    } else {
+    }
+    else
+    {
         tail->nextPtr = newNode;
         tail = newNode;
     }
@@ -135,19 +182,25 @@ void List::push_back(int value) {
  * @param data The integer value to be stored in the new node.
  */
 
-void List::push_middle(int data, int position) {
-// check if it null or not
+void List::push_middle(int data, int position)
+{
+    // check if it null or not
     Node *newNode = new Node(data);
-    if (head == nullptr) {
+    if (head == nullptr)
+    {
         head = tail = newNode;
-    } else {
+    }
+    else
+    {
         // create a temp node & assign to it head and move till position-1
         Node *temp = head;
-        for (int i = 0; i < position-1; ++i) {
-            if (temp == nullptr) {
+        for (int i = 0; i < position - 1; ++i)
+        {
+            if (temp == nullptr)
+            {
                 // invalid position
                 cout << "Invalid Position\n";
-                return;     // -> Go Back
+                return; // -> Go Back
             }
             temp = temp->nextPtr;
         }
@@ -161,15 +214,18 @@ void List::push_middle(int data, int position) {
  * @return It return the node's data Integer value
  */
 
-void List::pop_front() {
+void List::pop_front()
+{
     // check base base
-    if (head == nullptr) {
+    if (head == nullptr)
+    {
         // empty list
         cout << "List is empty\n";
         return;
     }
 
-    if (head == tail) {
+    if (head == tail)
+    {
         delete head;
         head = nullptr;
         tail = nullptr;
@@ -186,21 +242,25 @@ void List::pop_front() {
  * @return Return the poped data
  */
 
-void List::pop_back() {
-    if (head == nullptr) {
+void List::pop_back()
+{
+    if (head == nullptr)
+    {
         // empty list
         cout << "List is empty\n";
         return;
     }
 
-    if (head == tail) {
+    if (head == tail)
+    {
         delete head;
         head = nullptr;
         tail = nullptr;
     }
 
     Node *temp = head;
-    while (temp->nextPtr != tail) {
+    while (temp->nextPtr != tail)
+    {
         temp = temp->nextPtr;
     }
 
@@ -209,26 +269,28 @@ void List::pop_back() {
     tail = temp;
 }
 
-
 /**
  * @brief search an element in the list
  * @return position of the element
  * @if found
- * @else return -1 mean not found 
+ * @else return -1 mean not found
  */
-int List::search(int key) {
+int List::search(int key)
+{
     // base case
-    if (head == nullptr) {
+    if (head == nullptr)
+    {
         cout << "List is empty\n";
         return -1;
     }
 
-
     Node *temp = head;
     int pos = 0;
 
-    while (temp != nullptr) {
-        if (temp->data == key) {
+    while (temp != nullptr)
+    {
+        if (temp->data == key)
+        {
             return pos;
         }
         temp = temp->nextPtr;
@@ -241,10 +303,11 @@ int List::search(int key) {
  * @brief Recursive search using a helper function
  * @return position of the element
  * @if found
- * @else return -1 mean not found 
+ * @else return -1 mean not found
  */
 
-int List::recursive_search(int key) {
+int List::recursive_search(int key)
+{
     return helper(head, key);
 }
 
@@ -252,17 +315,19 @@ int List::recursive_search(int key) {
  * @brief Reverse the given list : Inplace reverse
  */
 
-void List::reverse() {
+void List::reverse()
+{
     Node *curr = head;
     Node *pre = nullptr;
 
-    while (curr != nullptr) {
+    while (curr != nullptr)
+    {
         // first find the next pointer location
         Node *next = curr->nextPtr;
         // then the current node's pointer will point to privious node
         curr->nextPtr = pre;
 
-        // now update the pointers 
+        // now update the pointers
         pre = curr;
         curr = next;
     }
@@ -276,23 +341,27 @@ void List::reverse() {
  * @param position The integer value for the position
  */
 
-void List::delNth(int position) {
+void List::delNth(int position)
+{
     // base case
-    if (isEmpty()) {
+    if (isEmpty())
+    {
         return;
     }
 
     int s = size() - position;
     // corner case
-    if (s < 0) {
+    if (s < 0)
+    {
         cout << "Invalid Position\n";
         return;
     }
 
     Node *temp = head;
 
-    // run a loop from head to size - n 
-    for (int i = 1; i < s; i++) {
+    // run a loop from head to size - n
+    for (int i = 1; i < s; i++)
+    {
         temp = temp->nextPtr;
     }
 
@@ -300,25 +369,48 @@ void List::delNth(int position) {
     temp->nextPtr = temp->nextPtr->nextPtr;
 }
 
-int main() {
+bool List::isCycle()
+{
+    Node *slow = this->head;
+    Node *fast = this->head;
+
+    // check the base condition
+    if (isEmpty())
+    {
+        cout << "Cycle not found or (List is too empty)" << endl;
+        return false;
+    }
+
+    while (fast != nullptr && fast->nextPtr != nullptr)
+    {
+        slow = slow->nextPtr;
+        fast = fast->nextPtr->nextPtr;
+
+        if (slow == fast)
+        {
+            // cycle found
+            cout << "Cycle Exist.\n";
+            return true;
+        }
+    }
+
+    cout << "Cycle Doesn't Exist.\n";
+    return false;
+}
+
+int main()
+{
     List ll;
-    ll.push_front(3);
     ll.push_front(5);
-    ll.push_front(6);
-    ll.push_back(10);
-    ll.push_back(30);
-    // ll.displayList();   // 6->5->3->10->30
-    
-    
-    ll.push_middle(100, 3);
-    ll.displayList();   // 5->3->100->10
+    ll.push_front(4);
+    ll.push_front(3);
+    ll.push_front(2);
+    ll.push_front(1);
 
-    // cout << ll.search(30) << endl;   // 5
-    // cout << ll.recursive_search(30) << endl;    // 5
+    ll.isCycle();
 
-    // ll.reverse();
-    ll.delNth(4);
-
-    ll.displayList();   // 30->10->100->3->5->6
+    ll.makeCircular();
+    ll.isCycle();
+    // ll.displayList();   // 30->10->100->3->5->6
     return 0;
 }
