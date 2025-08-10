@@ -37,12 +37,15 @@ You can explore specific DSA topics by clicking on the links below. Each link wi
 ### Connect with Me  
 Contact me at mdafzal14777@gmail.com  
 Follow Me On :  
-* [Instagram](https://instagram.com/mdafzal14786)  
-* [Github](https://github.com/afzal14786)  
-* [Facebook](https://facebook.com/mdafzal14786)  
-* [Linked In](https://www.linkedin.com/in/mdafzal14786/)  
+- **<a href="https://instagram.com/mdafzal14786" target="_blank">Instagram</a>**
+- **<a href="https://github.com/afzal14786" target="_blank">Github</a>**
+- **<a href="https://facebook.com/mdafzal14786" target="_blank">Facebook</a>**
+- **<a href="https://www.linkedin.com/in/mdafzal14786/" target="_blank">Linked In</a>**
+- **<a href="https://linktr.ee/mdafzal14786" target="_blank">Link Tree</a>**
+
 
 **This Repository is Maintain By Me & [Kajal Yadhuvanshi](https://github.com/kajal824)**
+
 
 ### How To Clone  
 
