@@ -4,7 +4,7 @@
 
 **Some Important Function That Is Used In Linked List Frequently**  
 
--   **push_front(int data)** : _Inserting data into the LL_  
+-   **[push_front(int data)](#1-push_frontint-data)** : _Inserting data into the LL_  
 -   **push_back(int data)** : _Inserting data in the end of the LL_  
 -   **insert(int data, int position)** : _Inserting data in a given position_  
 -   **pop_front()** : _Deleting a node from front_  
@@ -170,7 +170,7 @@ class List {
 
 **I have implemented each function individually. You can refer the code for understanding the implementation .**
   
-1. **[push_front(int data)](./Question/Basic_Functions/push_front.cpp)**  
+### 1. [push_front(int data)](./Question/Basic_Functions/push_front.cpp)  
 ```cpp
 #include "LinkedList.h"
 template <typename T>
@@ -202,7 +202,7 @@ T List<T>::pop_front() {
 }
 ```
 
-2. **[push_back(int data)](./Question/Basic_Functions/push_back.cpp)**  
+### 2. [push_back(int data)](./Question/Basic_Functions/push_back.cpp)  
 ```cpp
 #include "LinkedList.h"
 
@@ -224,7 +224,7 @@ void List<T>::push_back(T data) {
 }
 ```
 
-3. **[push_middle(int data, int position)](./Question/Basic_Functions/insert.cpp)**  
+### 3. [push_middle(int data, int position)](./Question/Basic_Functions/insert.cpp)  
 ```cpp
 #include "LinkedList.h"
 
@@ -271,7 +271,7 @@ void List<T>::insert(T data, int position) {
 }
 ```
 
-4. **[pop_front()](./Question/Basic_Functions/pop_front.cpp)**  _return poped data_
+### 4. [pop_front()](./Question/Basic_Functions/pop_front.cpp)  _return poped data_
 ```cpp
 #include "LinkedList.h"
 template <typename T>
@@ -306,7 +306,7 @@ T List<T>::pop_front() {
 }
 ```
 
-5. **[pop_back()](./Question/Basic_Functions/pop_back.cpp)** _return the poped value_
+### 5. [pop_back()](./Question/Basic_Functions/pop_back.cpp) _return the poped value_
 ```cpp
 #include "LinkedList.h"
 
@@ -342,7 +342,7 @@ T List<T>::pop_back() {
 }
 ```
 
-6. **front()** _this function return the value of head node_  
+### 6. front() _this function return the value of head node_  
 ```cpp
 #include "LinkedList.h"
 
@@ -364,7 +364,7 @@ T List<T>::front() {
 }
 ```
 
-7. **back()** _this function will return the tail's value_  
+### 7. back() _this function will return the tail's value_  
 
 ```cpp
 #include "LinkedList.h"
@@ -383,7 +383,7 @@ T List<T>::back() {
 }
 ```
 
-8. **[search(int key)](./Question/Basic_Functions/search.cpp)** _Searching a value in the list, found ? position : -1_
+### 8. [search(int key)](./Question/Basic_Functions/search.cpp) _Searching a value in the list, found ? position : -1_
 ```cpp
 #include "LinkedList.h"
 /**
@@ -412,7 +412,7 @@ int List<T>::search(T value) {
     return -1;      // if not find
 }
 ```
-9. **[recursiveSearch(int key)](./Question/Basic_Functions/recursiveSearch.cpp)** _We can use recursive approach as well for searching, because in this seaction we cannot directly **head**, inside the `main` so we'll use a helper function._ 
+### 9. [recursiveSearch(int key)](./Question/Basic_Functions/recursiveSearch.cpp) _We can use recursive approach as well for searching, because in this seaction we cannot directly **head**, inside the `main` so we'll use a helper function._ 
 ```cpp
 #include "LinkedList.h"
 
@@ -423,7 +423,7 @@ int List<T>::recursiveSearch(T value) {
 }
 ```
 
-10. **isCycle()** : _Check if the list has cycle exist or not_  
+### 10. isCycle() : _Check if the list has cycle exist or not_  
 ```cpp
 #include "LinkedList.h"
 
