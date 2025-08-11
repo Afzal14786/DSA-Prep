@@ -16,7 +16,7 @@
 -   **isSorted()** : _check if the list is sorted or not_
 -   **duplicate()** : _Check is there any duplicate in the list_
 -   **reverse()**  : _Reverse the list_  
--   **merge()**    : _Merge or Concat two lists_  
+-   **[merge()](#11-mergesort--using-linked-list-we-can-sort-a-given-list)**    : _Merge or Concat two lists_  
 -   **[isCycle()](#10-iscycle--check-if-the-list-has-cycle-exist-or-not)** : _Check if is cycle exist or not_
 
 
