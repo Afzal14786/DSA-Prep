@@ -14,15 +14,16 @@ void alternativeMerge(Node<T> *left, Node<T> *right) {
         left = leftHeadNextPointer;
         right = rightHeadNextPointer;   
     }
-
-    tail->nextPointer = right;
+    
+    if (right != nullptr) {
+       tail->nextPointer = right;
+    }
 }
 
 template <typename T>
 void List<T>::ZigZag() {
     Node<T> *rightHead = splitListInMid(head);  // first this will split the reverse and return the right head for the second half list
     Node<T> *rightHeadMid = reverse2(rightHead);    // this will then reverse from second half
-
     //  now we have to merge alternative so it will create ZigZag
     alternativeMerge(head, rightHeadMid);
 }

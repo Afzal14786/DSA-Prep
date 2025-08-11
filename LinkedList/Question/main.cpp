@@ -23,7 +23,6 @@ int main() {
     list.push_back(60);
     list.push_front(1);
     list.insert(200, 5);
-    list.insert(1000, 2);
 
     cout << "List Before Merge : ";
     list.DisplayList();
