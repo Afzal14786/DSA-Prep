@@ -25,9 +25,9 @@ int main() {
     cout << "List Before Merge : ";
     list.DisplayList();
 
-
-    cout << "Deleted Value : " << list.deleteNthNode(1) << endl;
-    cout << "Node After Deleting : ";
+    // cout << "Reversing The List : ";
+    // list.reverse();
+    list.ZigZag();
     list.DisplayList();
     return 0;
 }

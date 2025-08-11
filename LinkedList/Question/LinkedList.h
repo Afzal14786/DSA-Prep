@@ -97,6 +97,7 @@ class List {
         int search(T value);      // search a value and return the position
         int recursiveSearch(T value);   // using recursive we can search 
         void reverse();              // reverse the list
+        Node<T> *reverse2(Node<T> *head);
         T deleteNthNode(int N);   // delete a node which is present in Nth position
         bool isCycle();         // check if is there any cycle in the list
         void removeCycle();     // remove a cycle 
@@ -104,6 +105,7 @@ class List {
         Node<T> *splitListInMid(Node<T> *head);     // spleeting the list in half
         Node<T> *mergingList(Node<T> *left, Node<T> *right);     // just for merging
         Node<T> *mergeSortHelper(Node<T> *head);     // this will help to call merge sort, so from main we can call only list.mergeSort() without parameter
+        void ZigZag();
 };
 
 #include "Basic_Functions/push_front.cpp"       // done
@@ -120,5 +122,6 @@ class List {
 #include "Basic_Functions/isCycle.cpp"
 #include "Basic_Functions/removeCycle.cpp"
 #include "Basic_Functions/mergeSort.cpp"
+#include "Basic_Functions/ZigZag.cpp"
 
 #endif

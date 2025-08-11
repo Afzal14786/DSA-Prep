@@ -15,10 +15,11 @@
 -   **[recursiveSearch(int value)](#9-recursivesearchint-key-we-can-use-recursive-approach-as-well-for-searching-because-in-this-seaction-we-cannot-directly-head-inside-the-main-so-well-use-a-helper-function)** : _Using recursive we can search a value_
 -   **isSorted()** : _check if the list is sorted or not_
 -   **duplicate()** : _Check is there any duplicate in the list_
--   **reverse()**  : _Reverse the list_  
+-   **[reverse()](#14-reverse)**  : _Reverse the list_  
 -   **[merge()](#11-mergesort--using-linked-list-we-can-sort-a-given-list)**    : _Merge or Concat two lists_  
 -   **[isCycle()](#10-iscycle--check-if-the-list-has-cycle-exist-or-not)** : _Check if is cycle exist or not_
 -   **[deleteNthNode(int N)](#12-deletenthnode--delete-a-node-at-given-position-from-back-side-of-the-list)** : _Delete a node at given position from back side of the list_
+-   **[ZigZag()](#13-zigzag)** : _This algorithm will form a zigzag list_
 
 
 **_Here is the implementation of above functions using own class_**  
@@ -584,4 +585,70 @@ Node<T>* List<T>::mergingList(Node<T> *left, Node<T> *right) {
     delete nodeToDelete;
     return deletedValue;
  }
+```
+### 13. ZigZag()  
+```cpp
+#include "LinkedList.h"
+
+template <typename T>
+void alternativeMerge(Node<T> *left, Node<T> *right) {
+    
+    Node<T> *tail = nullptr;
+
+    while (left != nullptr && right != nullptr) {
+        Node<T> *leftHeadNextPointer = left->nextPointer;
+        Node<T> *rightHeadNextPointer = right->nextPointer;
+        left->nextPointer = right;
+        right->nextPointer = leftHeadNextPointer;
+        tail = right;
+        left = leftHeadNextPointer;
+        right = rightHeadNextPointer;   
+    }
+
+    tail->nextPointer = right;
+}
+
+template <typename T>
+void List<T>::ZigZag() {
+    Node<T> *rightHead = splitListInMid(head);  // first this will split the reverse and return the right head for the second half list
+    Node<T> *rightHeadMid = reverse2(rightHead);    // this will then reverse from second half
+
+    //  now we have to merge alternative so it will create ZigZag
+    alternativeMerge(head, rightHeadMid);
+}
+```
+
+### 14. reverse()
+```cpp
+template <typename T>
+void List<T>::reverse() {
+   if (isEmpty()) {
+        throw std::runtime_error("unable to reverse, since list is empty.\n");
+    }
+
+    Node<T> *previous = nullptr;
+    Node<T> *current = head;
+    
+
+    // what if there is one or two list
+    // 1 -> 2
+    // 1 = head and 2 = head->nextPointer
+    if (current->nextPointer->nextPointer == nullptr) {
+        current->nextPointer->nextPointer = current;
+        current->nextPointer = nullptr;
+
+        head = current;
+        // now it becomes 2 <- 1
+    }
+
+    while (current != nullptr) {
+        Node<T> *next = current->nextPointer;
+        current->nextPointer = previous;
+
+        previous = current;
+        current = next;
+    }
+
+    head = previous;
+}
 ```
