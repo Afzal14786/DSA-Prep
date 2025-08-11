@@ -20,12 +20,18 @@ int main() {
     list.push_front(30);
     list.push_front(40);
     list.push_back(100);
+    list.push_back(60);
+    list.push_front(1);
     list.insert(200, 5);
 
     cout << "List Before Merge : ";
     list.DisplayList();
 
-    // cout << "Reversing The List : ";
+    list.mergeSort();
+    cout << "List After Merge : ";
+    list.DisplayList();
+    
+    cout << "ZigZag List : ";
     // list.reverse();
     list.ZigZag();
     list.DisplayList();
