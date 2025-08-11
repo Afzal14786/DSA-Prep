@@ -22,13 +22,12 @@ int main() {
     list.push_back(100);
     list.insert(200, 5);
 
+    cout << "List Before Merge : ";
     list.DisplayList();
 
-    // here is cycle
-    list.makeCycle();
 
-    // now check cycle is not
-    list.isCycle();
-
+    list.mergeSort();
+    cout << "List After Merge : ";
+    list.DisplayList();
     return 0;
 }

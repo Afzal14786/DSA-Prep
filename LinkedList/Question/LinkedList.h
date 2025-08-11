@@ -101,6 +101,9 @@ class List {
         bool isCycle();         // check if is there any cycle in the list
         void removeCycle();     // remove a cycle 
         void mergeSort();       // merge two sorted list
+        Node<T> *splitListInMid(Node<T> *head);     // spleeting the list in half
+        Node<T> *mergingList(Node<T> *left, Node<T> *right);     // just for merging
+        Node<T> *mergeSortHelper(Node<T> *head);     // this will help to call merge sort, so from main we can call only list.mergeSort() without parameter
 };
 
 #include "Basic_Functions/push_front.cpp"       // done

@@ -24,5 +24,6 @@ bool List<T>::isCycle() {
         }
     }
 
+    cout << "Cycle Doesn't Exist.\n";
     return false;
 }
