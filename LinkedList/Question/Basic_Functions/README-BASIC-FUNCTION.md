@@ -18,6 +18,7 @@
 -   **reverse()**  : _Reverse the list_  
 -   **[merge()](#11-mergesort--using-linked-list-we-can-sort-a-given-list)**    : _Merge or Concat two lists_  
 -   **[isCycle()](#10-iscycle--check-if-the-list-has-cycle-exist-or-not)** : _Check if is cycle exist or not_
+-   **[deleteNthNode(int N)](#12-deletenthnode--delete-a-node-at-given-position-from-back-side-of-the-list)** : _Delete a node at given position from back side of the list_
 
 
 **_Here is the implementation of above functions using own class_**  
