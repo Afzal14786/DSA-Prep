@@ -26,8 +26,8 @@ int main() {
     list.DisplayList();
 
 
-    list.mergeSort();
-    cout << "List After Merge : ";
+    cout << "Deleted Value : " << list.deleteNthNode(1) << endl;
+    cout << "Node After Deleting : ";
     list.DisplayList();
     return 0;
 }

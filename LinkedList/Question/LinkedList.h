@@ -50,7 +50,7 @@ class List {
             return false;
         }
 
-        int size() {
+        int listSize() {
             Node<T> *current = head;
             int count = 0;
             while (current != nullptr) {
@@ -97,7 +97,7 @@ class List {
         int search(T value);      // search a value and return the position
         int recursiveSearch(T value);   // using recursive we can search 
         void reverse();              // reverse the list
-        int deleteNthNode(int N);   // delete a node which is present in Nth position
+        T deleteNthNode(int N);   // delete a node which is present in Nth position
         bool isCycle();         // check if is there any cycle in the list
         void removeCycle();     // remove a cycle 
         void mergeSort();       // merge two sorted list
