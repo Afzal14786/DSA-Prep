@@ -24,16 +24,16 @@ int main() {
     list.push_front(1);
     list.insert(200, 5);
 
-    cout << "List Before Merge : ";
+    cout << "List Before Cycle : ";
     list.DisplayList();
 
-    list.mergeSort();
-    cout << "List After Merge : ";
-    list.DisplayList();
+    // let make the list cycle 
+    list.makeCycle();
 
-    cout << "ZigZag List : ";
-    // list.reverse();
-    list.ZigZag();
-    list.DisplayList();
+    // now check cycle exist or not first
+    // list.isCycle(); // now cycle exist
+
+    // now remove the cycle 
+    list.removeCycle();
     return 0;
 }
