@@ -17,15 +17,36 @@ int main() {
 
     list.push_front(40);
     list.push_front(30);
+    list.push_front(30);
+    list.push_front(20);
     list.push_front(20);
     list.push_front(10);
-    // list.push_front(100);
-    // list.push_back(60);
-    // list.push_front(1);
-    // list.insert(200, 5);
+    list.push_front(10);
+    list.push_front(10);
 
-    cout << "List Before Cycle : ";
-    list.DisplayList();
-    list.isSorted();
+
+    try {
+        // 3. Call the function and store the result
+        std::array<std::vector<int>, 2> deletedInfo = list.RemoveDuplicates();
+
+        // 4. Process and display the results
+        std::vector<int>& deletedValues = deletedInfo[0];
+        std::vector<int>& deletedPositions = deletedInfo[1];
+
+        std::cout << "\nDuplicates were removed." << std::endl;
+
+        if (deletedValues.empty()) {
+            std::cout << "No duplicates were found." << std::endl;
+        } else {
+            std::cout << "Deleted values and their positions:" << std::endl;
+            for (size_t i = 0; i < deletedValues.size(); ++i) {
+                std::cout << "-> Value: " << deletedValues[i]
+                          << ", at position: " << deletedPositions[i] << std::endl;
+            }
+        }
+
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
     return 0;
 }

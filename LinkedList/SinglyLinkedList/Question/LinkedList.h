@@ -1,3 +1,6 @@
+#include <vector>
+#include <array>
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -107,17 +110,18 @@ class List {
         Node<T> *mergeSortHelper(Node<T> *head);     // this will help to call merge sort, so from main we can call only list.mergeSort() without parameter
         void ZigZag();
         bool isSorted();    // check if the list is sorted or not
+        T duplicate();      // remove duplicate value from the list
 };
 
-#include "Basic_Functions/push_front.cpp"       // done
-#include "Basic_Functions/push_back.cpp"        // in-process -> Done
-#include "Basic_Functions/pop_front.cpp"        // in-process -> Done
-#include "Basic_Functions/pop_back.cpp"         // in-process -> Done
-#include "Basic_Functions/front.cpp"            // in-process -> Done
-#include "Basic_Functions/back.cpp"             // in-process -> Done
-#include "Basic_Functions/insert.cpp"           // in-process -> Done
-#include "Basic_Functions/search.cpp"           // in-process -> Done
-#include "Basic_Functions/recursiveSearch.cpp"  // in-process -> Done
+#include "Basic_Functions/push_front.cpp"      
+#include "Basic_Functions/push_back.cpp"        
+#include "Basic_Functions/pop_front.cpp"        
+#include "Basic_Functions/pop_back.cpp"         
+#include "Basic_Functions/front.cpp"            
+#include "Basic_Functions/back.cpp"             
+#include "Basic_Functions/insert.cpp"           
+#include "Basic_Functions/search.cpp"           
+#include "Basic_Functions/recursiveSearch.cpp"  
 #include "Basic_Functions/reverse.cpp"
 #include "Basic_Functions/deleteNthNode.cpp"
 #include "Basic_Functions/isCycle.cpp"
@@ -125,6 +129,7 @@ class List {
 #include "Basic_Functions/mergeSort.cpp"
 #include "Basic_Functions/ZigZag.cpp"
 #include "Basic_Functions/isSorted.cpp"
-
+#include "Basic_Functions/duplicate.cpp"
+#include "Basic_Functions/RemoveDuplicates.cpp"
 
 #endif
