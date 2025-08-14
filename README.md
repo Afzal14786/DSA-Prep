@@ -27,6 +27,9 @@ You can explore specific DSA topics by clicking on the links below. Each link wi
 6. [Time And Space Complexity](./Time-Space-Complexity/README.md)  
 7. [Bitwise](./Bitwise/README.md)  
 8. [Linked List](./LinkedList/README.md)
+9. [Matrices](./Matrices/README.md)
+10. [Stack](./Stack/README.md)
+11. [Queue](./Queues/README.md)
 
 ### How to Use This Repository  
 ****
@@ -37,11 +40,15 @@ You can explore specific DSA topics by clicking on the links below. Each link wi
 ### Connect with Me  
 Contact me at mdafzal14777@gmail.com  
 Follow Me On :  
-- **<a href="https://instagram.com/mdafzal14786" target="_blank">Instagram</a>**
-- **<a href="https://github.com/afzal14786" target="_blank">Github</a>**
-- **<a href="https://facebook.com/mdafzal14786" target="_blank">Facebook</a>**
-- **<a href="https://www.linkedin.com/in/mdafzal14786/" target="_blank">Linked In</a>**
-- **<a href="https://linktr.ee/mdafzal14786" target="_blank">Link Tree</a>**
+
+[![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/mdafzal14786)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/mdafzal14786)
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=instagram&logoColor=white)](https://instagram.com/mdafzal14786)
+[![LeetCode](https://img.shields.io/badge/LeetCode-FFA116.svg?logo=leetcode&logoColor=black")](https://leetcode.com/ansari_afzal)
+[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=facebook&logoColor=white")](https://facebook.com/mdafzal14786)
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=twitter&logoColor=white)](https://twitter.com/mdafzal14786)
+[![Medium](https://img.shields.io/badge/Medium-12100E.svg?logo=medium&logoColor=white)](https://medium.com/@mdafzal14786)
+
 
 
 **This Repository is Maintain By Me & [Kajal Yadhuvanshi](https://github.com/kajal824)**
