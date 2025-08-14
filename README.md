@@ -38,7 +38,8 @@ You can explore specific DSA topics by clicking on the links below. Each link wi
 * **For Referance :** If you need a quick refresher on a specific algorithm or data structure, this repository can serve as a handy reference.  
 
 ### Connect with Me  
-Contact me at mdafzal14777@gmail.com  
+[![Mail Me](https://img.shields.io/badge/Contact-blue?style=social&logo=gmail)](mailto:mdafzal14777@gmail.com)  
+
 Follow Me On :  
 
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/mdafzal14786)
