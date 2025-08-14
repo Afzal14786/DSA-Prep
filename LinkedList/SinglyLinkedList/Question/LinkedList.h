@@ -106,6 +106,7 @@ class List {
         Node<T> *mergingList(Node<T> *left, Node<T> *right);     // just for merging
         Node<T> *mergeSortHelper(Node<T> *head);     // this will help to call merge sort, so from main we can call only list.mergeSort() without parameter
         void ZigZag();
+        bool isSorted();    // check if the list is sorted or not
 };
 
 #include "Basic_Functions/push_front.cpp"       // done
@@ -123,5 +124,7 @@ class List {
 #include "Basic_Functions/removeCycle.cpp"
 #include "Basic_Functions/mergeSort.cpp"
 #include "Basic_Functions/ZigZag.cpp"
+#include "Basic_Functions/isSorted.cpp"
+
 
 #endif
