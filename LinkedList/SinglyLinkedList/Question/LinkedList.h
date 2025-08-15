@@ -130,6 +130,5 @@ class List {
 #include "Basic_Functions/ZigZag.cpp"
 #include "Basic_Functions/isSorted.cpp"
 #include "Basic_Functions/duplicate.cpp"
-#include "Basic_Functions/RemoveDuplicates.cpp"
 
 #endif
