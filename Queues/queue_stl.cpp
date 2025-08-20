@@ -57,6 +57,49 @@ class Queue {
  * So before printing the stack we can perform the auxilary operations like deQueue(), and front() |
  */
 
+
+/**
+ * @brief Stack using two queue
+ * 
+ */
+
+class Stack {
+    queue<int> q1;
+    queue<int> q2;
+
+    public:
+
+        void push(int data) {
+            // first transfer all the data
+            while (!q1.empty()) {
+                q2.push(q1.front());
+                q1.pop();
+            }
+
+            // now push the data into q1;
+            q1.push(data);
+
+            // now again transfer all the data from q2 to q1
+            while (!q2.empty()) {
+                q1.push(q2.front());
+                q2.pop();
+            }
+        }
+
+        void pop() {
+            q1.pop();
+        }
+
+        void display() {
+            while (!q1.empty()) {
+                cout << q1.front() << " ";
+                q1.pop();
+            }
+            cout << endl;
+        }
+};
+
+
 int main() {
 
     // own class implementation using 2 stacks
@@ -67,17 +110,30 @@ int main() {
     q1.enQueue(40);
     q1.enQueue(50);
 
-    cout << "Deleted Value From Queue : " << q1.deQueue() << endl;
+    // cout << "Deleted Value From Queue : " << q1.deQueue() << endl;
 
 
-    cout << "The Front Element Of The Queue : " << q1.front() << endl;
+    // cout << "The Front Element Of The Queue : " << q1.front() << endl;
 
-    cout << "Queue After Performing deQueue And Front.\n";
+    // cout << "Queue After Performing deQueue And Front.\n";
 
+    cout << "Queue Using 2 Stacks : ";
     while (!q1.empty()) {
         cout << q1.front() << " ";
         q1.deQueue();
     }
     cout << endl;
+
+    // own call implementation of stack using 2 queue
+    cout << "Stack Using 2 Queue : ";
+    Stack s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(40);
+    s1.push(50);
+
+    s1.display();
+
     return 0;
 }
