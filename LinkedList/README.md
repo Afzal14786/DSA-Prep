@@ -137,4 +137,4 @@ We can implement linked list using `classes` and `STL`**(Standerd Template Libra
 
 -   **In this section we'll first use own defined classes for implementing the Linked List then latter on we'll be using `STL` for solving any problems in LL.**  
 
-***Follow the [implementation of basic function in linked list](./Question/Basic_Functions/README-BASIC-FUNCTION.md)*** 
+***Follow the [implementation of basic function in linked list](./SinglyLinkedList/Question/Basic_Functions/README.md)*** 

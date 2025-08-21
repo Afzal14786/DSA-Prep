@@ -30,6 +30,7 @@ You can explore specific DSA topics by clicking on the links below. Each link wi
 9. [Matrices](./Matrices/README.md)
 10. [Stack](./Stack/README.md)
 11. [Queue](./Queues/README.md)
+12. [Tree](./Tree/README.md)
 
 ### How to Use This Repository  
 ****
