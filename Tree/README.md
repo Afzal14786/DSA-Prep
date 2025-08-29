@@ -92,14 +92,14 @@ ___No of trees with maximum heights =___ $2^{n-1}$
 
 If we have height of a binary tree, then how many(min or max) numbers of nodes will be in the binary tree.  
 
-**Maximum Number Of Nodes (N)=**  $H + 1$ _where `H` represent the given height of the tree._  
-**Minimum Number Of Nodes (N)=**  $2^{H+1}-1$  _where `H` represent the given height of the tree._  
+**Minimum Number Of Nodes (N)=**  $H + 1$ _where `H` represent the given height of the tree._  
+**Maximum Number Of Nodes (N)=**  $2^{H+1}-1$  _where `H` represent the given height of the tree._  
 
 ### Height Of A Binary Tree
 If we have number of nodes, given then what will be max or min height of the binary tree .  
 
-**Minimum Heigth Of The Binary Tree (H)=** $log_{2} * {N+1}-1$    
-**Maximum Height Of The Binary Tree (H)=** $N-1$ _where `N` represent the number of nodes in the binary tree._  
+**Minimum Heigth (H)=** $log_{2} * {N+1}-1$    
+**Maximum Height (H)=** $N-1$ _where `N` represent the number of nodes in the binary tree._  
 
 ### Internel Nodes (Non-Leaf Nodes) & External Nodes(Lead Nodes)  
 
