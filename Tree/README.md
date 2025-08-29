@@ -92,15 +92,116 @@ ___No of trees with maximum heights =___ $2^{n-1}$
 
 If we have height of a binary tree, then how many(min or max) numbers of nodes will be in the binary tree.  
 
-**Minimum Number Of Nodes (N)=**  $H + 1$ _where `H` represent the given height of the tree._  
-**Maximum Number Of Nodes (N)=**  $2^{H+1}-1$  _where `H` represent the given height of the tree._  
+-   **Minimum Number Of Nodes (N)=**  $H + 1$ _where `H` represent the given height of the tree._  
+-   **Maximum Number Of Nodes (N)=**  $2^{H+1}-1$  _where `H` represent the given height of the tree._  
 
 ### Height Of A Binary Tree
 If we have number of nodes, given then what will be max or min height of the binary tree .  
 
-**Minimum Heigth (H)=** $log_{2} * {N+1}-1$    
-**Maximum Height (H)=** $N-1$ _where `N` represent the number of nodes in the binary tree._  
+-   **Minimum Heigth (H)=** $\log_2 (N+1) - 1$    
+-   **Maximum Height (H)=** $N-1$ _where `N` represent the number of nodes in the binary tree._  
 
 ### Internel Nodes (Non-Leaf Nodes) & External Nodes(Lead Nodes)  
 
-In a binary tree, `deg(0)` means the external nodes, means there is no child node of a parent node . 
+In a binary tree, `deg(0)` means the external nodes, means there is no child node of a parent node .  
+So the following formula is always true :  
+
+-   `deg(2)` = A node which have 2 child nodes,  
+-   `deg(0) = deg(2) + 1`  
+
+### Strict Binary Tree  
+
+_A strict binary tree also known as proper or complete binary tree . In strict binary tree, a node can have minimum `0` or maximum `2` child nodes_ . **either just 0 or 1 .**  
+
+![Strict Binary Tree](../assets/strict_binary_tees.png)  
+
+In the above mention image if you check, the root node `A` has 2 child nodes, `B` & `C` in the first image, where as `B` & `C` does not have any child node, means  
+
+-   **deg(A) = 2**
+-   **deg(B) = 0**
+-   **deg(C) = 0**  
+
+And again if you see the second image, which has total `5` nodes in the binary tree, in this, root node `A` has 2 child node and one of the child node `C` has `2` child nodes such as node `D` & node `E` . Hence we can say that :  
+
+-   **deg(A) = 2**
+-   **deg(B) = 0**
+-   **deg(C) = 2**
+-   **deg(D) = 0**
+-   **deg(E) = 0**  
+
+### No Of Nodes In Strict Binary Trees  
+
+If we have height (H) is given then how many number of nodes will be there in the strict binary tree :  
+
+-   **maximum no of nodes(N) =**    $2^{H+1} - 1$
+-   **minimum no of nodes(N) =**    $2 \cdot H + 1$  
+
+### Height Of A Strict Binary Tree  
+
+If we have nodes (N) then what will be the height of the strict binary tree :  
+
+-   **maximum height (H) =**  $\frac{N-1}{2}$
+-   **minimum height (H) =**  $\log_2 (N+1) - 1$  
+
+### Internel (Non-Lead Nodes) v/s External (Leaf Node)  
+
+The following formula is always same, means the number of external nodes in strict binary tree is always :  
+
+-   ___external_node (e) = internal_node(i) + 1___  
+
+
+### N-Ary Trees  
+
+_In N-Ary Trees, `N` is the degree of tree and every nodes can have at most N child nodes, not more than N ._  
+
+Let say we have **3-ary tree**, means that every node can hace either ${0, 1, 2, or 3}$ child nodes . **_e.g_**   
+
+![n-ary-tree](../assets/n-ary_tree.png)  
+
+Now, in the image, the very first image has a root node `A` and it has `3` child nodes, which are `B`, `C` & `D` and every node have capacity of 3 child nodes, but the node `B` and the node `D` have only 2 child nodes and node `C` does not even a child, _feeling bad for node `C` ._  
+
+In the same image, if you look into the second tree, it is also a 3-ary tree, means each node have a capacity of 3 child nodes .  
+
+### Strict N-ary Binary Tree  
+
+In strict N-ary binary tree, every node can have either ${0 or N}$ child .  
+In the above image, since the second tree is 3-ary tree, so every node has either 0 or exactly N child node, so the second tree is not following the condition of a strict binary tree, thus it is not a strict binary tree .  
+
+### Number of nodes in strict binary tree  
+If we have height of the tree, then what will be the number of nodes in the strict binary tree .  
+
+-   **maximum number of nodes (N) =** $\frac {N^ {H+1} - 1}{N-1}$
+-   **minimum number of nodes (N) =** $N \cdot H + 1$  
+
+### Height of a strict binary tree  
+If we have number of nodes, then what will be the height of the strict binary tree .  
+-   **maximum height (H) =** $\frac {N+1}{N}$  
+-   **minimum height (H) =** $log_N[N (N-1) + 1] - 1$  
+
+### Internal (Leaf Node) & External (Non-Lead Node)  
+
+In the strict binary tree, the number of external nodes is always  
+-   **external_node (e)** = $(N-1) + 1$  
+
+
+### Representation Of Binary Tree  
+
+_We can represent the binary tree using `arrays` and `linked`_ . But most often **linked representation** is used to represent the binary tree .  
+
+### Linked Representation  
+
+In linked representation, every node consist of three things, 
+-   **data**
+-   **pointer to leftChild**
+-   **pointer to rightChild**  
+
+```cpp
+class Node {
+    Node *leftChild;    // pointer to leftChild
+    int data;           // data 
+    Node *rightChild;   // pointer to rightChild
+};
+```
+
+**_note_** : if there are `N` nodes, then there will be `N+1` null pointers.   
+
