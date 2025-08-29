@@ -190,7 +190,7 @@ _We can represent the binary tree using `arrays` and `linked`_ . But most often 
 
 ### Linked Representation  
 
-In linked representation, every node consist of three things, 
+In linked representation, every [node](./BinaryTree/Node.h) consist of three things, 
 -   **data**
 -   **pointer to leftChild**
 -   **pointer to rightChild**  
@@ -205,3 +205,5 @@ class Node {
 
 **_note_** : if there are `N` nodes, then there will be `N+1` null pointers.   
 
+_refer the following link for binarytree implementation with some important functions_  
+[Here is representation of binary tree](./BinaryTree/binarytree.h)
