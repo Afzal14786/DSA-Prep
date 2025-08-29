@@ -55,4 +55,52 @@ A **tree** is a collection of `nodes` and `edges` and one of the node is selecte
 
 -   **Height of a Tree:** The height of the entire tree is the height of its root node.
 
-12   ***forest*** : **The collection of sub-trees are nothing but a forest.**
+12   ***forest*** : **The collection of sub-trees are nothing but a forest.**  
+
+### [Binary Tree](./BinaryTree/binarytree.h)
+_A tree where every node can have either `0`, `1` or at most `2` children nodes_ .  
+
+![Binary Tree](../assets/binary_trees.png)
+
+**Nodes Can Be Labbeled & Unlabbeled**  
+
+![Labbeled & Unlabbeled Binary Tree](../assets/labbeled_&_unlabbled.png)  
+
+
+### Number of binary tree using nodes  
+_**Unlabbled Nodes**_  
+_Using unlabbled how many binary trees can be generated ?_ . **Means that if we have `n` nodes then how many binary trees can be formed ?**  
+
+_Using a formula name as **catalon number**, we can actually find out, the number of trees can be formed if we have number of nodes_  
+
+**example:**  _if we have `3` unlabbled nodes, then we can actually formed `5` binary trees, and if we have `4` unlabbled nodes then we can actually generate total `14` number of binary trees._  
+
+**Formula =** ![Catalon Formula](../assets/catalon_formula.svg)  
+
+**Here is the recursive formula =**![Recursive Catalon Number](../assets/catalon_recursive_formula.svg)  
+
+_**Labbled Nodes**_  
+_using labbled nodes, also if we have `n` labbled nodes, then what will be the number of binary trees can be formed ?_ . We can use the same `catalon formula` but with some modification, because every labble nodes have `n` shapes, so there will be total.  
+
+catalon number * n!, means  
+![catalon numbers](../assets/catalon_formula.svg) * $N!$  
+
+**What will be the number of trees with maximum height ?**  _for this we can use following formula_  
+___No of trees with maximum heights =___ $2^{n-1}$  
+
+### Number Of Nodes In A Binary Tree  
+
+If we have height of a binary tree, then how many(min or max) numbers of nodes will be in the binary tree.  
+
+**Maximum Number Of Nodes (N)=**  $H + 1$ _where `H` represent the given height of the tree._  
+**Minimum Number Of Nodes (N)=**  $2^{H+1}-1$  _where `H` represent the given height of the tree._  
+
+### Height Of A Binary Tree
+If we have number of nodes, given then what will be max or min height of the binary tree .  
+
+**Minimum Heigth Of The Binary Tree (H)=** $log_{2} * {N+1}-1$    
+**Maximum Height Of The Binary Tree (H)=** $N-1$ _where `N` represent the number of nodes in the binary tree._  
+
+### Internel Nodes (Non-Leaf Nodes) & External Nodes(Lead Nodes)  
+
+In a binary tree, `deg(0)` means the external nodes, means there is no child node of a parent node . 
