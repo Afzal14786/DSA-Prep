@@ -206,4 +206,59 @@ class Node {
 **_note_** : if there are `N` nodes, then there will be `N+1` null pointers.   
 
 _refer the following link for binarytree implementation with some important functions_  
-[Here is representation of binary tree](./BinaryTree/binarytree.h)
+[Here is representation of binary tree](./BinaryTree/binarytree.h)  
+
+## Full Binary Tree v/s Complete Binary Tree  
+
+### Full Binary Tree  
+_A full binary tree of height `H` having the maximum number of nodes._ **Means**  
+If a tree having height `H`, there for beign that tree as full binary tree, it must have total $2^{H+1} - 1$ number of nodes .  
+
+**Example :** _let say the height of a tree is 3, then for beign a full binary tree, it must have total `15 Nodes` ._  
+
+### Complete Binary Tree  
+_A complete binary tree of height `H` will be a full binary tree upto `H-1` and at the last level the element should filled from `left` to `right` without skipping any element._  
+
+**_Note_ : A full binary tree is always a complete binary tree, but a complete binary tree will never be full binary tree.**  
+
+![full binary tree & complete binary tree](../assets/full_&_complete_btree.png) 
+
+### Strict Complete Binary Tree OR Complete Tree  
+
+_For Begin a strict complete binary tree, it must full fill the requirements of a strict tree as well as at the last level the element should filled from left to right such that there should not any blank spaces in the `array`._  
+
+**Example :**  
+![strict complete btree](../assets/strict_complete_btree.png)  
+
+
+## Tree Traversal  
+_Tree Traversal means visiting all the nodes of a tree._  
+_There are 4 types of tree traversal_
+
+-   **[_Inorder Traversal_](#inorder-traversal)**
+-   **[_PreOrder Traversal_](#pre-order-traversal)**
+-   **[_PostOrder Traversal_](#post-order-traversal)**
+-   **[_LevelOrder Traversal_](#level-order-traversal)**  
+
+**Example Tree :**  
+![Example Binary Tree](../assets/binary_tree_example.png)
+
+### Inorder Traversal  
+_In Inorder Traversal, First Visit `Left`, `Root` then `Right`_ . 
+In the above tree if we perform the `inorder` traversal then it look like
+
+-   (D B E) A (F C G)
+
+Means first left sub-tree, then root, then right-sub tree.  
+Note: sub-tree it self is a tree.  
+
+**Example :** for the above tree, left sub tree is (D B E) and it is a tree, so the inorder traversal also perform in it, and it's left child is `D` and and right child is `E`, so output look like: 
+-   [D, B, E]
+
+_Once the traveral is done, then go back to root, and then visit the node and then move to right sub-tree, and perform the same task as we have done in left-sub tree._  
+
+### Pre-Order Traversal  
+
+### Post-Order Traversal  
+
+### Level-Order Traversal
