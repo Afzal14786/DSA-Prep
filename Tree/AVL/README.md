@@ -1,7 +1,7 @@
 # AVL Trees  
 
 AVL Trees are the height balance binary search trees, means it balance the height of a binary search tree.  
-AVL trees are balanced using balance factor .  
+In AVL trees, the balance factor helps to balance the tree  .  
 
 _for every node we are calculating the height_  
 _Balance factor of a node always belong to {-1, 0 1}, It cannot be more then that, if any node having balance factor > 1 or < -1, means that, node is unbalanced ._  
@@ -13,9 +13,9 @@ _And for balancing that node we are performing rotations. There are four types o
 -   **_[RL Rotation](#rl-rotation)_**  
 
 **_Note_** : For calculating the balance factor there is a simple formula : 
--   **balance_factor =** $height_left - height_right$ ∈ `{-1, 0, 1}`
--   if balance_factor = |height_left - height_right| <= 1 && >= -1 means that `Node is balance` . 
--   if balance_factor = |height_left - height_right| > 1 means that `Node is unballanced` .  
+-   **balance_factor =** $height_l - height_r$ ∈ `{-1, 0, 1}`
+-   if balance_factor = |height_l - height_r| <= 1 && >= -1 means that `Node is balance` . 
+-   if balance_factor = |height_l - height_r| > 1 means that `Node is unbalanced` .  
 
 **_Note_** : Balance factor of a node cannot be more that > 2 or < -2 . The balance factor always lies between -2 to 2 and the rotation always berform between three nodes only, no matter, how big the tree is . If there is 10000 nodes, still the rotation is performing betwee three nodes .  
 
@@ -47,7 +47,7 @@ int balance_factor (Node *current) {
   
 ### LL Rotation  
 
-When the balance factor of a node is +ve 1, means that the tree is balance in the left tree, so we can perform `LL Rotation` .  
+When the balance factor of a node is +ve & > 1, means that the tree is unbalance in the left tree, so we can perform `LL Rotation` .  
 
 ![LL Rotation](../../assets/LL-Rotation.png)
 _[See the LL Rotation Implementation](./avl_tree.cpp)_  

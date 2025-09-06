@@ -24,6 +24,22 @@ public:
 
 class AVL {
     Node *root;
+
+    int getHeight(Node *node) {
+        return node ? node->height : 0;
+    }
+
+    int Height(Node *curr) {
+        return 1 + max(getHeight(curr->left), getHeight(curr->right));
+    }
+
+    int Balance_Factor(Node *curr) {
+        int hl = curr && curr->left ? curr->left->height : 0;
+        int hr = curr && curr->right ? curr->right->height : 0;
+
+        return hl - hr;
+    }
+
     Node *recursiveInsert(Node *current, int key) {
         // check if the currect is null or not
         if (current == nullptr) {
@@ -41,23 +57,23 @@ class AVL {
         // now let calculate the height of the node after insertion
         current->height = Height(current);
         // now check the balance factor and perform the rotations
-        if (Balance_Factor(current) == 2 && Balance_Factor(current->left) == 1) {
-            // means left heavy, then perform
-            return LL_Rotation(current);
-        }
-        else if (Balance_Factor(current) == 2 && Balance_Factor(current->left) == -1) {
-            // means left - right heavy, then perform
-            return LR_Rotation(current);
-        }
-        else if (Balance_Factor(current) == -2 && Balance_Factor(current->right) == -1) {
-            // means there is right heavy, then perform
-            return RR_Rotation(current);
-        }
-        else if (Balance_Factor(current) == -2 && Balance_Factor(current->right) == 1) {
-            // means right - left heacy, then perform
-            return RL_Rotation(current);
-        }
+        // get the balance factor
+        int balance_factor = Balance_Factor(current);
 
+        if (balance_factor > 1) {
+            if (Balance_Factor(current->left) >= 0) {
+                return LL_Rotation(current);
+            } else {
+                return LR_Rotation(current);
+            }
+        } else if (balance_factor < -1) {
+            if (Balance_Factor(current->right) <= 0) {
+                return RR_Rotation(current);
+            } else {
+                return RL_Rotation(current);
+            }
+        }
+        
         return current;
     }
 
@@ -80,38 +96,44 @@ class AVL {
 
         PL->right = PLR->left;
         current->left = PLR->right;
+
         PLR->right = current;
         PLR->left = PL;
+
+        current->height = Height(current);
+        PL->height = Height(PL);
+        PLR->height = Height(PLR);
 
         return PLR;
     }
 
     Node *RR_Rotation(Node *current) {
-        Node *PL = current->right;
-        Node *PLR = current->left;
+        Node *PR = current->right;
+        Node *PRL = PR->left;
 
-        PL->left = current;
-        current->right = PLR;
+        PR->left = current;
+        current->right = PRL;
 
         current->height = Height(current);
-        PL->height = Height(PL);
+        PR->height = Height(PR);
 
-        return PL;
+        return PR;
     }
 
     Node *RL_Rotation(Node *current) {
-        Node *PL = current->right;
-        Node *PLR = PL->left;
+        Node *PR = current->right;
+        Node *PLR = PR->left;
 
-        PL->left = PLR->right;
+        PR->left = PLR->right;
         current->right = PLR->left;
 
+        PLR->right = PR;
         PLR->left = current;
-        PLR->right = PL;
 
-        PLR->height = Height(PLR);
         current->height = Height(current);
-        PL->height = Height(PL);
+        PR->height = Height(PR);
+        PLR->height = Height(PLR);
+
         return PLR;
     }
 
@@ -151,21 +173,6 @@ public:
         root = nullptr;
     }
 
-    int getHeight(Node *node) {
-        return node ? node->height : 0;
-    }
-
-    int Height(Node *curr) {
-        return 1 + max(getHeight(curr->left), getHeight(curr->right));
-    }
-
-    int Balance_Factor(Node *curr) {
-        int hl = curr && curr->left ? curr->left->height : 0;
-        int hr = curr && curr->right ? curr->right->height : 0;
-
-        return hl - hr;
-    }
-
     void insert(int key) {
         root = recursiveInsert(root, key);
     }
@@ -192,12 +199,13 @@ public:
 int main() {
     AVL avl;
     vector<int> keys = {10, 20, 30, 40, 50};
-    for (int i = 0; i < keys.size(); ++i)
-    {
+    for (int i = 0; i < keys.size(); ++i) {
         avl.insert(keys[i]);
     }
-
+    
     // now let perform the traversal
     avl.pre_order_traversal();
+    avl.post_order_traversal();
+    avl.inorder_traversal();
     return 0;
 }
