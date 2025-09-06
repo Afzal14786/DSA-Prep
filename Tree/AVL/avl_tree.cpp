@@ -189,8 +189,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     AVL avl;
     vector<int> keys = {10, 20, 30, 40, 50};
     for (int i = 0; i < keys.size(); ++i)
