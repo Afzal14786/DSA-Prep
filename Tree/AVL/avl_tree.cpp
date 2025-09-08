@@ -198,7 +198,7 @@ public:
 
 int main() {
     AVL avl;
-    vector<int> keys = {10, 20, 30, 40, 50};
+    vector<int> keys = {10, 20, 30, 25, 28, 27, 5};
     for (int i = 0; i < keys.size(); ++i) {
         avl.insert(keys[i]);
     }
