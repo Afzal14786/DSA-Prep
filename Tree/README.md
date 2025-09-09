@@ -111,7 +111,7 @@ So the following formula is always true :
 
 ### Strict Binary Tree  
 
-_A strict binary tree also known as proper or complete binary tree . In strict binary tree, a node can have minimum `0` or maximum `2` child nodes_ . **either just 0 or 1 .**  
+_A strict binary tree also known as proper or complete binary tree . In strict binary tree, a node can have minimum `0` or maximum `2` child nodes_ . **either just 0 or 2 .**  
 
 ![Strict Binary Tree](../assets/strict_binary_tees.png)  
 
@@ -312,7 +312,7 @@ _In level order traversal all the nodes are visited level, by level, means first
 If we perform level order in the above tree then it look like,
 > [A, B, C, D, E, F]  
 
-> _level order tree traversal_ 
+> _level order tree traversal_  
 _Note:_ For performing level order, we use iterative approach, using queue, we can implement the level order traversal.  
 
 ```cpp
