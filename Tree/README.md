@@ -172,11 +172,13 @@ If we have height of the tree, then what will be the number of nodes in the stri
 
 -   **maximum number of nodes (N) =** $\frac {N^ {H+1} - 1}{N-1}$
 -   **minimum number of nodes (N) =** $N \cdot H + 1$  
+> _Note: `n` is for n-ARY & `N` for number of nodes_  
 
 ### Height of a strict binary tree  
 If we have number of nodes, then what will be the height of the strict binary tree .  
 -   **maximum height (H) =** $\frac {N+1}{N}$  
--   **minimum height (H) =** $log_N[N (N-1) + 1] - 1$  
+-   **minimum height (H) =** $log_n[n * (N-1) + 1] - 1$  
+> _Note: `n` is for n-ARY & `N` for number of nodes_  
 
 ### Internal (Leaf Node) & External (Non-Lead Node)  
 
@@ -257,8 +259,169 @@ Note: sub-tree it self is a tree.
 
 _Once the traveral is done, then go back to root, and then visit the node and then move to right sub-tree, and perform the same task as we have done in left-sub tree._  
 
+> _Inorder Traversal Code Look Like_  
+```cpp
+void inorder_traversal(Node *current) {
+    if (current != nullptr) {
+        inorder_traversal(current->left);
+        cout << current->data << " ";
+        inorder_traversal(current->right);
+    }
+}
+```
+
 ### Pre-Order Traversal  
+_In pre-order traversal, first visit the `node`, then move to the `left` then move to the `right`_  
+In the above tree if we perform the `pre-order traversal` then it look like  
+> A, (B, D, E) (C, F, G)  
+
+Means first visit the node, `A`, then move to the left sub-tree, since left sub-tree itself a tree, so in this case first visit node `B` then move to the left child `D` and then move to the right child `E` . Same procedure will apply for the right sub-tree.  
+
+> _pre-order tree traversal_  
+```cpp
+void pre_order(Node *current) {
+    if (current != nullptr) {
+        cout << current-> data << " ";
+        pre_order(current-> left);
+        pre_order(current->right);
+    }
+}
+```
 
 ### Post-Order Traversal  
+_In post-order traversal, first move to the `left`, then move to the `right`  and then visit the `node`_  
+In the above tree if we perform the `post-order traversal` then it look like  
+> (D, E, B) (F, G, C) A   
 
-### Level-Order Traversal
+Means first visit the left sub-tree and, then move to the right sub-tree, and then visit the node . In this case the traversal start from root node `A` and first move to the left sub-tree, since the left sub-tree itself a tree so the post-order traversal is also perform on the left sub-sub tree and move to the left child `D` and then visit right child `E` then visit the parent node `B` and once the left sub-tree tree is traversed, then move to the right sub-tree, and do the same thing .  
+
+> post-order traversal  
+```cpp
+void post_order(Node *current) {
+    if (current != nullptr) {
+        post_current(current->left);
+        post_current(current->right);
+        cout << current-> data << " ";
+    }
+}
+```
+
+### Level-Order Traversal  
+_In level order traversal all the nodes are visited level, by level, means first visit the `root` then it's left child `B`, then it's right child `C` and then visit the `B`'s left child which is `D` and then visit `D`'s sibling `E` and then move to the childs of Node `C`, visit `E` and then it's sibling `F` ._  
+
+If we perform level order in the above tree then it look like,
+> [A, B, C, D, E, F]  
+
+> _level order tree traversal_ 
+_Note:_ For performing level order, we use iterative approach, using queue, we can implement the level order traversal.  
+
+```cpp
+void level_order(Node *current) {
+    queue<Node *> que;
+    cout << current-> data << " ";
+    que.push(current);
+
+    while (!que.empty()) {
+        Node *temp = que.front();
+        que.pop();
+        if (temp->left) {
+            cout << temp->data << " ";
+            que.push(temp);
+        }
+
+        if (temp->right) {
+            cout << temp->data << " ";
+            que.push(temp);
+        }
+    }
+}
+```  
+
+### Iterative approach for traversals  
+
+**Iterative Inorder Traversals**  
+_Note:_ Using stack we'll solve this iterative approach.  
+
+```cpp
+void iterative_preorder(Node *current) {
+    stack<Node *> st;   // Pointer of stack
+
+    while (current != nullptr && !st.empty()) {
+        if (curent != nullptr) {
+            // 1. Print the data 
+            cout << current-> data << " ";
+            // 2. Push the current into the stack
+            st.push(current);
+            // 3. Move left
+            current = current->left;
+        } else {
+            current = st.top();
+            st.pop();
+            current = current->right;
+        }
+    }
+}
+``` 
+
+**Iterative post order traversals**  
+_Note:_ Using stack we'll solve this iterative approach.  
+
+```cpp
+void iterative_inorder(Node *current) {
+    stack<Node *> st;
+
+    while (current != nullptr && !st.empty()) {
+        if (current != nullptr) {
+            // 1. Go to left, before push the node
+            st.push(current);
+            current = current->left;
+        } else {
+            current = st.top();
+            st.pop();
+            cout << current->data << " ";
+            current = current->right;
+        }
+    }
+}
+```  
+
+**Iterative Post Order Traversals**  
+_Note:_ Using 2 stack we'll solve this iterative approach.  
+
+```cpp
+void iterative_postOrder(Node *current) {
+    
+    if (current == nullptr) {
+        return;
+    }
+    
+    stack<Node *> s1;
+    stack<Node *> s2;
+
+    s1.push(current);
+
+    while (!s1.empty()) {
+        Node *crr = s1.top();
+        s1.pop();
+        s2.push(crr);
+
+        if (crr->left) {
+            s1.push(crr->left);
+        }
+
+        if (crr->right) {
+            s1.push(crr->right);
+        }
+    }
+
+    while (!s2.empty()) {
+        Node *crr = s2.top();
+        s2.pop();
+        coout << crr->data << " ";
+    }
+}
+``` 
+
+**More about other trees** 
+-   **[Binary Search Tree (BST)](./BST/README.md)**
+-   **[AVL Trees](./AVL/README.md)**
