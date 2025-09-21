@@ -109,6 +109,7 @@ class bst {
     Node<T>* delete_helper(Node<T> *root, T key);
     Node<T>* inorder_successor(Node<T>* node);
     std::vector<T> printInRange_helper(Node<T> *root, int start, int end);
+    void printAllPaths_helper(Node<T>* root, std::string curr_path, std::vector<std::string> &paths);
 
     public:
         bst() {
@@ -172,6 +173,7 @@ class bst {
         int count();
         int sum();
         void printInRange(int start, int end);
+        void printAllPaths();
 
         ~bst() {
             // removing the space occupied
@@ -185,5 +187,6 @@ class bst {
 #include "operations/sum.cpp"
 #include "operations/count.cpp"
 #include "operations/printInRange.cpp"
+#include "operations/printAllPaths.cpp"
 
 #endif

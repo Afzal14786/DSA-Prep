@@ -38,11 +38,14 @@ int main() {
     // cout << "The tree after deleting the key " << key << endl;
     // bs.inorder();
 
-    cout << "------------------------- Performing In Range Function -------------------------\n";
-    int start, end;
-    cout << "Enter the value of start & end : ";
-    cin >> start >> end;
-    bs.printInRange(start, end);
+    // cout << "------------------------- Performing In Range Function -------------------------\n";
+    // int start, end;
+    // cout << "Enter the value of start & end : ";
+    // cin >> start >> end;
+    // bs.printInRange(start, end);
+
+    cout << "------------------------------ Performing All Paths Function ------------------------------\n";
+    bs.printAllPaths();
     
     return 0;
 }
