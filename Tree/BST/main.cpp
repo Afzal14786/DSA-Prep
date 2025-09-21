@@ -29,14 +29,20 @@ int main() {
 
     cout << "Searching key is = " << (res ? "Oh Yes, Found" : "No, Not Found")  << endl;
 
-    cout << "----------------------- Performing Deletion On BST -----------------------\n";
-    cout << "Enter a key that you want to delete : ";
-    int key;
-    cin >> key;
-    cout << "The new head element = " << bs.delete_key(key) << " after deletion.\n";
+    // cout << "----------------------- Performing Deletion On BST -----------------------\n";
+    // cout << "Enter a key that you want to delete : ";
+    // int key;
+    // cin >> key;
+    // cout << "The new head element = " << bs.delete_key(key) << " after deletion.\n";
 
-    cout << "The tree after deleting the key " << key << endl;
-    bs.inorder();
+    // cout << "The tree after deleting the key " << key << endl;
+    // bs.inorder();
+
+    cout << "------------------------- Performing In Range Function -------------------------\n";
+    int start, end;
+    cout << "Enter the value of start & end : ";
+    cin >> start >> end;
+    bs.printInRange(start, end);
     
     return 0;
 }

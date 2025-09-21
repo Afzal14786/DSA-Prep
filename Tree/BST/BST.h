@@ -2,6 +2,7 @@
 #define BST
 
 #include <iostream>
+#include <vector>
 #include <queue>
 #include <stack>
 #include "./Node.h"
@@ -106,8 +107,8 @@ class bst {
     int sum_helper(Node<T> *current);
     bool search_helper(Node<T> *current, T key);
     Node<T>* delete_helper(Node<T> *root, T key);
-    Node<T>* inorder_predesor(Node<T>* node);
     Node<T>* inorder_successor(Node<T>* node);
+    std::vector<T> printInRange_helper(Node<T> *root, int start, int end);
 
     public:
         bst() {
@@ -170,6 +171,7 @@ class bst {
         int height();
         int count();
         int sum();
+        void printInRange(int start, int end);
 
         ~bst() {
             // removing the space occupied
@@ -182,5 +184,6 @@ class bst {
 #include "operations/delete_key.cpp"
 #include "operations/sum.cpp"
 #include "operations/count.cpp"
+#include "operations/printInRange.cpp"
 
 #endif
