@@ -33,7 +33,7 @@ int main() {
     cout << "Enter a key that you want to delete : ";
     int key;
     cin >> key;
-    bs.delete_key(key);
+    cout << "The new head element = " << bs.delete_key(key) << " after deletion.\n";
 
     cout << "The tree after deleting the key " << key << endl;
     bs.inorder();
