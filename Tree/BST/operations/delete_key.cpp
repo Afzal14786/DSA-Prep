@@ -26,57 +26,40 @@ Node<T>* bst<T>::delete_helper(Node<T>* root, T key) {
         return nullptr;
     }
 
-    if (root->left == nullptr || root->right == nullptr) {
-        delete root;
-        return nullptr;
-    }
-
     if (key < root->key) {
         // perform deletion on the left sub tree
         root->left = delete_helper(root->left, key);
     } else if (key > root->key){
         root->right = delete_helper(root->right, key);
     } else {
-        if (height_helper(root->left) > height_helper(root->right)) {
-            Node<T> *temp = inorder_predesor(root->left);
-            root->key = temp->key;
-            root->left = delete_helper(root->left, temp->key);
-        } else {
-            Node<T> *temp = inorder_successor(root->right);
-            root->key = temp->key;
-            root->right = delete_helper(root->right, temp->key);
+        // case 1 : node has no children or 1 childre
+        if (root->left == nullptr) {
+            Node<T>* temp = root->right;
+            delete root;
+            return temp;
+        } else if (root->right == nullptr) {
+            Node<T>* temp = root->left;
+            delete root;
+            return temp;
         }
+
+        // case 2: means that node has 2 childrens
+        // find the inorder successor (smallest in the right subtree)
+        Node<T>* temp = inorder_successor(root->right);
+        root->key = temp->key;
+        // delete the node, now
+        root->right = delete_helper(root->right, temp->key);
     }
 
     return root;
 }
 
 template <typename T>
-Node<T>* bst<T>::inorder_predesor(Node<T>* root) {
-    while (root && root->right) {
-        root = root->right;
+Node<T>* bst<T>::inorder_successor(Node<T>* node) {
+    Node<T> *temp = node;
+    while (temp && temp->left != nullptr) {
+        temp = temp->left;
     }
 
-    return root;
-}
-
-template <typename T>
-Node<T>* bst<T>::inorder_successor(Node<T>* root) {
-    while (root && root->left) {
-        root = root->left;
-    }
-
-    return root;
-}
-
-template <typename T>
-int height_helper(Node<T>* node) {
-    if (node == nullptr) {
-        return -1;
-    }
-
-    int left_h = height_helper(node->left);
-    int right_h = height_helper(node->right);
-
-    return std::max(left_h, right_h) + 1;
+    return temp;
 }
