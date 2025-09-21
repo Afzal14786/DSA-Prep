@@ -28,6 +28,15 @@ int main() {
     bool res = bs.search(20);
 
     cout << "Searching key is = " << (res ? "Oh Yes, Found" : "No, Not Found")  << endl;
+
+    cout << "----------------------- Performing Deletion On BST -----------------------\n";
+    cout << "Enter a key that you want to delete : ";
+    int key;
+    cin >> key;
+    bs.delete_key(key);
+
+    cout << "The tree after deleting the key " << key << endl;
+    bs.inorder();
     
     return 0;
 }

@@ -105,6 +105,9 @@ class bst {
     int height_helper(Node<T> *current);
     int sum_helper(Node<T> *current);
     bool search_helper(Node<T> *current, T key);
+    Node<T>* delete_helper(Node<T> *root, T key);
+    Node<T>* inorder_predesor(Node<T>* node);
+    Node<T>* inorder_successor(Node<T>* node);
 
     public:
         bst() {
@@ -163,7 +166,7 @@ class bst {
         }
 
         bool search(T value);
-        T delete_key();
+        T delete_key(T key);
         int height();
         int count();
         int sum();
