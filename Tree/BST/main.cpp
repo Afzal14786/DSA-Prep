@@ -46,6 +46,13 @@ int main() {
 
     cout << "------------------------------ Performing All Paths Function ------------------------------\n";
     bs.printAllPaths();
+
+    cout << "\n---------------- Check Kr Rahe Hai Valid BST hai ya nahi ----------------\n";
+    if (bs.validate_bst() == 1) {
+        cout << "Ha bhai haa, BST valid hai! Congratulation.\n";
+    } else {
+        cout << "Nahi bhai, BST valid nhi hai, uffs!\n";
+    }
     
     return 0;
 }
