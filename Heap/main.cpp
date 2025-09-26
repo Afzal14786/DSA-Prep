@@ -1,58 +1,87 @@
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
+/**
+ * Important functions
+ * 
+ *      1. push()       O(logn)
+ *      2. pop()        O(logn)
+ *      3. top()        O(1)
+ */
+
 class Heap {
-    vector<int> arr; 
+    vector<int> cbt;
+    public:
+        void heapify(int i) {
+            if (i > cbt.size()) {
+                return;
+            }
+            int left = 2*i + 1;
+            int right = 2*i + 2;
+            int maxIdx = i;
 
-    void insert_helper(vector<int>& nums, int val) {
-        if (nums.size() == 0) {
-            nums.push_back(0);
+            if (left < cbt.size() && cbt[left] > cbt[maxIdx]) {
+                maxIdx = left;
+            }
+
+            if (right < cbt.size() && cbt[right] > cbt[maxIdx]) {
+                maxIdx = right;
+            }
+
+            swap(cbt[i], cbt[maxIdx]);
+
+            if (maxIdx != i) {
+                heapify(maxIdx);
+            }
         }
 
-        nums.push_back(val); // insert at end
-        int i = nums.size() - 1;
-        int temp = nums[i];
+        void push(int val) {
+            cbt.push_back(val);
+            int x = cbt.size()-1;
+            int parent = (x-1)/2;
 
-        while (i > 1 && temp > nums[i / 2]) {
-            nums[i] = nums[i / 2];
-            i /= 2;
+            while (parent >= 0 && cbt[x] > cbt[parent]) {
+                swap(cbt[x], cbt[parent]);
+                x = parent;
+                parent = (x-1)/2;
+            }
         }
 
-        nums[i] = temp;
-    }
+        void pop() {
+            swap(cbt[0], cbt[cbt.size() - 1]);
+            cbt.pop_back();
 
-public:
-    void insert(int val) {
-        insert_helper(arr, val);
-    }
+            // now fix the heap -> heapify
+            heapify(0);
 
-    void display() {
-        for (int i = 1; i < arr.size(); ++i) {
-            cout << arr[i] << " ";
         }
-        cout << endl;
-    }
+
+        int top() {
+            return cbt[0];
+        }
+
+        bool isEmpty() {
+            return cbt.size() == 0;
+        }
+
 };
 
 int main() {
     Heap h1;
-    h1.insert(15);
-    h1.insert(30);
-    h1.insert(20);
-    h1.insert(6);
-    h1.insert(10);
-    h1.insert(12);
-    h1.insert(5);
-    h1.display();
+    
+    h1.push(9);
+    h1.push(4);
+    h1.push(8);
+    h1.push(1);
+    h1.push(2);
+    h1.push(5);
 
-    h1.insert(40);
-    cout << "Inserting 40, the heap is : ";
-    h1.display();
-
-    h1.insert(35);
-    cout << "Inserting 35, the heap is : ";
-    h1.display();
+    while (!h1.isEmpty()) {
+        cout << "top = " << h1.top() << endl;
+        h1.pop();
+    }
 
     return 0;
 }
