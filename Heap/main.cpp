@@ -13,29 +13,32 @@ using namespace std;
 
 class Heap {
     vector<int> cbt;
-    public:
-        void heapify(int i) {
-            if (i > cbt.size()) {
-                return;
-            }
-            int left = 2*i + 1;
-            int right = 2*i + 2;
-            int maxIdx = i;
+    void heapify(int i) {
 
-            if (left < cbt.size() && cbt[left] > cbt[maxIdx]) {
-                maxIdx = left;
-            }
-
-            if (right < cbt.size() && cbt[right] > cbt[maxIdx]) {
-                maxIdx = right;
-            }
-
-            swap(cbt[i], cbt[maxIdx]);
-
-            if (maxIdx != i) {
-                heapify(maxIdx);
-            }
+        if (i > cbt.size()) {
+            return;
         }
+
+        int left = 2*i + 1;
+        int right = 2*i + 2;
+        int maxIdx = i;
+
+        if (left < cbt.size() && cbt[left] > cbt[maxIdx]) {
+            maxIdx = left;
+        }
+
+        if (right < cbt.size() && cbt[right] > cbt[maxIdx]) {
+            maxIdx = right;
+        }
+
+        swap(cbt[i], cbt[maxIdx]);
+
+        if (maxIdx != i) {
+            heapify(maxIdx);
+        }
+    }
+    
+    public:
 
         void push(int val) {
             cbt.push_back(val);
