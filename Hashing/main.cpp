@@ -14,6 +14,12 @@ class Node{
             this->value = value;
             this->next = nullptr;
         }
+
+        ~Node() {
+            if (next != nullptr) {
+                delete next;
+            }
+        }
 };
 
 /**
@@ -35,6 +41,33 @@ class HashTable {
 
         return idx;
     }
+
+    void rehash() {
+        Node** oldTable = table;
+        int oldSize = totalSize;
+        // now increase the size
+        totalSize *= 2;
+
+        for (int i = 0; i < totalSize; ++i) {
+            table[i] = nullptr;
+        }
+
+        // now copy all the key value to new table
+        for (int i = 0; i < oldSize; ++i) {
+            Node* temp = oldTable[i];
+
+            while (temp != nullptr) {
+                insert(temp->key, temp->value);
+                temp = temp->next;
+            }
+
+            if (oldTable[i] != nullptr) {
+                delete oldTable[i];
+            }
+        }
+
+        delete[] oldTable;
+    }
     public:
         HashTable(int size) {
             totalSize = size;
@@ -55,6 +88,11 @@ class HashTable {
             head = newNode;
 
             currSize++;
+            double lambda = currSize/double(totalSize);
+
+            if (lambda > 1) {
+                rehash();
+            }
         }
 
         // rehashing
