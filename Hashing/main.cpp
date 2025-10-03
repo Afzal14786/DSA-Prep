@@ -39,15 +39,17 @@ class HashTable {
             idx = idx + (key[i] * key[i]) % totalSize;
         }
 
-        return idx;
+        return idx % totalSize;
     }
 
     void rehash() {
         Node** oldTable = table;
         int oldSize = totalSize;
         // now increase the size
-        totalSize *= 2;
+        totalSize =  totalSize * 2;
+        currSize = 0;
 
+        table = new Node*[totalSize];
         for (int i = 0; i < totalSize; ++i) {
             table[i] = nullptr;
         }
@@ -68,6 +70,7 @@ class HashTable {
 
         delete[] oldTable;
     }
+
     public:
         HashTable(int size) {
             totalSize = size;
@@ -84,8 +87,8 @@ class HashTable {
             // create the new node
             Node *newNode = new Node(key, value);
             Node *head = table[idx];
-            newNode->next = head;
-            head = newNode;
+            newNode->next = table[idx];
+            table[idx] = newNode;
 
             currSize++;
             double lambda = currSize/double(totalSize);
@@ -95,13 +98,88 @@ class HashTable {
             }
         }
 
-        // rehashing
+        bool exisit (string key) {
+            int idx = hashFunction(key);
+            Node *temp = table[idx];
+            while (temp != nullptr) {
+                if (temp->key == key) {
+                    // yes the key exist
+                    return true;
+                }
+
+                temp = temp->next;
+            }
+
+            return false;
+        }
+
+        // searching
+
+        int search(string key) {
+            int idx = hashFunction(key);
+            Node *temp = table[idx];
+
+            while (temp != nullptr) {
+                if (temp->key == key) {
+                    return temp->value;
+                }
+
+                temp = temp->next;
+            }
+
+            return -1;  // means not found
+        }
+
+        void remove (string key) {
+            int idx = hashFunction(key);
+            Node *temp = table[idx];
+            Node* pre = temp;
+
+            while (temp != nullptr) {
+                if (temp->key == key) {
+                    if (pre == temp) {
+                        // delete the head node
+                        table[idx] = temp->next;
+                    }
+
+                    pre->next = temp->next;
+                    return;
+                }
+
+                pre = temp;
+                temp = temp->next;
+            }
+        }
         
+        void print () {
+            for (int i = 0; i < totalSize; ++i) {
+                cout << "idx" << i << "->";
+                Node *temp = table[i];
+                while (temp != nullptr) {
+                    cout << "(" << temp->key << "," << temp->value << ")" << "->";
+                    temp = temp->next;
+                }
+                cout << endl;
+            }
+        }
 
 };
 
 int main() {
-    cout << "Basic Structur Of Hash Table";
-    HashTable hash(5);
+    
+    HashTable h1(5);
+    h1.insert("India", 200);
+    h1.insert("China", 250);
+    h1.insert("Bhutan", 100);
+    h1.insert("Pakistan", 20);
+    h1.insert("Sri Lanka", 400);
+    h1.insert("US", 30);
+
+    h1.print();
+    cout << "\n\nAfter Deleting China & Pakistan From Earth : \n\n";
+    h1.remove("China");
+    h1.remove("Pakistan");
+
+    h1.print();
     return 0;
 }
