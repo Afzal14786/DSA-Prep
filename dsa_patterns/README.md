@@ -4,6 +4,7 @@ This folder will contain all the important DSA patterns with practice question a
 ### Table of contents  
 
 -   [Two Pointers](#two-pointers)
+-   [Fast & Slow Pointer](#slow-and-fast-pointers)
 
 
 ### Two Pointers  
