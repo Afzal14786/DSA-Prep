@@ -222,3 +222,154 @@ while (fast != nullptr && fast->next != nullptr) {
 | Find Middle        | Linked List         | Move `fast` 2 steps and `slow` 1 step; stop when `fast == null`.         |
 | Happy Number       | Integer Problem     | Apply the next-transform function repeatedly until loop or 1 is found.   |
 | Circular Array Loop| Array + Modulo (%)  | Move with `(i + nums[i]) % n`; detect cycles using the cycle logic.      |
+
+
+### Questions Based On Fast & Slow Pointer 
+
+1. [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/)
+    * Solution : 
+    ```cpp
+    class Solution {
+    public:
+        bool hasCycle(ListNode *head) {
+            if (head == nullptr) return false;
+            ListNode *slow = head;
+            ListNode *fast = head;
+            while (fast != nullptr && fast->next != nullptr) {
+                slow = slow->next;       // one step
+                fast = fast->next->next;  // two step
+
+                if (slow == fast) return true;
+            }
+
+            return false;
+        }
+    };
+    ```
+
+2. [Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)  
+    * Solution: 
+    ```cpp
+    class Solution {
+    public:
+        ListNode *detectCycle(ListNode *head) {
+            ListNode* slow = head;
+            ListNode* fast = head;
+
+            while (fast != nullptr && fast->next != nullptr) {
+                slow = slow->next;
+                fast = fast->next->next;
+
+                if (slow == fast) {
+                    slow = head;
+                    while (slow != fast) {
+                        slow = slow->next;
+                        fast = fast->next;
+                    }
+
+                    return slow;
+                }
+            }
+
+            return nullptr;
+        }
+    };
+    ```  
+3. [Middle Of The List](https://leetcode.com/problems/middle-of-the-linked-list/description/)
+    * Solution: 
+    ```cpp
+    class Solution {
+    public:
+        ListNode* middleNode(ListNode* head) {
+            ListNode *slow = head, *fast = head;
+            while (fast != nullptr && fast->next != nullptr) {
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+
+            return slow;
+        }
+    };
+    ```
+
+4. [Remove Duplicate From Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/)
+    * Solution
+    ```cpp
+    class Solution {
+    public:
+        ListNode* deleteDuplicates(ListNode* head) {
+            if (!head) return nullptr;
+
+            ListNode* current = head;
+
+            while (current->next != nullptr) {
+                if (current->val == current->next->val) {
+                    ListNode* temp = current->next;
+                    current->next = current->next->next;
+                    delete temp;
+                } else {
+                    current = current->next; 
+                }
+            }
+
+            return head;
+        }
+    };
+    ```
+
+5. [Happy Number](https://leetcode.com/problems/happy-number/)
+    * Solution
+    ```cpp
+    class Solution {
+    public:
+        bool isHappy(int n) {
+            if (n == 1 ) {
+                return true;
+            }
+            int slow = square(n);
+            int fast = square(square(n));
+
+            while (slow != fast) {
+                slow = square(slow);
+                fast = square(square(fast));
+
+                if (slow == 1 || fast == 1) {
+                    return true;
+                }
+            }
+
+            return slow == 1;
+        }
+
+        int square(int n) {
+            int ans = 0;
+            while (n > 0) {
+                int x = n % 10;
+                ans += x*x;
+                n /= 10;
+            }
+            return ans;
+        }
+    };
+    ```
+
+6. [Reverse The Linked List](https://leetcode.com/problems/reverse-linked-list/)
+    * Solution
+    ```cpp
+    class Solution {
+    public:
+        ListNode* reverseList(ListNode* head) {
+            ListNode* current = head;
+            ListNode* previous = nullptr;
+
+            while (current != nullptr) {
+                ListNode* temp = current->next;
+                current->next = previous;
+                previous = current;
+                current = temp;
+            }
+
+            return previous;
+        }
+    };
+    ```

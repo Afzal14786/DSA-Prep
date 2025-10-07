@@ -58,18 +58,6 @@ void List<T>::reverse() {
     Node<T> *previous = nullptr;
     Node<T> *current = head;
     
-
-    // what if there is one or two list
-    // 1 -> 2
-    // 1 = head and 2 = head->nextPointer
-    if (current->nextPointer->nextPointer == nullptr) {
-        current->nextPointer->nextPointer = current;
-        current->nextPointer = nullptr;
-
-        head = current;
-        // now it becomes 2 <- 1
-    }
-
     while (current != nullptr) {
         Node<T> *next = current->nextPointer;
         current->nextPointer = previous;
