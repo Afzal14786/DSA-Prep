@@ -42,8 +42,27 @@ A **collision** occurs when two different keys hash to the *same* array index. S
 
 Common methods to resolve collisions include:
 
-* **Chaining:** Storing a linked list of all key-value pairs at the colliding index.
-* **Open Addressing (Probing):** Searching for the next available empty slot in the array if the initial calculated index is already occupied.
+* **Open Hashing**
+    * **Chaining:** Storing a linked list of all key-value pairs at the colliding index.  
+* **Close Hashing**
+    * **Open Addressing (Probing):** Searching for the next available empty slot in the array if the initial calculated index is already occupied.
+        * Linear Probing
+        * Quadratic Probing
+        * Double Hashing  
+
+    * **Linear Probing** - It is one of the open addressing technique for solving the collision resolution . 
+        - In linear probing it check for the next free space linearly, and the function look like : 
+        - $h(x) = (h(key) + f(i))$, where $i = $ 0,1,2,3,4 ...  
+        - In this linear probing the searching is quite expensive then $O(1)$, becauae if the key is not found at index we have to move to the next index until we found the key or the next space is free . If we found the next step is free then it means that the key is not present .  
+        - And also the loding factor ($\lambda <= 0.5$).
+        - And the deletion is not suggesable in linear probing because it comes with too many complications. 
+        - Time Complexity :  
+            - Avg Successfull Search = $\frac{1}{\lambda} | n (\frac{1}{1-\lambda})$
+            - Avg Unsuccessful Search = $\frac{1}{1-\lambda}$
+
+    * **Quadratic Probing** : There is a drawback in linear probing and that is, the key's form a cluster or say key's are accumulating at the same space. And also another disadvantage in linear probing is space westage, because loding factor ($\lambda <= 0.5$), then there must be $\frac{n}{2}$ free spaces . And this is for efficient searching . 
+    - This is why for avoiding this problem there is another method called **quadratic probing** and this method also store the element in the next free space but the calculation of the next free space is quite difference from linear probing.  
+
 
 ## Common Applications of Hashing
 
