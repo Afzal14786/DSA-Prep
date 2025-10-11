@@ -58,10 +58,86 @@ Common methods to resolve collisions include:
         - And the deletion is not suggesable in linear probing because it comes with too many complications. 
         - Time Complexity :  
             - Avg Successfull Search = $Psuccessfull ≈ \frac{1}{2} (1+\frac{1}{1-\lambda})$
-            - Avg Unsuccessful Search = $Punsuccessful ≈ \frac{1}{2} (1+\frac{1}{(1-\lambda)^2})$
+            - Avg Unsuccessful Search = $Punsuccessful ≈ \frac{1}{2} (1+\frac{1}{(1-\lambda)^2})$  
+
+        - **Code Example**
+        ```cpp
+        #include <iostream>
+        using namespace std;
+        const SIZE = 10;
+        
+        int hashFun(int key) {
+            return key%SIZE;
+        }
+
+        int probing(int hash[], int key) {
+            int idx = hashFun(key);
+            int i = 0;
+            while (hash[idx + i] % SIZE == 0) {
+                i++;
+            }
+            return (idx + i)%SIZE;
+        }
+
+        void insert(int hash[], int key) {
+            int idx = hashFun(key);
+            if (hash[idx] != 0) {
+                idx = probing(hash, key);
+            }
+
+            hash[idx] = key;
+        }
+        int main() {
+            int hash[10];
+            insert(hash, 22);
+            insert(hash, 12);
+            insert(hash, 9);
+            insert(hash, 79);
+        }
+        ```
 
     * **Quadratic Probing** : There is a drawback in linear probing and that is, the key's form a cluster or say key's are accumulating at the same space. And also another disadvantage in linear probing is space westage, because loding factor ($\lambda <= 0.5$), then there must be $\frac{n}{2}$ free spaces . And this is for efficient searching . 
     - This is why for avoiding this problem there is another method called **quadratic probing** and this method also store the element in the next free space but the calculation of the next free space is quite difference from linear probing.  
+
+    - **Quadratic probing** operates by taking the orignal hash index and adding successive value of an arbitary quadratic polynomial until an open slot is found.  
+
+    - It is an alternative of linear probing.  
+    - For quadratic probing the hash function will be : $H(x)=$ $(h(x) + f(i))$ where $f(i)=i^2$ and $i=$ 1,2,3,4,...  
+    **Code Example**
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    const SIZE = 10;
+    
+    int hashFun(int key) {
+        return key%SIZE;
+    }
+
+    int probing(int hash[], int key) {
+        int idx = hashFun(key);
+        int i = 0;
+        while (hash[idx + i*i] % SIZE == 0) {
+            i++;
+        }
+        return (idx + i*i)%SIZE;
+    }
+
+    void insert(int hash[], int key) {
+        int idx = hashFun(key);
+        if (hash[idx] != 0) {
+            idx = probing(hash, key);
+        }
+
+        hash[idx] = key;
+    }
+    int main() {
+        int hash[10];
+        insert(hash, 22);
+        insert(hash, 12);
+        insert(hash, 9);
+        insert(hash, 79);
+    }
+    ```
 
 
 ## Common Applications of Hashing
