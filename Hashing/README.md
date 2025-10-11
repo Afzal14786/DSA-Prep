@@ -102,8 +102,13 @@ Common methods to resolve collisions include:
     - **Quadratic probing** operates by taking the orignal hash index and adding successive value of an arbitary quadratic polynomial until an open slot is found.  
 
     - It is an alternative of linear probing.  
-    - For quadratic probing the hash function will be : $H(x)=$ $(h(x) + f(i))$ where $f(i)=i^2$ and $i=$ 1,2,3,4,...  
-    **Code Example**
+    - For quadratic probing the hash function will be : $H(x)=$ $(h(x) + f(i))$ where $f(i)=i^2$ and $i=$ 1,2,3,4,... 
+    - **Time Complexity**  
+        - **Average Successful Search** ≈ $-log\frac{1-\lambda}{\lambda}$
+
+        - **Average Unsuccessful Search** ≈ $\frac{1}{\lambda}$
+
+    - **Code Example**
     ```cpp
     #include <iostream>
     using namespace std;
