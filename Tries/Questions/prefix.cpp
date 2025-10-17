@@ -18,6 +18,15 @@ class Node {
 
 class Tries {
     Node *root;
+    int countHelper(Node *root) {
+        int count = 0;
+        for (pair<char, Node*> child : root->children) {
+            count += countHelper(child.second);
+        }
+
+        return count + 1;
+    }
+
     public:
         Tries() {
             root = new Node();
@@ -28,6 +37,12 @@ class Tries {
     void insert(string key);
     bool search(const string& key);
     string getprefix(string key);
+    bool startsWith(string prefix);
+    int count() {
+        return countHelper(root);
+    }
+
+    int uniqueSubstrings(string word);      // we are given a word and we have to find the total number of unique substrings
 
 };
 
@@ -74,6 +89,28 @@ string Tries::getprefix(string key) {   // O(L)
     return prefix;
 }
 
+bool Tries::startsWith(string prefix) {
+    Node *temp = root;
+        for (char ch : prefix) {
+            if (temp->children.find(ch) == temp->children.end()) {
+                return false;
+            }
+            temp = temp->children[ch];
+        }
+
+        return true;
+}
+
+int Tries::uniqueSubstrings(string word) {
+    Tries trie;
+    for (int i = 0; i < word.size(); ++i) {
+        string suffix = word.substr(i);
+        trie.insert(suffix);
+    }
+
+    return trie.count();
+}
+
 // ----------------------------------------------------------
 
 vector<string> prefix(vector<string> &dict) {
@@ -103,8 +140,13 @@ void display_prefixes(vector<string> &answer) {
 }
 
 int main() {
+    Tries trie;
     vector<string> words = {"zebra", "dog", "duck", "dove"};
     vector<string> ans  = prefix(words);
+    cout << trie.startsWith("duck") << endl;
     display_prefixes(ans);
+
+    // count all unique sub string that can be formed from one given string
+    cout << trie.uniqueSubstrings("ababa") << endl;     // 10
     return 0;
 }

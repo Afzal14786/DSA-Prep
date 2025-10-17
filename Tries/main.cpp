@@ -45,10 +45,22 @@ class Tries {
 
         return temp->eof;
     }
+
+    bool startsWith(string prefix) {
+        Node *temp = root;
+        for (char ch : prefix) {
+            if (temp->children.find(ch) == temp->children.end()) {
+                return false;
+            }
+            temp = temp->children[ch];
+        }
+
+        return true;
+    }
 };
 
 int main() {
-    vector<string> words = {"the", "a", "there", "their", "three", "thee"};
+    vector<string> words = {"zebra", "dog", "duck", "dove"};
     Tries trie;
 
     // insertion done
@@ -65,5 +77,6 @@ int main() {
         cout << "Oh no, the word not exist.\n";
     }
 
+    cout << trie.startsWith("do") << endl;
     return 0;
 }
