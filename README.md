@@ -34,6 +34,7 @@ You can explore specific DSA topics by clicking on the links below. Each link wi
 13. [Heap/Priority Queue](./Heap/README.md)
 14. [Hashing](./Hashing/README.md)
 15. [Trie](./Tries/README.md)  
+16. [Graph](./Graph/README.md)  
 
 ### How to Use This Repository  
 ****
