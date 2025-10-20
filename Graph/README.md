@@ -21,12 +21,6 @@ graph TD
     B --> D
     C --> E
     B --> C
-    
-    style A fill:#f9f
-    style B fill:#bbf
-    style C fill:#bbf
-    style D fill:#9f9
-    style E fill:#9f9
 ```  
 | Component         | Visual    | Description                                   |
 | :---------------- | :-------- | :-------------------------------------------- |
@@ -65,7 +59,7 @@ graph LR
 **Unweighted Graph**  
 ```mermaid
 graph LR
-    A -- B -- C
+    A --- B --- C
 ```
 -   All edges are equal
 -   Just care about connectivity  
@@ -73,10 +67,10 @@ graph LR
 **Weighted Graph**  
 ```mermaid
 graph LR
-    A --5--> B --3--> C
-    B --7--> D
+    A --5--- B
+    B --3--- C
+    B --7--- D
 ```
-
 -   Edges have values (distance, cost, time)
 -   Used in navigation systems
 
