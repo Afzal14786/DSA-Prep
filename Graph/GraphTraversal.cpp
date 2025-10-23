@@ -19,6 +19,21 @@ class Graph {
         }
     }
 
+    bool pathHelper(int src, int dest, vector<bool> &visited) {
+        if (src == dest) {
+            return true;
+        }
+
+        visited[src] = true;
+        for (int neighbour : listAdjeceny[src]) {
+            if (!visited[neighbour]) {
+                if (pathHelper(neighbour, dest, visited)) return true;
+            }
+        }
+
+        return false;
+    }
+
     public:
         Graph(int V) {
             this->V = V;
@@ -75,6 +90,11 @@ class Graph {
             DFSUtil(start, visited);
             cout << endl;
         }
+
+        bool hasPath(int src, int dest) {
+            vector<bool> visited(V, false);
+            return pathHelper(src, dest, visited);
+        }
 };
 
 int main() {
@@ -91,5 +111,7 @@ int main() {
     graph.printGraph();
     graph.BFS(0);       // 0 1 4 2 3
     graph.DFS(0);       // 0,1,2,3,4
+    cout << "Path from 0 to 3: " << (graph.hasPath(0, 3) ? "Exists" : "Does not exist") << endl;
+    cout << "Path from 0 to 9: " << (graph.hasPath(0, 9) ? "Exists" : "Does not exist") << endl;
     return 0;
 }
