@@ -8,6 +8,7 @@ using namespace std;
 class Graph {
     int V;
     vector<list<int>> listAdj;
+    bool isUndirected;
 
     void dfsHelper(int node, vector<bool> &visited) {
         cout << node << " ";
@@ -34,15 +35,31 @@ class Graph {
         return false;
     }
 
+    bool directedCycleHelper(int source, vector<bool> &visited, vector<bool> &recPath) {
+        visited[source] = true;
+        recPath[source] = true;
+
+        for (int neighbour : listAdj[source]) {
+            if (!visited[neighbour]) {
+                if (directedCycleHelper(neighbour, visited, recPath)) return true;
+            } else {
+                if (recPath[neighbour]) return true;    // means the cycle exist
+            }
+        }
+
+        recPath[source] = false;
+        return false;
+    }
+
 public:
-    Graph(int V) : V(V), listAdj() {
+    Graph(int V, bool isUndirected = true) :  V(V), isUndirected(isUndirected), listAdj(V) {
         listAdj.resize(V);
     }
 
     // addEdge
-    void addEdge(int u, int v, bool directed = false) {
+    void addEdge(int u, int v) {
         listAdj[u].push_back(v);
-        if (!directed) {
+        if (isUndirected && u != v) {
             listAdj[v].push_back(u);
         }
     }
@@ -68,14 +85,31 @@ public:
     //check the cycle exist or not using dfs
     bool isCycleUndirected() {
         vector<bool> visited(V, false);
-        return cycleUndirectedHelper(0, -1, visited);
+        for (int i = 0; i < visited.size(); ++i) {
+            if (!visited[i]) {
+                if (cycleUndirectedHelper(i, -1, visited)) return true;
+            }
+        }
+        return false;
+    }
+
+    bool isCycleDirected() {
+        vector<bool> visited(V, false);
+        vector<bool> recPath(V, false);
+        for (int i = 0; i < visited.size(); ++i) {
+            if (!visited[i]) {
+                if (directedCycleHelper(i, visited, recPath)) return true;
+            }
+        }
+
+        return false;
     }
 };
 
 int main() {
-    Graph graph(5);
+    Graph graph(5);     // undirected graph
     graph.addEdge(0, 1);
-    // graph.addEdge(0, 2);
+    graph.addEdge(0, 2);
     graph.addEdge(0, 3);
     graph.addEdge(1, 2);
     graph.addEdge(3, 4);
@@ -84,5 +118,15 @@ int main() {
     cout << "\n---------------- DFS TRAVERSAL ----------------\n";
     graph.dfs();
     cout << (graph.isCycleUndirected() ? "Cycle Exist" : "Cycle Not Exist") << endl;
+
+    // directed graph
+    Graph d_graph(4, false);
+    d_graph.addEdge(1,0);
+    d_graph.addEdge(0,2);
+    d_graph.addEdge(2,3);
+    d_graph.addEdge(3,0);  // cycle exist here
+    cout << "\n---------------- DFS TRAVERSAL (Directed Graph) ----------------\n";
+    d_graph.printGraph();
+    cout << (d_graph.isCycleDirected() ? "Cycle Exist" : "Cycle Not Exist") << endl;
     return 0;
 }
