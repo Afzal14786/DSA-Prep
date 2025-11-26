@@ -96,8 +96,8 @@ int lcsTabulation(string s1, string s2) {
 }
 
 int main() {
-    string s1 = "abedge";
-    string s2 = "abedg";
+    string s1 = "abcde";
+    string s2 = "ace";
 
     int n = s1.size(), m = s2.size();
     vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
