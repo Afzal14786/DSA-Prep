@@ -11,7 +11,7 @@ bool targetSum(vector<int> nums, int target) {
     for (int i = 1; i <= n; ++i) {
         for (int j = 1; j <= target; ++j)  {
             if (nums[i-1] <= j) {
-                dp[i][j] = max(nums[i-1] + dp[i-1][j-nums[i-1]], dp[i-1][j]);  // enclude
+                dp[i][j] = max(nums[i-1] + dp[i-1][j-nums[i-1]], dp[i-1][j]);  // include
             } else {
                 dp[i][j] = dp[i-1][j];  // exclude
             }
