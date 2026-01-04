@@ -1,7 +1,7 @@
 /**
  * 4Sum
  * Question Link : https://leetcode.com/problems/4sum/description/?envType=problem-list-v2&envId=array
- * Solution Link : 
+ * Solution Link : https://leetcode.com/problems/4sum/submissions/1874651084/?envType=problem-list-v2&envId=array
  */
 
 // Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
