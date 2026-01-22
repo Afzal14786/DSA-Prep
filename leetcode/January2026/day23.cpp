@@ -1,0 +1,163 @@
+/**
+ * Minimum Pair Removal To Sort Array - II
+ * Question Link : https://leetcode.com/problems/minimum-pair-removal-to-sort-array-ii/description/
+ * Solution Link : https://leetcode.com/problems/minimum-pair-removal-to-sort-array-ii/submissions/1893160784/
+ */
+
+// Given an array nums, you can perform the following operation any number of times:
+
+//  - Select the adjacent pair with the minimum sum in nums. If multiple such pairs exist, choose the leftmost one.
+//  - Replace the pair with their sum.
+
+// Return the minimum number of operations needed to make the array non-decreasing.
+
+// Note : An array is said to be non-decreasing if each element is greater than or equal to its previous element (if it exists).
+
+// Example 1:
+
+// Input: nums = [5,2,3,1]
+// Output: 2
+
+// Explanation:
+
+// - The pair (3,1) has the minimum sum of 4. After replacement, nums = [5,2,4].
+// - The pair (2,4) has the minimum sum of 6. After replacement, nums = [5,6].
+// The array nums became non-decreasing in two operations.
+
+// Example 2:
+
+// Input: nums = [1,2,2]
+// Output: 0
+
+// Explanation:
+// The array nums is already sorted.
+
+// Constraints:
+
+//  1 <= nums.length <= 10^5
+//  -10^9 <= nums[i] <= 10^9
+
+#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+
+using namespace std;
+
+// not optimized
+class Solution2 {
+public:
+    int minimumPairRemoval(vector<int>& nums) {
+        int count = 0;
+        while (!is_sorted(nums.begin(), nums.end())) {
+            int min_val = 1e9;
+            int idx = 0;
+            count++;
+
+            for (int i = 0; i < nums.size() - 1; ++i) {
+                if (nums[i] + nums[i + 1] < min_val) {
+                    min_val = nums[i] + nums[i+1];
+                    idx = i;
+                }
+            }
+
+            vector<int> ans;
+            for (int i = 0; i < nums.size(); ++i) {
+                if (i != idx) {
+                    ans.push_back(nums[i]);
+                } else {
+                    ans.push_back(min_val);
+                    i++;
+                }
+            }
+            nums = ans;
+        }
+        return count;
+    }
+};
+
+/**
+ * Optmize Approach
+ */
+using ll = long long;
+
+class Solution {
+public:
+    int minimumPairRemoval(vector<int>& nums) {
+        int n = nums.size();
+        vector<ll> a(n);
+        for (int i = 0; i < n; i++) a[i] = nums[i];
+        
+        // maintain adjacent pairs {sum, index}
+        set<pair<ll, int>> s;
+
+        // double-linked list
+        vector<int> nxt(n);
+        vector<int> pre(n);
+        for (int i = 0; i < n; i++) nxt[i] = i + 1;
+        for (int i = 0; i < n; i++) pre[i] = i - 1;
+
+        // insert all pairs into set
+        int cnt = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if (a[i] > a[i + 1]) cnt++;
+            s.insert({a[i] + a[i + 1], i});
+        }
+        
+        // simulate the process
+        int ans = 0;
+        while (cnt > 0) {
+            int i = s.begin()->second;
+            int j = nxt[i];
+            int p = pre[i];
+            int q = nxt[j];
+
+            // pair {i, j}
+            if (a[i] > a[j]) cnt--;
+            if (p >= 0) {
+                // pair {p, i}
+                if (a[p] > a[i] && a[p] <= a[i] + a[j]) {
+                    cnt--;
+                }
+                else if (a[p] <= a[i] && a[p] > a[i] + a[j]) {
+                    cnt++;
+                }
+            }
+            if (q < n) {
+                // pair {j, q}
+                if (a[q] >= a[j] && a[q] < a[i] + a[j]) {
+                    cnt++;
+                }
+                else if (a[q] < a[j] && a[q] >= a[i] + a[j]) {
+                    cnt--;
+                }
+            }
+
+            // remove outdated pairs & add new pairs
+            s.erase(s.begin());
+            if (p >= 0) {
+                s.erase({a[p] + a[i], p});
+                s.insert({a[p] + a[i] + a[j], p});
+            }
+            if (q < n) {
+                s.erase({a[j] + a[q], j});
+                s.insert({a[i] + a[j] + a[q], i});
+                pre[q] = i;
+            }
+            nxt[i] = q;
+            a[i] = a[i] + a[j];
+            ans++;
+        }
+        
+        return ans;
+    }
+};
+
+int main() {
+    Solution s;
+    vector<int> nums = {5,2,3,1};
+    vector<int> nums2 = {1,2,2};
+    cout << "Minimum number of operations : " << (s.minimumPairRemoval(nums)) << endl;  // 2
+    cout << "Minimum number of operations : " << (s.minimumPairRemoval(nums2)) << endl;  // 0
+    return 0;
+}
