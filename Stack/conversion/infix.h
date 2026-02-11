@@ -32,7 +32,7 @@ std::string Infix::InfixToPostfix(std::string infix) {
             }
             st.pop();
         } else {
-            while (!st.empty() && OperatorPriority(ch) <= OperatorPriority(st.top())) {
+            while (!st.empty() && ((OperatorPriority(ch) < OperatorPriority(st.top())) || (OperatorPriority(ch) == OperatorPriority(st.top()) && ch != '^'))) {
                 ans += st.top();
                 st.pop();
             }

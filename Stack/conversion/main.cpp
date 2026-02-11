@@ -7,7 +7,7 @@
 int main() {
     Infix in;
     std::string infix_to_prefix = "(A+B)*C-D+F";
-    std::string infix_to_postfix = "a+b*(c^d-e)";
+    std::string infix_to_postfix = "h^m^q^(7-4)";
     
     std::cout << "\t ----------------- Infix Conversion ----------------- \t" << std::endl;
     std::cout << "\t Given Infix : |" << infix_to_prefix << "| \t Convert To Prefix : |" << in.InfixToPrefix(infix_to_prefix) << "|" << std::endl;
