@@ -1,7 +1,7 @@
 # Recursion  
 **What is recursion?**  
 `
-when a function call itself again and again.
+when a function call itself until a specified condition met **(base condition)**.
 `  
 
 **What is recurrence?**  
