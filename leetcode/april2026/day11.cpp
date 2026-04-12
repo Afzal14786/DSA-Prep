@@ -4,28 +4,31 @@
 #include <vector>
 #include <algorithm>
 
-class Solution {
-public:
-    int minimumDistance(std::vector<int>& nums) {
-        int ans = 1e9;
-        int n = nums.size();
-        for (int i = 0; i < n; ++i) {
-            bool flag = false;
-            for (int j = i+1; j < n; ++j) {
-                if (nums[i] == nums[j]) {
-                    if (flag) {
-                        ans = std::min(ans, j-i);
-                        break;
-                    } else {
-                        flag = true;
-                    }
-                }
-            }
-        }
+/**
+ * Time Complexity For this solution is O(N^2)
+ */
+// class Solution {
+// public:
+//     int minimumDistance(std::vector<int>& nums) {
+//         int ans = 1e9;
+//         int n = nums.size();
+//         for (int i = 0; i < n; ++i) {
+//             bool flag = false;
+//             for (int j = i+1; j < n; ++j) {
+//                 if (nums[i] == nums[j]) {
+//                     if (flag) {
+//                         ans = std::min(ans, j-i);
+//                         break;
+//                     } else {
+//                         flag = true;
+//                     }
+//                 }
+//             }
+//         }
 
-        return (ans == 1e9) ? -1 : ans * 2;
-    }
-};
+//         return (ans == 1e9) ? -1 : ans * 2;
+//     }
+// };
 
 /**
  * Time Compexity : O(N)
@@ -50,3 +53,13 @@ public:
         return (ans == 1e9) ? -1 : 2 * ans;
     }
 };
+
+int main() {
+    std::vector<int> nums = {1,1,2,3,2,1,2};
+    Solution s;
+
+    std::cout << "Minimum Distance : " << std::endl;
+    std::cout << s.minimumDistance(nums) << std::endl;
+
+    return 0;
+}
