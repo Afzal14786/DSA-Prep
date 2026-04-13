@@ -5,6 +5,10 @@
 #include <set>
 #include <algorithm>
 
+/**
+ * TIME COMPEXITY : O(n * 2^n)
+ * SPACE COMPLEXITY : O(n * 2^n)
+ */
 class Solution {
 public:
     void generateSubsets(int idx, std::vector<int> &nums, std::set<std::vector<int>> &st, std::vector<int> &tmp) {

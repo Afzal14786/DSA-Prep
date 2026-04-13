@@ -7,6 +7,10 @@
 
 using namespace std;
 
+/**
+ * TIME COMPLEXITY : O(N * 2^N * log N)
+ * SPACE COMPLEXITY : O(N * 2^N)
+ */
 class Solution {
 public:
     void generateAllSubsetsWithDuplicates(int idx, std::vector<int> &nums, std::set<std::vector<int>> &ans, std::vector<int> &temp) {

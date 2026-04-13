@@ -4,8 +4,14 @@
 #include <vector>
 #include <algorithm>
 
+/**
+ * TIME COMPLEXITY : O(N * 2 ^ N)
+ * SPACE COMPLEXITY : O(2 ^ N)
+ */
+
 class SubsetSum {
 public:
+    // time complexity :  O(2 ^ N)
     void generateSubset(int idx, std::vector<int> &nums, int currSum, std::vector<int> &ans) {
         int n = nums.size();
         if (idx == n) {
@@ -19,6 +25,8 @@ public:
 
         generateSubset(idx + 1, nums, currSum, ans);
     }
+    // over all time complexity :  O(2 ^ N) + O(N * 2^N) & 
+    // Space Complexity : recursive call stack depth is O(N) & The ans vector stores 2^N subset sums, so space complexity for ans is O(2^N).
     std::vector<int> subsetSum(std::vector<int> &nums){
 	    // Write your code here.
         std::vector<int> ans;
@@ -28,7 +36,7 @@ public:
             std::cout << x << " ";
         }
         std::cout << std::endl;
-        std::sort(ans.begin(), ans.end());
+        std::sort(ans.begin(), ans.end());   // time complexity for sorting : O(N * 2^N)
         return ans;
     }
 };

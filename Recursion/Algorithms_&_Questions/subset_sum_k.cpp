@@ -23,7 +23,7 @@ bool generateSubsets(int idx, int K, std::vector<int> &nums, int n, int currSum)
 /**
  * Optimize Solution
  * Time Complexity : O(N * K)
- * Space Complexity : O(N * K) + O(N)
+ * Space Complexity : O(N * K)
  */
 
 bool solve(int idx, int target, std::vector<int> &nums, std::vector<std::vector<int>> &dp) {
