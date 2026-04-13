@@ -26,11 +26,25 @@ public:
 
         generateAllSubsetsWithDuplicates(idx+1, nums, ans, temp);
     }
+
+    void findSubsets(int idx, std::vector<int> &nums, std::vector<int> &ds, std::vector<std::vector<int>> &ans) {
+        ans.push_back(ds);
+        for (int i = idx; i < nums.size(); ++i) {
+            if (i != idx && nums[i] == nums[i-1]) continue;
+            ds.push_back(nums[i]);
+            findSubsets(i+1, nums, ds, ans);
+            ds.pop_back();
+        }
+    }
+
     std::vector<std::vector<int>> subsetsWithDup(std::vector<int>& nums) {
-        std::set<std::vector<int>> ans;
+        // std::set<std::vector<int>> ans;
+        std::vector<std::vector<int>> ans;
         std::vector<int> tmp;
 
-        generateAllSubsetsWithDuplicates(0, nums, ans, tmp);
-        return std::vector<std::vector<int>>(ans.begin(), ans.end());
+        // generateAllSubsetsWithDuplicates(0, nums, ans, tmp);
+        findSubsets(0, nums, tmp, ans);
+        return ans;
+        // return std::vector<std::vector<int>>(ans.begin(), ans.end());
     }
 };
