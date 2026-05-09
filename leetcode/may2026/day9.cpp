@@ -1,0 +1,73 @@
+// question link : https://leetcode.com/problems/cyclically-rotating-a-grid/description/?envType=daily-question&envId=2026-05-09
+//
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+class Solution {
+public:
+    std::vector<std::vector<int>> rotateGrid(std::vector<std::vector<int>>& grid, int k) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        int layers = std::min(m, n) / 2; //each layer require two rows and two columns
+
+        for (int layer = 0; layer < layers; layer++) {
+
+            std::vector<int> nums;
+
+            int top = layer;
+            int bottom = m - layer - 1;
+            int left = layer;
+            int right = n - layer - 1;
+
+            // Top row (left -> right)
+            for (int j = left; j <= right; j++) {
+                nums.push_back(grid[top][j]);
+            }
+
+            // Right column (top -> bottom)
+            // Skip corners because they are already included in top/bottom rows
+            for (int i = top + 1; i <= bottom - 1; i++) {
+                nums.push_back(grid[i][right]);
+            }
+
+            // Bottom row (right -> left)
+            for (int j = right; j >= left; j--) {
+                nums.push_back(grid[bottom][j]);
+            }
+
+            // Left column (bottom -> top)
+            // Skip corners because they are already included in top/bottom rows
+            for (int i = bottom - 1; i >= top + 1; i--) {
+                nums.push_back(grid[i][left]);
+            }
+
+            int len = nums.size();
+
+            int nomralized_k = k % len;
+
+            std::rotate(begin(nums), begin(nums) + nomralized_k, end(nums));
+
+            int idx = 0;
+
+            for (int j = left; j <= right; j++) {
+                grid[top][j] = nums[idx++];
+            }
+
+            for (int i = top + 1; i <= bottom - 1; i++) {
+                grid[i][right] = nums[idx++];
+            }
+
+            for (int j = right; j >= left; j--) {
+                grid[bottom][j] = nums[idx++];
+            }
+
+            for (int i = bottom - 1; i >= top + 1; i--) {
+                grid[i][left] = nums[idx++];
+            }
+        }
+
+        return grid;
+    }
+};
