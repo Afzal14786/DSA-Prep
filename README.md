@@ -57,7 +57,7 @@ Follow Me On :
 
 
 
-**This Repository is Maintain By Me & [Kajal Yadhuvanshi](https://github.com/kajal824)**
+**This Repository is Maintain By Me [Md Afzal Ansari](https://github.com/Afzal14786)**
 
 
 ### How To Clone  
