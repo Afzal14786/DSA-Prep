@@ -94,7 +94,7 @@ public:
 // time complexity : O(e * f)
 // space complexity : O(n)
 
-class Solution {
+class Optimize_Solution {
 public:
     int superEggDrop(int e, int f) {
         // base case
