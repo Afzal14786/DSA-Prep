@@ -33,3 +33,42 @@ public:
         return subsetsum(nums, sum/2, n);
     }
 };
+
+/**
+ * better approach and space optimize
+ */
+
+class Solution {
+public:
+    bool fun(std::vector<int> &nums, int sum) {
+        int n = nums.size();
+        
+        std::vector<bool> prev(sum+1, false), curr(sum+1, false);
+        prev[0] = true;
+        curr[0] = true;
+
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= sum; ++j) {
+                // valid condition
+                if (nums[i-1] <= j) {
+                    curr[j] = prev[j] || prev[j - nums[i-1]];
+                } else {
+                    curr[j] = prev[j];
+                }
+            }
+            prev = curr;
+        }
+
+        return prev[sum];
+    }
+
+    bool canPartition(std::vector<int>& nums) {
+        int n = nums.size(), sum = 0;
+        for (int i = 0; i < n; ++i) {
+            sum += nums[i];
+        }
+
+        if (sum % 2 != 0) return false;
+        return fun(nums, sum/2);
+    }
+};
