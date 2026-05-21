@@ -59,3 +59,27 @@ class Solution {
         return dp[n][W];
     }
 };
+
+/**
+ * Space Optimize Code
+ * Time Complexity : O(N * W)
+ * Space Complexity : O(W)
+ */
+
+class Solution {
+  public:
+    int knapsack(int W, std::vector<int> &val, std::vector<int> &wt) {
+        // code here
+        // space optimize code
+        int n = val.size();
+        std::vector<int> dp(W+1, 0);
+
+        for (int i = 1; i <= n; ++i) {
+            for (int j = W; j >= wt[i-1]; --j) {
+                dp[j] = std::max(dp[j], val[i-1] + dp[j - wt[i-1]]);
+            }
+        }
+
+        return dp[W];
+    }
+};
