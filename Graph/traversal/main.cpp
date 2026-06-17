@@ -1,29 +1,18 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 #include <chrono>
 #include "traversal.hpp"
+#include "transforming_matrix_into_edgelist.hpp"
 
-std::vector<std::vector<int>> generateDenseGraph(int numNodes, int densityFactor) {
-    std::vector<std::vector<int>> edgeList;
-    
-    // Step 1: Guarantee every node is connected (Creates a spanning path)
-    // This ensures there are absolutely ZERO isolated nodes.
-    for (int i = 1; i < numNodes; ++i) {
-        edgeList.push_back({i, i + 1});
-    }
-    
-    // Step 2: Add extra connections to make it dense.
-    // densityFactor determines how many forward connections each node gets.
-    // E.g., if densityFactor is 5, Node 1 connects to 3, 4, 5, and 6.
-    for (int i = 1; i <= numNodes; ++i) {
-        for (int step = 2; step <= densityFactor; ++step) {
-            if (i + step <= numNodes) {
-                edgeList.push_back({i, i + step});
-            }
+void showGraph(std::vector<std::vector<int>> &graph) {
+    std::cout << "\n This is how the dense graph look like. \n";
+    for (auto mat : graph) {
+        for (auto x : mat) {
+            std::cout << x << " ";
         }
+        std::cout << std::endl;
     }
-    
-    return edgeList;
 }
 
 int main() {
@@ -35,12 +24,12 @@ int main() {
     // This will generate around 400+ edges for 50 nodes.
     int densityFactor = 10; 
 
-    std::vector<std::vector<int>> graph = generateDenseGraph(totalNodes, densityFactor);
-
+    std::vector<std::vector<int>> graph = transform_matrix_into_edgelist::generateDenseGraph(totalNodes, densityFactor);
+    
     std::cout << "--- Starting BFS Traversal ---" << std::endl;
 
     // Define the start vertex (Node 0)
-    int startNode = 0;
+    int startNode = 10;
 
     auto startTime = std::chrono::high_resolution_clock::now();
 
@@ -59,6 +48,24 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
 
     std::cout << "--- Traversal Complete ---" << std::endl;
+    std::cout << "Execution time: " << duration.count() << " microseconds" << std::endl;
+
+    std::cout << "\n\n ---------------------------------------------------------------- \n\n";
+    std::cout << "--- Starting DFS Traversal ---" << std::endl;
+    auto startTime_dfs = std::chrono::high_resolution_clock::now();
+
+    try {
+        GraphUtils::depthFirstSearch(graph, startNode, [](int node) {
+            std::cout << "Visited Node: " << node << std::endl;
+        });
+    } catch (const std::exception& e) {
+        std::cerr << "Error during DFS: " << e.what() << std::endl;
+        return 1;
+    }
+
+    auto endTime_dfs = std::chrono::high_resolution_clock::now();
+    auto duration_dfs = std::chrono::duration_cast<std::chrono::microseconds>(endTime_dfs - startTime_dfs);
+    std::cout << "--- DFS Traversal Complete ---" << std::endl;
     std::cout << "Execution time: " << duration.count() << " microseconds" << std::endl;
     return 0;
 }

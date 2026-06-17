@@ -55,4 +55,46 @@ namespace GraphUtils {
             }
         }
     }
+
+    /**
+     * @brief Recursive utility for Depth-First Search.
+     */
+    template <typename GraphType>
+    void dfs_util(const GraphType& graph, int currentNode, std::vector<bool>& visited, const std::function<void(int)>& onVisit) {
+        visited[currentNode] = true;
+
+        // Execute the callback if it was provided
+        if (onVisit) {
+            onVisit(currentNode);
+        }
+
+        // Iterate through all neighbors of the current node
+        for (const auto& neighbour : graph[currentNode]) {
+            if (!visited[neighbour]) {
+                dfs_util(graph, neighbour, visited, onVisit);
+            }
+        }
+    }
+    
+    /**
+     * @brief Performs a Depth-First Search (DFS) on a graph.
+     * * @tparam GraphType Type of the adjacency list (e.g., std::vector<std::vector<int>>)
+     * @param graph The input graph representation.
+     * @param startNode The index of the node where the search begins.
+     * @param onVisit An optional callback function executed when a node is visited.
+     */
+    template <typename GraphType>
+    void depthFirstSearch(const GraphType& graph, int startNode, const std::function<void(int)>& onVisit = nullptr) {
+        if (graph.empty()) return;
+        
+        size_t sz = graph.size();
+        
+        // Safety check: ensure startNode is valid to prevent out-of-bounds crashes
+        if (startNode < 0 || startNode >= sz) return;
+
+        std::vector<bool> visited(sz, false);
+        
+        // Call the utility function
+        dfs_util(graph, startNode, visited, onVisit);
+    }
 }
