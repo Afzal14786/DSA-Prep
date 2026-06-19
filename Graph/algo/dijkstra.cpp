@@ -34,6 +34,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <set>
 
 class Solution {
   public:
@@ -78,5 +79,55 @@ class Solution {
         }
 
         return distances;
+    }
+};
+
+/**
+ * Implementaion using set data structure
+ */
+
+class Solution {
+  public:
+    std::vector<int> dijkstra(int V, std::vector<std::vector<int>> &graph, int src) {
+        // Code here
+        
+        // constructing the adjacency list contains the {node, weight}
+        std::vector<std::vector<std::pair<int, int>>> adj(V); 
+        for (const auto &edge : graph) {
+            int u = edge[0];
+            int v = edge[1];
+            int weight = edge[2];
+
+            adj[u].push_back({v, weight});   // {node, weight}
+            adj[v].push_back({u, weight});
+        }
+
+        std::set<std::pair<int, int>> st;
+        std::vector<int> distance(V, 1e9);
+
+        st.insert({0, src});  // {distance, node}
+        distance[src] = 0;
+
+        while (!st.empty()) {
+            auto it = st.begin();
+            auto [curr_distance, u] = *it;
+            st.erase(it);
+
+            if (curr_distance > distance[u]) continue;
+
+            // now process the neighbour nodes
+            for (auto &neighbour : adj[u]) {
+                int v = neighbour.first;
+                int weight = neighbour.second;
+
+                if (curr_distance + weight < distance[v]) {
+                    if (distance[v] != 1e9) st.erase({distance[v], v});
+                    distance[v] = weight + curr_distance;
+                    st.insert({distance[v], v});
+                }
+            }
+        }
+
+        return distance;
     }
 };
