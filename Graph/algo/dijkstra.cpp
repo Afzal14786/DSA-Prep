@@ -1,84 +1,82 @@
+/**
+ * @brief Computes the shortest paths from a single source vertex to all other vertices in a weighted graph.
+ * * @details 
+ * Dijkstra's Algorithm is a greedy, single-source shortest path (SSSP) algorithm. It works by 
+ * iteratively selecting the unvisited vertex with the smallest tentative distance from the source, 
+ * visiting it, and relaxing all of its outgoing edges. 
+ * * ### Implementation Details
+ * To achieve optimal performance, this algorithm relies on specific data structures to retrieve 
+ * the next minimum-distance vertex efficiently:
+ * - **Min-Priority Queue (Min-Heap)**: The most common approach. It stores pairs of `(current_distance, vertex)` 
+ * to quickly fetch the unvisited node with the smallest distance.
+ * - **Set (e.g., `std::set` in C++)**: An alternative to a priority queue that keeps elements sorted and 
+ * allows for updating shortest path values by erasing and re-inserting nodes.
+ * * @warning 
+ * **Constraint on Edge Weights**: This algorithm strictly requires all edge weights to be non-negative 
+ * (weight >= 0). 
+ * If a graph contains negative edge weights, Dijkstra's algorithm may produce incorrect results. 
+ * This is because the algorithm's core assumption (the greedy choice property) dictates that once a 
+ * vertex is extracted from the queue, its shortest path is finalized. Negative weights break this assumption. 
+ * (Note: Use the Bellman-Ford algorithm for graphs with negative weights).
+ * * @param source     The starting vertex from which to calculate the shortest paths.
+ * @param graph      The adjacency list representation of the graph, containing target vertices and edge weights.
+ * @param distances  A reference to a collection (e.g., vector or array) where the computed shortest 
+ * distances from the source to each vertex will be stored.
+ * * @pre The graph must not contain any negative edge weights.
+ * * @complexity
+ * - **Time Complexity**: O(E * log V), where 'E' is the total number of edges and 'V' is the total 
+ * number of vertices. This assumes the use of a Min-Priority Queue/Binary Heap and an Adjacency List.
+ * - **Space Complexity**: O(V + E) to store the graph (Adjacency List) and O(V) for the priority 
+ * queue and distance array.
+ */
+
+// Practice Question Link : https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
 #include <iostream>
 #include <vector>
-#include <climits>
+#include <queue>
 
-using namespace std;
+class Solution {
+  public:
+    std::vector<int> dijkstra(int V, std::vector<std::vector<int>> &graph, int src) {
+        // Code here
 
-vector<int> Dijkstra(vector<vector<int>> &cost, int source) {
-    int size = cost.size();
-    
-    // Initialize arrays
-    vector<bool> selected(size, false);
-    vector<int> distance(size, INT_MAX);  // Initialize all distances to infinity
-    
-    distance[source] = 0;  // Distance to source is 0
+        // constructing the adjacency list contains the {node, weight}
+        std::vector<std::vector<std::pair<int, int>>> adj(V); 
+        for (const auto &edge : graph) {
+            int u = edge[0];
+            int v = edge[1];
+            int weight = edge[2];
 
-    for (int count = 0; count < size - 1; ++count) {
-        // Find the vertex with minimum distance value
-        int min = INT_MAX;
-        int u = -1;
-        
-        for (int j = 0; j < size; ++j) {
-            if (!selected[j] && distance[j] <= min) {
-                min = distance[j];
-                u = j;
+            adj[u].push_back({v, weight});   // {node, weight}
+            adj[v].push_back({u, weight});
+        }
+        // required data structure
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> pq;
+        //  reference to a collection (e.g., vector or array) where the computed shortest 
+        std::vector<int> distances(V, 1e9);
+
+        // distance of the source is always 0
+        distances[src] = 0;
+        pq.push({0, src});  // {distance, node}
+
+        while (!pq.empty()) {
+            auto [curr_dist, u] = pq.top();
+            pq.pop();
+
+            if (curr_dist > distances[u]) continue;
+
+            // now process the neighbours
+            for (const auto &neighbour : adj[u]) {
+                int v = neighbour.first;  // node
+                int weight = neighbour.second;  // distance
+
+                if (weight + curr_dist < distances[v]) {
+                    distances[v] = weight + curr_dist;
+                    pq.push({distances[v], v});
+                }
             }
         }
-        
-        // If no vertex found, break
-        if (u == -1) break;
-        
-        selected[u] = true;
-        
-        // Update distance values of adjacent vertices
-        for (int v = 0; v < size; ++v) {
-            // Check if vertex v is not selected, there's an edge from u to v,
-            // and the new path through u is shorter
-            if (!selected[v] && cost[u][v] != INT_MAX && 
-                distance[u] != INT_MAX && 
-                distance[u] + cost[u][v] < distance[v]) {
-                distance[v] = distance[u] + cost[u][v];
-            }
-        }
-    }
-    
-    return distance;
-}
 
-int main() {
-    vector<vector<int>> cost = {
-        {INT_MAX, 1, 5, INT_MAX, INT_MAX, INT_MAX},
-        {1, INT_MAX, 3, 10, 8, INT_MAX},
-        {5, 3, INT_MAX, INT_MAX, 2, INT_MAX},
-        {INT_MAX, 10, INT_MAX, INT_MAX, 3, 2},
-        {INT_MAX, 8, 2, 3, INT_MAX, 7},
-        {INT_MAX, INT_MAX, INT_MAX, 2, 7, INT_MAX}
-    };
-    
-    cout << "\n------------- Given Cost Matrix : -------------\n";
-    for (int i = 0; i < cost.size(); i++) {
-        for (int j = 0; j < cost[i].size(); j++) {
-            if (cost[i][j] == INT_MAX) {
-                cout << "INF\t";
-            } else {
-                cout << cost[i][j] << "\t";
-            }
-        }
-        cout << endl;
+        return distances;
     }
-    
-    // Dijkstra
-    int source = 0;
-    vector<int> distances = Dijkstra(cost, source);
-    
-    cout << "\n------------- Shortest distances from vertex " << source << " : -------------\n";
-    for (int i = 0; i < distances.size(); i++) {
-        if (distances[i] == INT_MAX) {
-            cout << "Vertex " << i+1 << ": INF\n";
-        } else {
-            cout << "Vertex " << i+1 << ": " << distances[i] << "\n";
-        }
-    }
-    
-    return 0;
-}
+};
