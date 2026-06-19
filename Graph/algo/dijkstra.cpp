@@ -28,13 +28,15 @@
  * number of vertices. This assumes the use of a Min-Priority Queue/Binary Heap and an Adjacency List.
  * - **Space Complexity**: O(V + E) to store the graph (Adjacency List) and O(V) for the priority 
  * queue and distance array.
+ * 
+ * @see https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
  */
 
-// Practice Question Link : https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <set>
+#include <algorithm>
 
 class Solution {
   public:
@@ -129,5 +131,87 @@ class Solution {
         }
 
         return distance;
+    }
+};
+
+/**
+ * @brief Finds the shortest path and its total weight from vertex 1 to vertex n.
+ *
+ * @details
+ * You are given a weighted undirected graph with 'n' vertices (numbered from 1 to n) 
+ * and 'm' edges. Each edge is represented as a triplet {a, b, w}, denoting an edge 
+ * between vertex 'a' and vertex 'b' with a weight of 'w'.
+ *
+ * @param n     The total number of vertices in the graph (1-based indexing).
+ * @param m     The total number of edges in the graph.
+ * @param edges A collection (e.g., 2D vector) where each element is an edge {a, b, w}.
+ *
+ * @return std::vector<int> 
+ * - Path Found: The first element is the total weight of the shortest path, 
+ * followed by the sequence of nodes making up that path (e.g., [weight, 1, ..., n]).
+ * - No Path Found: Returns a vector containing only {-1}.
+ *
+ * @note
+ * Driver Code Verification Rules:
+ * - If both the path and its total weight are valid, the driver outputs the total weight.
+ * - If the returned list contains only -1, the driver outputs -1.
+ * - If the returned list contains an invalid path/weight, the driver outputs -2.
+ *
+ * @see https://www.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1
+ */
+
+class Solution {
+  public:
+    std::vector<int> shortestPath(int n, int m, std::vector<std::vector<int>>& edges) {
+        // Code here
+        if (edges.empty()) return {-1};
+        // converting this into an edgeList {node, weight}
+        std::vector<std::vector<std::pair<int, int>>> edgeList(n+1);
+        for (const auto &edge : edges) {
+            int u = edge[0], v = edge[1], weight = edge[2];
+
+            edgeList[u].push_back({v, weight});
+            edgeList[v].push_back({u, weight});
+        }
+
+        // using priority_queue
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> pq;
+        std::vector<int> distances(n+1, 1e9);
+        std::vector<int> parents(n+1);
+        for (int i = 1; i <= n; ++i) parents[i] = i;
+
+        // now pushing the src node and the distace of src into queue and update the distance vector
+        pq.push({0, 1});  // {distance, node}  // always start from 1
+        distances[1] = 0;
+
+        while (!pq.empty()) {
+            auto [dist, u] = pq.top();
+            pq.pop();
+
+            // now process the neighbour
+            for (const auto &neighbour : edgeList[u]) {
+                auto [v, wt] = neighbour;
+
+                if (wt + dist < distances[v]) {
+                    distances[v] = dist + wt;
+                    parents[v] = u;
+                    pq.push({distances[v], v});
+                }
+            }
+        }
+
+        if (distances[n] == 1e9) return {-1};
+        // now process the path
+        std::vector<int> path;
+        int node = n;
+        while (parents[node] != node) {
+            path.push_back(node);
+            node = parents[node];
+        }
+        path.push_back(1);  // push back the src node
+        path.push_back(distances[n]); // push back the last node means the destination one
+
+        std::reverse(path.begin(), path.end());
+        return path;
     }
 };
