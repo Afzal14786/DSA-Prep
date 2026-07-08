@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    void dfs(unordered_map<int, vector<int>> adjList, int curr, int parent, vector<int> &result, vector<int> &count, string &label) {
+    void dfs(unordered_map<int, vector<int>> &adjList, int curr, int parent, vector<int> &result, vector<int> &count, string &label) {
         char curr_label = label[curr];
         int before = count[curr_label - 'a'];
         count[curr_label - 'a'] += 1;
