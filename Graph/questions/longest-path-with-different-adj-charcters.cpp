@@ -13,6 +13,7 @@ public:
         for (int &child : adjList[curr]) {
             if (child == parent) continue;
             int child_longest_path = dfs(adjList, child, curr, s);
+
             if (s[child] == s[curr]) continue;
 
             if (child_longest_path > second_longest) second_longest = child_longest_path;
@@ -23,7 +24,7 @@ public:
         int one_best = 1 + max(second_longest, longest);
         int ans_at_bottom = 1 + longest + second_longest;
 
-        result = max({at_root, one_best, ans_at_bottom});
+        result = max({result, at_root, one_best, ans_at_bottom});
         return max(at_root, one_best);
     }
 
@@ -39,6 +40,7 @@ public:
         }
 
         result = 0;
+
         dfs(adjList, 0, -1, s);
         return result;
     }
