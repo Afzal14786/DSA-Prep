@@ -1,6 +1,51 @@
 /**
- * @file this file contains the implementation of Range Query and Specifically based on varities of question as well as implement the binary search on this function to calculate the left most index whose elements are greater
+ * @file RMIQ.cpp
+ * @brief Range Maximum Index Query (RMIQ) - Segment Tree based solution.
  * 
+ * Yeh file ek class RMIQ provide karti hai jo ek array ke kisi bhi range 
+ * [start, end] mein maximum element ka index O(log n) mein nikaalti hai.
+ * 
+ * Iske alawa, ek special query bhi implement ki gayi hai:
+ * "Diye gaye range [start, end] ke right side (i.e. end+1 se n-1 tak) 
+ *  mein sabse leftmost index dhundho jiska value nums[start] aur nums[end] 
+ *  dono se bada ho. Agar aisa koi index nahi milta to -1 return karo."
+ * 
+ * Is special query ko solve karne ke liye binary search ka istemal kiya gaya 
+ * hai, jisme har step par segment tree ki range maximum query ka use karte 
+ * hain. Is tarah query O(log² n) time mein complete hoti hai.
+ * 
+ * Class Members
+ * - n: array ka size.
+ * - nums: original array (copy).
+ * - max_tree_indexes: segment tree array jo har node par maximum element ka 
+ *   index store karta hai. Tie ki surat mein leftmost index prefer karta hai.
+ * 
+ * Private Methods
+ * - build_tree(curr_idx, left, right): tree ko recursively build karta hai.
+ * - _single_query(start, end, curr_idx, left, right): standard range maximum 
+ *   index query (O(log n)).
+ * 
+ * Public Methods
+ * - RMIQ(vector<int> &nums): constructor – tree build karta hai.
+ * - int single_query(int start, int end): special query – leftmost index 
+ *   > end with value > max(nums[start], nums[end]) return karta hai.
+ * 
+ * Time Complexity
+ * - Build: O(n)
+ * - Query: O(log² n) (binary search ke har step par O(log n) ka query)
+ * 
+ * Example
+ * vector<int> arr = {1, 3, 2, 5, 4};
+ * RMIQ rmiq(arr);
+ * int idx = rmiq.single_query(0, 2); // returns 3 (value 5 > max(1,2)=2)
+ * 
+ * Test Cases
+ * main() function mein kai test cases diye gaye hain jo normal, duplicates,
+ * increasing, decreasing, empty array, aur invalid ranges ko cover karte hain.
+ * 
+ * @note Ye implementation competitive programming aur interview questions 
+ *       ke liye useful hai jahan aapko range query aur next greater element 
+ *       search karna ho.
  */
 
 // رَبِّ زِدْنِي عِلْمًا
