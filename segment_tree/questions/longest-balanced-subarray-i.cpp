@@ -120,3 +120,38 @@ public:
         return left_most_zero_range(curr_idx, left, right);
     }
 };
+
+class Solution {
+public:
+    int longestBalanced(vector<int>& nums) {
+        int n = nums.size();
+        Lazy_Propagation seg(n);
+
+        vector<int> prefix_sum(n, 0);
+        int max_len = 0;
+
+        unordered_map<int, int> mpp;
+
+        for (int r = 0; r < n; ++r) {
+            int val = (nums[r] % 2 == 0) ? 1 : -1;
+            int prev = -1;
+            if (mpp.count(nums[r])) prev = mpp[nums[r]];
+
+            if (prev != -1) { // we have seen this element in past
+                // [0 ... prev] we are adding (-val) in this range
+                seg.update(0, prev, 0, 0, n-1, -val);
+            }
+
+            // [0 ... r] we are adding val in this range
+            seg.update(0, r, 0, 0, n-1, val);
+
+            // now finding the left_most 0 in the range [0 ... r]
+            int l = seg.left_most_zero(0, 0, n-1);
+            if (l != -1) max_len = max(max_len, r - l + 1);
+
+            mpp[nums[r]] = r;
+        }
+
+        return max_len;
+    }
+};
