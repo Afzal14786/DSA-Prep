@@ -1,30 +1,36 @@
 // رَبِّ زِدْنِي عِلْمًا
 // اے میرے رب! میرے علم میں اضافہ فرما۔
 
-// Question Link : https://leetcode.com/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/?envType=daily-question&envId=2026-10-12
+#include <bits/stdc++.h>
+using namespace std;
+
+// Question Link : https://leetcode.com/problems/maximum-alternating-sum-of-squares/description/?envType=daily-question&envId=2026-10-13
+
+
+// Fast I/O block for LeetCode performance boost
+auto init = []() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    return 'c';
+}();
 
 class Solution {
 public:
-    int maxSum(vector<int>& nums, int k) {
-        int b[30] = {0};
-        long long ans = 0, mod = 1000000007;
-
-        // Step 1: count the 1-bits in every bit position
-        for (int x : nums)
-            for (int i = 0; i < 30; i++)
-                if (x & (1 << i)) b[i]++;
-
-        // Step 2: build k numbers, each takes one 1-bit from every position that still has one
-        while (k-- > 0) {
-            long long x = 0;
-            for (int i = 0; i < 30; i++)
-                if (b[i] > 0) {
-                    x |= 1LL << i;
-                    b[i]--;
-                }
-            ans = (ans + x * x) % mod;
+    // TODO: Paste the specific LeetCode function declaration here (e.g., int twoSum(vector<int>& nums, int target))
+    static long long maxAlternatingSum(vector<int>& nums) {
+        int n = nums.size();
+        vector<long long> sq(n);
+        for (int i = 0; i < n; i++) {
+            sq[i] = 1LL * nums[i] * nums[i];
         }
-
-        return (int)ans;
+        sort(sq.rbegin(), sq.rend());
+        long long ans = 0;
+        int pos = (n + 1) / 2;
+        for (int i = 0; i < n; i++) {
+            if (i < pos) ans += sq[i];
+            else ans -= sq[i];
+        }
+        return ans;
     }
 };
