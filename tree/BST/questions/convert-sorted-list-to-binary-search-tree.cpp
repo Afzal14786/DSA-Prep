@@ -19,6 +19,35 @@ struct ListNode {
 class Solution {
 public:
     /**
+     * another solution approach 
+     * @time complexity  : O(nlogn)
+     * @space complexity : O(1)
+     */
+    TreeNode* sortedListToBST(ListNode* head) {
+        if (!head) return nullptr;
+        if (!head->next) return new TreeNode(head->val);
+
+        ListNode *slow_prev = nullptr;
+        ListNode *slow = head;
+        ListNode *fast = head;
+
+        while (fast && fast->next) {
+            slow_prev = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        TreeNode *node = new TreeNode(slow->val);
+        slow_prev->next = nullptr;
+        node->left  = sortedListToBST(head);
+        node->right = sortedListToBST(slow->next);
+        return node;
+    }
+};
+
+class Solution {
+public:
+    /**
      * intial solution using extra space 
      * @timecomplexity : O(n) + O(n)
      * @space complexity : O(n)
