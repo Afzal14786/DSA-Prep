@@ -7,6 +7,41 @@
 #include "TreeNode.h"
 using namespace std;
 
+
+class Solution {
+public:
+    void inorder(TreeNode *node) {
+        if (!node) return;
+        inorder(node->left);
+
+        if (prev && (node->val < prev->val)) {
+            if (first == nullptr) {
+                first = prev;
+                middle = node;
+            } else 
+                last = node;
+        }
+
+        prev = node;
+        inorder(node->right);
+    }
+
+    void recoverTree(TreeNode* root) {
+        first = middle = last = nullptr;
+        // prev = new TreeNode(INT_MIN);
+        prev = nullptr;
+        inorder(root);
+        if (first && last) swap(first->val, last->val);
+        else if (first && middle) swap(first->val, middle->val);
+    }
+
+private:
+    TreeNode *first;
+    TreeNode *middle;
+    TreeNode *last;
+    TreeNode *prev;
+};
+
 /**
  * @details this is my initial thought
  * @time complexity  : O(2n) + O(nlogn)
