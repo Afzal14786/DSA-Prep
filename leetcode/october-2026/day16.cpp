@@ -1,21 +1,15 @@
 // رَبِّ زِدْنِي عِلْمًا
 // اے میرے رب! میرے علم میں اضافہ فرما۔
 
+// Question Link : https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/?envType=daily-question&envId=2026-10-16
 
 #include <bits/stdc++.h>
-#include "TreeNode.h"
 using namespace std;
-
-// Question Link : https://leetcode.com/problems/search-in-a-binary-search-tree/description/
 
 class Solution {
 public:
-
-    TreeNode* searchBST(TreeNode* root, int val) {
-        while (root && root->val != val) {
-            root = (root->val > val) ? root->left : root->right;
-        }
-        return root;
+    int sumCounts(vector<int>& nums) {
+        
     }
 };
 
