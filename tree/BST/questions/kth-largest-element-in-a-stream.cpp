@@ -2,6 +2,7 @@
 // اے میرے رب! میرے علم میں اضافہ فرما۔
 
 // Question Link : https://leetcode.com/problems/kth-largest-element-in-a-stream/description/
+// Question Link : https://neetcode.io/problems/kth-largest-integer-in-a-stream/question
 
 #include <bits/stdc++.h>
 using namespace std;
