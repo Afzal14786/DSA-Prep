@@ -7,6 +7,30 @@
 #include "Node.h"
 using namespace std;
 
+/**
+ * Optimize Code
+ * @time complexity : O(height)
+ * @space complexity : O(1)
+ */
+
+class Solution {
+  public:
+    int inOrderSuccessor(Node *root, Node *k) {
+        // code here
+        if (root == nullptr || k == nullptr) return -1;
+        Node *successor = nullptr;
+
+        while (root) {
+            if (root->data <= k->data) root = root->right;
+            else {
+                successor = root;
+                root = root->left;
+            }
+        }
+
+        return (successor == nullptr) ? -1 : successor->data;
+    }
+};
 
 /**
  * this is my initial thought after seeing the examples...
@@ -30,7 +54,8 @@ public:
         int n = nums.size();
         for (int i = 0; i < n; ++i) {
             if (nums[i] == k) {
-                return nums[i+1]->data;
+                if (i+1 < n)
+                    return nums[i+1]->data;
             }
         }
 
