@@ -17,6 +17,34 @@ struct Node {
 };
 
 
+/**
+ * Optimize solution
+ * Time Complexity : O(n)
+ * Space Complexity : O(n) in worst case
+ * Auxilary Space : O(1)
+ */
+
+class Solution {
+  public:
+    Node *flattenBST(Node *root) {
+        // code here
+        if (!root) return nullptr;
+        Node *head = flattenBST(root->left);
+        root->left = nullptr;
+        root->right = flattenBST(root->right);
+
+        if (head) {
+            Node *temp = head;
+            while (temp && temp->right) temp = temp->right;
+            temp->right = root;
+        } else {
+            head = root;
+        }
+
+        return head;
+    }
+};
+
 class Solution {
 public:
     void solve(Node *node, vector<Node*> &nodes) {
