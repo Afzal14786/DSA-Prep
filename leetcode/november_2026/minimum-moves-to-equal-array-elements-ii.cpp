@@ -1,7 +1,7 @@
 // رَبِّ زِدْنِي عِلْمًا
 // اے میرے رب! میرے علم میں اضافہ فرما۔
 
-// Question Link : https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/
+// Question Link : https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/description/?envType=daily-question&envId=2026-11-02
 
 #include <bits/stdc++.h>
 using namespace std;
