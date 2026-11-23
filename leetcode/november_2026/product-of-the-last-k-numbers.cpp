@@ -1,0 +1,39 @@
+// رَبِّ زِدْنِي عِلْمًا
+// اے میرے رب! میرے علم میں اضافہ فرما۔
+
+// Question Link : https://leetcode.com/problems/product-of-the-last-k-numbers/?envType=daily-question&envId=2026-11-23
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class ProductOfNumbers {
+public:
+    vector<int> pre;
+    ProductOfNumbers() {
+        pre = {1};
+    }
+    
+    void add(int num) {
+        if (num == 0) pre = {1};
+        else pre.push_back(pre.back() * num);
+    }
+    
+    int getProduct(int k) {
+        if (k >= pre.size()) return 0;
+        return pre.back() / pre[pre.size() - 1 - k];
+    }
+};
+
+/**
+ * Your ProductOfNumbers object will be instantiated and called as such:
+ * ProductOfNumbers* obj = new ProductOfNumbers();
+ * obj->add(num);
+ * int param_2 = obj->getProduct(k);
+ */
+
+auto init = []() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    return 'c';
+}();
